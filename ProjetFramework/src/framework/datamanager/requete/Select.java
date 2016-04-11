@@ -1,4 +1,4 @@
-package framework.bdd.requete;
+package framework.datamanager.requete;
 
 import java.sql.Connection;
 

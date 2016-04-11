@@ -1,4 +1,4 @@
-package framework.bdd;
+package framework.datamanager;
 
 public class Fichier extends ZoneStockage {
 
