@@ -11,6 +11,8 @@ public abstract class DAOTable {
 	private boolean nomSet = false;
 	/** les attributs de la table avec leurs typeBD **/
 	private Map<String, TypeBD> attributs = new HashMap<>();
+	/** les jointures des tables **/
+	private Map<DAOTable, String> jointures = new HashMap<>();
 
 	/**
 	 * Permet de récuperer le nom de la table
@@ -40,4 +42,16 @@ public abstract class DAOTable {
 	 * @param attributs les nouveaux attributs de la table avec leurs typeBD
 	 */
 	public void setAttributs(Map<String, TypeBD> attributs) { this.attributs = attributs; }
+
+	/**
+	 * Permet de récupérer les jointures des tables
+	 * @return les jointures des tables
+	 */
+	public Map<DAOTable, String> getJointures() { return this.jointures; }
+
+	/**
+	 * Permet de récupérer les jointures des tables
+	 * @param attributs les jointures des tables
+	 */
+	public void setJointures(Map<DAOTable, String> jointures) { this.jointures = jointures; }
 }
