@@ -1,4 +1,4 @@
-package framework.datamanager.requete;
+package framework.datamanager.request;
 
 public enum TypeBD {
 	

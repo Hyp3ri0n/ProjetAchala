@@ -1,4 +1,4 @@
-package framework.datamanager;
+package framework.datamanager.exception;
 
 public class DMException extends Exception {
 

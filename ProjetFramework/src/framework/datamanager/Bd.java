@@ -3,7 +3,7 @@ package framework.datamanager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-import framework.datamanager.requete.Requete;
+import framework.datamanager.request.Requete;
 
 public class Bd extends ZoneStockage {
 	
