@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Delete extends DeleteManager {
 
 	/** La clause where **/
-	private String where;
+	private String where = "";
 	
 	/**
 	 * Constructeur public
@@ -23,8 +23,15 @@ public class Delete extends DeleteManager {
 	
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String req = "DELETE FROM ";
+		
+		req += this.table.getNomTable();
+		
+		req += " " + this.where;
+		
+		System.out.println(req);
+		
+		return stmt.executeQuery(req);
 	}
 
 }
