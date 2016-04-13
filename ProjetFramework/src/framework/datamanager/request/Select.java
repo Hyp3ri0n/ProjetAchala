@@ -1,9 +1,11 @@
 package framework.datamanager.request;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Select extends Requete {
 	
@@ -12,11 +14,11 @@ public class Select extends Requete {
 	/** La liste des tables à référencer **/
 	private List<DAOTable> tables = new ArrayList<>();
 	/** La clause where **/
-	private String where;
+	private String where = "";
 	/** La clause group by **/
-	private String groupBy;
+	private String groupBy = "";
 	/** La clause having **/
-	private String having;
+	private String having = "";
 	
 	/**
 	 * Constructeur public
@@ -36,8 +38,7 @@ public class Select extends Requete {
 	 * @param where La clause "where" au format string sans le where ([...] "Where attr1 > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where) {
-		this.attributs = attributs;
-		this.tables = tables;
+		this(attributs, tables);
 		this.where = where;
 	}
 	
@@ -49,10 +50,7 @@ public class Select extends Requete {
 	 * @param groupBy La clause "group by" au format string sans le group by ([...] "group by attr1, attr2")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where, String groupBy) {
-		super();
-		this.attributs = attributs;
-		this.tables = tables;
-		this.where = where;
+		this(attributs, tables, where);
 		this.groupBy = groupBy;
 	}
 
@@ -65,19 +63,32 @@ public class Select extends Requete {
 	 * @param having La clause "having" au format string sans le having ([...] "having count(attr1) > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where, String groupBy, String having) {
-		super();
-		this.attributs = attributs;
-		this.tables = tables;
-		this.where = where;
-		this.groupBy = groupBy;
+		this(attributs, tables, where, groupBy);
 		this.having = having;
 	}
 
 	
 	@Override
-	public ResultSet execute(Connection co) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultSet execute(Statement stmt) throws SQLException {
+		
+		String req = "SELECT ";
+		
+		int cptAttrs = 0;
+		for(String attrs : this.attributs) {
+			cptAttrs++;
+			
+			req+= attrs;
+			
+			if (this.attributs.size() == cptAttrs) break;
+			
+			req += ", ";
+		}
+				
+		req += "FROM ";
+		
+		
+				
+		return stmt.executeQuery(req);
 	}
 
 }

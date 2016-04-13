@@ -2,6 +2,7 @@ package framework.datamanager;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import framework.datamanager.request.Requete;
 
@@ -35,7 +36,14 @@ public class Bd extends ZoneStockage {
 	 * @param req Un objet de type requete (Select, Update, Create, Insert, Delete, Drop)
 	 * @return Un ResultSet null si vide sinon le résultat
 	 */
-	public ResultSet request(Requete req) { return req.execute(this.connexionBD); }
+	public ResultSet request(Requete req) { 
+		try {
+			return req.execute(this.connexionBD.createStatement());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} 
+	}
 
 	/**
 	 * Permet de récupérer le driver

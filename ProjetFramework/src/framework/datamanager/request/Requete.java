@@ -1,14 +1,18 @@
 package framework.datamanager.request;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public abstract class Requete {
 	
 	/**
 	 * Permet d'éxecuter la requête
-	 * @param co la connexion avec la bdd
+	 * @param stmt la connexion avec la bdd
 	 * @return Un ResultSet null si vide sinon le résultat
+	 * @throws SQLException 
 	 */
-	public abstract ResultSet execute(java.sql.Connection co);
+	public abstract ResultSet execute(Statement stmt) throws SQLException;
 	
 }
