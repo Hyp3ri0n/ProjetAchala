@@ -14,6 +14,16 @@ public abstract class DAOTable {
 	/** les jointures des tables **/
 	private Map<DAOTable, String> jointures = new HashMap<>();
 
+	protected DAOTable(Map<DAOTable, String> jointures) { 
+		this.setJointures(jointures);
+		this.initialisation(); 
+	}
+	
+	/**
+	 * Initialisation de la table
+	 */
+	public abstract void initialisation();
+	
 	/**
 	 * Permet de récuperer le nom de la table
 	 * @return le nom de la table au format string

@@ -35,7 +35,7 @@ public class Select extends Requete {
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
 	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
-	 * @param where La clause "where" au format string sans le where ([...] "Where attr1 > 42")
+	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where) {
 		this(attributs, tables);
@@ -46,8 +46,8 @@ public class Select extends Requete {
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
 	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
-	 * @param where La clause "where" au format string sans le where ([...] "Where attr1 > 42" [...])
-	 * @param groupBy La clause "group by" au format string sans le group by ([...] "group by attr1, attr2")
+	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
+	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where, String groupBy) {
 		this(attributs, tables, where);
@@ -58,9 +58,9 @@ public class Select extends Requete {
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
 	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
-	 * @param where La clause "where" au format string sans le where ([...] "Where attr1 > 42" [...])
-	 * @param groupBy La clause "group by" au format string sans le group by ([...] "group by attr1, attr2" [...])
-	 * @param having La clause "having" au format string sans le having ([...] "having count(attr1) > 42")
+	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
+	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2" [...])
+	 * @param having La clause "having" au format string avec le having ([...] "having count(attr1) > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where, String groupBy, String having) {
 		this(attributs, tables, where, groupBy);
@@ -84,10 +84,28 @@ public class Select extends Requete {
 			req += ", ";
 		}
 				
-		req += "FROM ";
-		
-		
+		req += " FROM ";
+		DAOTable nextTbl;
+
+		int cptTbls = 0;
+		for(DAOTable table : this.tables) {
+			cptTbls++;
+			
+			if (this.tables.size() >= cptTbls + 1) {
+				nextTbl = this.tables.get(cptTbls);
 				
+				if (table.getJointures().get(nextTbl) == null) throw new SQLException("Jointure inexistante");
+				
+				req += table.getNomTable() + " JOIN " + nextTbl.getNomTable() + " ON " + table.getJointures().get(nextTbl);
+				
+			}
+			req += " ";
+		}
+		
+		req += " " + where + " " + groupBy + " " + having;
+				
+		System.out.println(req);
+		
 		return stmt.executeQuery(req);
 	}
 
