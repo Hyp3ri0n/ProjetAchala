@@ -47,7 +47,7 @@ public class Utilisateur {
 		return this.getNom() + " " + this.getPrenom();
 	}
 	
-	public boolean equals() {
+	public boolean equals(Utilisateur u) {
 		return true;
 	}
 }

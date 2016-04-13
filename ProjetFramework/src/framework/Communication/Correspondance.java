@@ -1,6 +1,10 @@
 package framework.Communication;
 
 import java.rmi.RemoteException;
+import java.util.LinkedList;
+import java.util.List;
+
+import framework.Communication.Exception.CommunicationException;
 
 public class Correspondance extends Shared {
 
@@ -8,7 +12,6 @@ public class Correspondance extends Shared {
 
 	private Utilisateur userA;
 	private Utilisateur userB;
-	private boolean wait;
 	
 	protected Correspondance() throws RemoteException {
 		super();
@@ -37,22 +40,32 @@ public class Correspondance extends Shared {
 		this.userB = userB;
 	}
 	
-	public boolean isWait() {
-		return wait;
-	}
-
-	public void setWait(boolean wait) {
-		this.wait = wait;
-	}
-
-	public void send(_RemotableObject object) {
-		this.RObjectList.add(object);
+	public void send( _RemotableObject object) throws CommunicationException, RemoteException {
+		if(!this.isAllowed(object.getSender())) throw new CommunicationException("Acces denied");
+		
+		this.getObjects().add(object);
 		this.setWait(true);
 	}
 	
-	public RemotableObject receive() {
+	public List<_RemotableObject> receive(Utilisateur u) throws CommunicationException, RemoteException {
+		if(!this.isAllowed(u)) throw new CommunicationException("Acces denied");
+		
+		List<_RemotableObject> newObjs = new LinkedList<>();
+		
+		if(this.isWait()){
+			for(_RemotableObject o : this.getObjects()){
+				if(o.isWait()){
+					newObjs.add(o);
+				}
+			}
+		}
+		
 		this.setWait(false);
-		return null;
+		return newObjs;
+	}
+	
+	public boolean isAllowed(Utilisateur u) {
+		return this.getUserA().equals(u) || this.getUserB().equals(u);
 	}
 
 }

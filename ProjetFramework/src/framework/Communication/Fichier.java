@@ -10,8 +10,8 @@ public class Fichier extends RemotableObject {
 
 	private File fichier;
 	
-	protected Fichier(File fichier) throws RemoteException {
-		super(new Date());
+	protected Fichier(Utilisateur sender, File fichier) throws RemoteException {
+		super(sender, new Date());
 		this.setFichier(fichier);
 	}
 
@@ -19,7 +19,7 @@ public class Fichier extends RemotableObject {
 		return this.fichier;
 	}
 	
-	private void setFichier(File fichier) {
+	public void setFichier(File fichier) {
 		this.fichier = fichier;
 	}
 
