@@ -1,5 +1,6 @@
 package framework.datamanager.test.dao;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import framework.datamanager.Bd;
@@ -16,7 +17,11 @@ public class ManagerDAO {
 		/*********************************/
 		/**		Création connexion bd	**/
 		/*********************************/
-		bd = new Bd("", "", "");
+		try {
+			bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "fernaaur", "bd");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
 		/*****************************************************/

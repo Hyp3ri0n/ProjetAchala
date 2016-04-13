@@ -25,6 +25,15 @@ public abstract class DAOTable {
 	public abstract void initialisation();
 	
 	/**
+	 * Création de la table
+	 * @return TODO
+	 */
+	protected Requete createTable() {
+		//Do nothing, Override to do something
+		return null;
+	}
+	
+	/**
 	 * Permet de récuperer le nom de la table
 	 * @return le nom de la table au format string
 	 */

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import framework.datamanager.request.DAOTable;
+import framework.datamanager.request.Delete;
 import framework.datamanager.request.Requete;
 import framework.datamanager.request.Select;
 import framework.datamanager.request.TypeBD;
@@ -40,6 +41,10 @@ public class DAOTable1 extends DAOTable {
 		
 		
 		return new Select(lstAttrs, lstTables, "WHERE Table1.attr1 > 42", "GROUP BY Table1.attr1, Table2.attr1, Table2.attr2", "HAVING COUNT(Table1.attr1) >42");
+	}
+
+	public Requete deleteSomething() {		
+		return new Delete(ManagerDAO.getDAOTable1(), "WHERE Table1.attr1 > 42");
 	}
 	
 }

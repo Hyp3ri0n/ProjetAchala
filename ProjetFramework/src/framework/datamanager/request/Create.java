@@ -61,6 +61,7 @@ public class Create extends Requete {
 			req += ", ";
 		}
 		
+		//WIP
 		int cptJoins = 0;
 		for(DAOTable table : this.table.getJointures().keySet()) {
 			cptJoins++;

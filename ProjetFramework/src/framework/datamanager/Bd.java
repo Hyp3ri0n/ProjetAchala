@@ -1,6 +1,7 @@
 package framework.datamanager;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,7 +10,9 @@ import framework.datamanager.request.Requete;
 public class Bd extends ZoneStockage {
 	
 	/** Représente le driver pour se connecter à la BD **/
-	private String driver;
+	private static final String driver = "oracle.jdbc.driver.OracleDriver";
+	/** Représente l'url pour la connexion **/
+	private String url;
 	/** Représente le nom d'utilisateur pour la connexion **/
 	private String username;
 	/** Représente le mot de passe pour la connexion **/
@@ -19,16 +22,17 @@ public class Bd extends ZoneStockage {
 	
 	/**
 	 * Constructeur public
-	 * @param driver Le driver pour la connexion
+	 * @param driver L'url pour la connexion
 	 * @param username Le nom d'utilisateur pour la connexion
 	 * @param password Le password pour la connexion
+	 * @throws SQLException 
 	 */
-	public Bd(String driver, String username, String password)
+	public Bd(String url, String username, String password) throws SQLException
 	{
-		this.driver = driver;
+		this.url = url;
 		this.username = username;
 		this.password = password;
-		//this.connexionBD = new 
+		this.connexionBD = DriverManager.getConnection(this.url, this.username, this.password);
 	}
 	
 	/**
@@ -38,7 +42,7 @@ public class Bd extends ZoneStockage {
 	 */
 	public ResultSet request(Requete req) { 
 		try {
-			return req.execute(null/*this.connexionBD.createStatement()*/);
+			return req.execute(this.connexionBD.createStatement());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -49,7 +53,7 @@ public class Bd extends ZoneStockage {
 	 * Permet de récupérer le driver
 	 * @return Le driver au format String
 	 */
-	public String getDriver() {	return this.driver;	}
+	public String getDriver() {	return driver;	}
 
 	/**
 	 * Permet de récupérer le nom d'utilisateur

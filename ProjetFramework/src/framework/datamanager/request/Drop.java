@@ -20,8 +20,13 @@ public class Drop extends DeleteManager {
 	
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String req = "DROP TABLE ";
+		
+		req += this.table.getNomTable();
+
+		System.out.println(req);
+		
+		return stmt.executeQuery(req);
 	}
 
 }
