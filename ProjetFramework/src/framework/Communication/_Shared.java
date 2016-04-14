@@ -57,4 +57,10 @@ public interface _Shared extends Remote {
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 */
 	public void setWait(boolean wait) throws RemoteException;
+	
+	public _Utilisateur getUserA() throws RemoteException;
+	
+	public _Utilisateur getUserB() throws RemoteException;
+	
+	public String getRmiAdresse() throws RemoteException;
 }

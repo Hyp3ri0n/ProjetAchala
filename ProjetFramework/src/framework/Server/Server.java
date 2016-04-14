@@ -84,12 +84,17 @@ public class Server extends UnicastRemoteObject implements _Server {
 
 	@Override
 	public String getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException {
-		String url = "";
-		url += "rmi://";
+		String url = this.getRMIShared(u1, u2);
+		if(!url.equals("")) return url;
+
+		url  = "rmi://";
 		url += InetAddress.getLocalHost().getHostAddress();
 		url += "/" + u1.identify() + "_" + u2.identify();
 		
-		this.getRegistry().rebind(url, new Correspondance(u1, u2, url));
+		_Shared s = new Correspondance(u1, u2, url);
+		this.getShares().add(s);
+		
+		this.getRegistry().rebind(url, s);
 		
 		return url;
 	}
@@ -110,6 +115,19 @@ public class Server extends UnicastRemoteObject implements _Server {
 	public void connect(_Utilisateur u) throws RemoteException {
 		u.setId(getIdUser());
 		this.getUtilisateurs().add(u);
+	}
+	
+	private String getRMIShared(_Utilisateur u1, _Utilisateur u2) throws RemoteException {
+		String url = "";
+		
+		for(_Shared s : this.getShares()) {
+			if((s.getUserA().equals(u1) && s.getUserB().equals(u2)) || (s.getUserA().equals(u2) && s.getUserB().equals(u1))) {
+				url = s.getRmiAdresse();
+				break;
+			}
+		}
+		
+		return url;
 	}
 
 }
