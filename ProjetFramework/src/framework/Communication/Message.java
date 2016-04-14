@@ -9,13 +9,18 @@ public class Message extends RemotableObject {
 
 	private String message;
 	
-	protected Message(String message) throws RemoteException {
-		super(new Date());
-		this.message = message;
+	public Message(Utilisateur sender, String message) throws RemoteException {
+		super(sender, new Date());
+		this.setMessage(message);
+		this.setWait(false);
 	}
 	
 	public String getMessage() {
 		return this.message;
+	}
+	
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	
