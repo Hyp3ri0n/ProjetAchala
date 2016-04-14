@@ -4,6 +4,8 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import framework.Communication.Utilisateur.Utilisateur;
+
 public class Fichier extends RemotableObject {
 
 	private static final long serialVersionUID = -4565122649490152817L;

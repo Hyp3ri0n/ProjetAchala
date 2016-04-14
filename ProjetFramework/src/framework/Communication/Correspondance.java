@@ -5,49 +5,52 @@ import java.util.LinkedList;
 import java.util.List;
 
 import framework.Communication.Exception.CommunicationException;
+import framework.Communication.Utilisateur._Utilisateur;
 
 public class Correspondance extends Shared {
 
 	private static final long serialVersionUID = -6280164128188470470L;
 
-	private Utilisateur userA;
-	private Utilisateur userB;
+	private _Utilisateur userA;
+	private _Utilisateur userB;
 	
-	protected Correspondance() throws RemoteException {
-		super();
+	protected Correspondance(String rmiAdresse) throws RemoteException {
+		super(rmiAdresse);
 		setWait(false);
 	}
 	
-	public Correspondance(Utilisateur user1, Utilisateur user2)throws RemoteException {
-		this();
+	public Correspondance(_Utilisateur user1, _Utilisateur user2, String rmiAdresse)throws RemoteException {
+		this(rmiAdresse);
 		this.setUserA(user1);
 		this.setUserB(user2);
 	}
 
-	public Utilisateur getUserA() {
+	public _Utilisateur getUserA() {
 		return userA;
 	}
 
-	public void setUserA(Utilisateur userA) {
+	private void setUserA(_Utilisateur userA) {
 		this.userA = userA;
 	}
 	
-	public Utilisateur getUserB() {
+	public _Utilisateur getUserB() {
 		return userB;
 	}
 
-	public void setUserB(Utilisateur userB) {
+	private void setUserB(_Utilisateur userB) {
 		this.userB = userB;
 	}
 	
 	public void send( _RemotableObject object) throws CommunicationException, RemoteException {
 		if(!this.isAllowed(object.getSender())) throw new CommunicationException("Acces denied");
 		
-		this.getObjects().add(object);
-		this.setWait(true);
+		if(!this.getObjects().contains(object)) {
+			this.getObjects().add(object);
+			this.setWait(true);
+		}
 	}
 	
-	public List<_RemotableObject> receive(Utilisateur u) throws CommunicationException, RemoteException {
+	public List<_RemotableObject> receive(_Utilisateur u) throws CommunicationException, RemoteException {
 		if(!this.isAllowed(u)) throw new CommunicationException("Acces denied");
 		
 		List<_RemotableObject> newObjs = new LinkedList<>();
@@ -56,6 +59,7 @@ public class Correspondance extends Shared {
 			for(_RemotableObject o : this.getObjects()){
 				if(o.isWait()){
 					newObjs.add(o);
+					o.setWait(false);
 				}
 			}
 		}
@@ -64,7 +68,7 @@ public class Correspondance extends Shared {
 		return newObjs;
 	}
 	
-	public boolean isAllowed(Utilisateur u) {
+	public boolean isAllowed(_Utilisateur u) throws RemoteException {
 		return this.getUserA().equals(u) || this.getUserB().equals(u);
 	}
 

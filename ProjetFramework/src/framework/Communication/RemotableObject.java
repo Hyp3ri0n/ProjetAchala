@@ -1,9 +1,12 @@
 package framework.Communication;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
-import java.util.List;
+
+import framework.Communication.Exception.CommunicationException;
+import framework.Communication.Utilisateur.Utilisateur;
 
 public abstract class RemotableObject extends UnicastRemoteObject implements _RemotableObject {
 
@@ -25,21 +28,18 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 		return this.date;
 	}
 	
-	public void setDate(Date date) {
+	private void setDate(Date date) {
 		this.date = date;
 	}
 
 	@Override
-	public void save() {
+	public void save(File fichier) {
+		//TODO
 	}
 
 	@Override
-	public void send(_Shared shared) {
-	}
-	
-	@Override
-	public List<_RemotableObject> receive(_Shared shared) {
-		return null;
+	public void send(_Shared shared) throws RemoteException, CommunicationException {
+		shared.send(this);
 	}
 	
 	public boolean isWait() {
@@ -54,7 +54,7 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 		return this.sender;
 	}
 
-	public void setSender(Utilisateur sender) {
+	private void setSender(Utilisateur sender) {
 		this.sender = sender;
 	}
 

@@ -3,6 +3,8 @@ package framework.Communication;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import framework.Communication.Utilisateur.Utilisateur;
+
 public class Message extends RemotableObject {
 
 	private static final long serialVersionUID = -2287686573955510539L;
@@ -12,14 +14,14 @@ public class Message extends RemotableObject {
 	public Message(Utilisateur sender, String message) throws RemoteException {
 		super(sender, new Date());
 		this.setMessage(message);
-		this.setWait(false);
+		this.setWait(true);
 	}
 	
 	public String getMessage() {
 		return this.message;
 	}
 	
-	public void setMessage(String message) {
+	private void setMessage(String message) {
 		this.message = message;
 	}
 
