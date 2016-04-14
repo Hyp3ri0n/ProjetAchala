@@ -1,4 +1,4 @@
-package framework.datamanager.request;
+package framework.datamanager.bdd;
 
 import java.util.HashMap;
 import java.util.Map;

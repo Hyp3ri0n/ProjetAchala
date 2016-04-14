@@ -3,7 +3,7 @@ package framework.datamanager.testA.dao;
 import java.util.HashMap;
 
 import framework.datamanager.Bd;
-import framework.datamanager.request.DAOTable; 
+import framework.datamanager.bdd.DAOTable;
 import framework.datamanager.testA.dao.DAOUtilisateur;
 import framework.datamanager.testA.dao.DAOArticle;
 import framework.datamanager.testA.dao.ManagerDAO;

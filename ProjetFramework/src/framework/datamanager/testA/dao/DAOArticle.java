@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import framework.datamanager.request.DAOTable;
-import framework.datamanager.request.Insert;
-import framework.datamanager.request.Requete;
-import framework.datamanager.request.Select;
-import framework.datamanager.request.TypeBD;
-import framework.datamanager.request.Update;
 import framework.datamanager.testA.dao.ManagerDAO;
+import framework.datamanager.bdd.DAOTable;
+import framework.datamanager.bdd.Insert;
+import framework.datamanager.bdd.Requete;
+import framework.datamanager.bdd.Select;
+import framework.datamanager.bdd.TypeBD;
+import framework.datamanager.bdd.Update;
 import framework.datamanager.testA.dao.DAOUtilisateur;
 
 

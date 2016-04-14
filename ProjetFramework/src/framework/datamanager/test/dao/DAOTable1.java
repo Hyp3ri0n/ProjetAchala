@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import framework.datamanager.request.Create;
-import framework.datamanager.request.DAOTable;
-import framework.datamanager.request.Delete;
-import framework.datamanager.request.Drop;
-import framework.datamanager.request.Insert;
-import framework.datamanager.request.Requete;
-import framework.datamanager.request.Select;
-import framework.datamanager.request.TypeBD;
-import framework.datamanager.request.Update;
+import framework.datamanager.bdd.Create;
+import framework.datamanager.bdd.DAOTable;
+import framework.datamanager.bdd.Delete;
+import framework.datamanager.bdd.Drop;
+import framework.datamanager.bdd.Insert;
+import framework.datamanager.bdd.Requete;
+import framework.datamanager.bdd.Select;
+import framework.datamanager.bdd.TypeBD;
+import framework.datamanager.bdd.Update;
 
 public class DAOTable1 extends DAOTable {
 

@@ -1,6 +1,6 @@
 package framework.datamanager.testA.metier;
 
-import framework.datamanager.request.DAOTable;
+import framework.datamanager.bdd.DAOTable;
 
 public class Article {
 

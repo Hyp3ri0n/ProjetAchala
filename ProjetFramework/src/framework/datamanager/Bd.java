@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import framework.datamanager.request.Requete;
+import framework.datamanager.bdd.Requete;
 
 public class Bd extends ZoneStockage {
 	

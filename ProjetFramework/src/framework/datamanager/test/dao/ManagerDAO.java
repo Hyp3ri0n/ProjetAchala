@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import framework.datamanager.Bd;
-import framework.datamanager.request.DAOTable;
+import framework.datamanager.bdd.DAOTable;
 
 public class ManagerDAO {
 	private static ManagerDAO instance = new ManagerDAO();

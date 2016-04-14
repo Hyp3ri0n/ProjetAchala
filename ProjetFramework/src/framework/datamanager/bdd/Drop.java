@@ -1,34 +1,29 @@
-package framework.datamanager.request;
+package framework.datamanager.bdd;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class Delete extends DeleteManager {
-
-	/** La clause where **/
-	private String where = "";
+public class Drop extends DeleteManager {
 	
 	/**
 	 * Constructeur public
 	 * @param table La table à créer
 	 * @param where La clause where
 	 */
-	public Delete(DAOTable table, String where) {
+	public Drop(DAOTable table) {
 		super();
 		this.table = table;
-		this.where = where;
 	}
+	
 	
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
-		String req = "DELETE FROM ";
+		String req = "DROP TABLE ";
 		
 		req += this.table.getNomTable();
-		
-		req += " " + this.where;
-		
+
 		System.out.println(req);
 		
 		return stmt.executeQuery(req);
