@@ -3,7 +3,7 @@ package framework.Communication;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import framework.Communication.Utilisateur.Utilisateur;
+import framework.Communication.Utilisateur._Utilisateur;
 
 public class Message extends RemotableObject {
 
@@ -11,7 +11,7 @@ public class Message extends RemotableObject {
 
 	private String message;
 	
-	public Message(Utilisateur sender, String message) throws RemoteException {
+	public Message(_Utilisateur sender, String message) throws RemoteException {
 		super(sender, new Date());
 		this.setMessage(message);
 		this.setWait(true);
@@ -23,6 +23,10 @@ public class Message extends RemotableObject {
 	
 	private void setMessage(String message) {
 		this.message = message;
+	}
+	
+	public Object getObject() {
+		return this.getMessage();
 	}
 
 	

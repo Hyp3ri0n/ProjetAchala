@@ -6,17 +6,17 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
 import framework.Communication.Exception.CommunicationException;
-import framework.Communication.Utilisateur.Utilisateur;
+import framework.Communication.Utilisateur._Utilisateur;
 
 public abstract class RemotableObject extends UnicastRemoteObject implements _RemotableObject {
 
 	private static final long serialVersionUID = 655492702812581170L;
 
 	private Date date;
-	private Utilisateur sender;
+	private _Utilisateur sender;
 	boolean wait;
 	
-	protected RemotableObject(Utilisateur u, Date date) throws RemoteException {
+	protected RemotableObject(_Utilisateur u, Date date) throws RemoteException {
 		super();
 		this.setDate(date);
 		this.setWait(false);
@@ -50,11 +50,11 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 		this.wait = wait;
 	}
 
-	public Utilisateur getSender() {
+	public _Utilisateur getSender() {
 		return this.sender;
 	}
 
-	private void setSender(Utilisateur sender) {
+	private void setSender(_Utilisateur sender) {
 		this.sender = sender;
 	}
 

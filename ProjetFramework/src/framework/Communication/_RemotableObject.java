@@ -39,6 +39,8 @@ public interface _RemotableObject extends Remote {
 	 */
 	//List<_RemotableObject> receive(_Shared shared) throws RemoteException, CommunicationException;
 	
+	Object getObject() throws RemoteException;
+	
 	/**
 	 * Indique si l'objet courant est en attente de lecture
 	 * @return boolean true si l'objet est en attente, false sinon

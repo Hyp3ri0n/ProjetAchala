@@ -1,9 +1,9 @@
 package framework.Server;
 
+import java.net.UnknownHostException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.net.UnknownHostException;
-import java.util.List;
+import java.util.Set;
 
 import framework.Communication.Utilisateur._Utilisateur;
 
@@ -12,18 +12,18 @@ public interface _Server extends Remote {
 	
 	/**
 	 * Renvoi la liste de tous les _Utilisateurs présent sur le serveur
-	 * @return List<_Utilisateur> liste des utilisateurs connecté au serveur
+	 * @return Set<_Utilisateur> liste des utilisateurs connecté au serveur
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 */
-	List<_Utilisateur> getUtilisateurs() throws RemoteException;
+	Set<_Utilisateur> getUtilisateurs() throws RemoteException;
 	
 	/**
 	 * Retourne la liste des _Utilisateurs du serveur portant le nom passé en paramètre
 	 * @param name String nom d'utilisateur
-	 * @return List<_Utilisateur> liste des utilisateurs portant le nom passé en paramètre connecté au serveur
+	 * @return Set<_Utilisateur> liste des utilisateurs portant le nom passé en paramètre connecté au serveur
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 */
-	List<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
+	Set<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
 	
 	/**
 	 * Retourne le premier _Utilisateur correspondant au nom et prenom

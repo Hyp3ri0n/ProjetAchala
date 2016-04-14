@@ -39,8 +39,8 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 		return this.nom;
 	}
 	
-	public void setNom(String prenom) {
-		this.prenom = prenom;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getPrenom() {
@@ -51,6 +51,7 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 		this.prenom = prenom;
 	}
 	
+	@Override
 	public String toString() {
 		return this.getNom() + " " + this.getPrenom();
 	}
