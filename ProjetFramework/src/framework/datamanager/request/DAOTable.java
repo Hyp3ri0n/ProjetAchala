@@ -25,8 +25,9 @@ public abstract class DAOTable {
 	public abstract void initialisation();
 	
 	/**
+	 * /!\ Do nothing, Override to do something /!\
 	 * Création de la table
-	 * @return TODO
+	 * @return Do nothing, Override to do something
 	 */
 	protected Requete createTable() {
 		//Do nothing, Override to do something
@@ -48,6 +49,20 @@ public abstract class DAOTable {
 			this.nomTable = nomTable;
 			this.nomSet = true;
 		}
+	}
+
+	/**
+	 * Permet de savoir si un attribut se trouve bien dans la liste des attributs de la table
+	 * @param attr l'attribut à traiter
+	 * @return true si il y est sinon false
+	 */
+	public boolean containsAttribut(String attr) {	
+		boolean check = false;
+		for(String attrLst : this.attributs.keySet()) {
+			if (attrLst.toLowerCase().equals(attr))
+				check = true;
+		}
+		return check; 
 	}
 
 	/**
