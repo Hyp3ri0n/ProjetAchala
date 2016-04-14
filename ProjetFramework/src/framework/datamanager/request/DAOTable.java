@@ -59,7 +59,7 @@ public abstract class DAOTable {
 	public boolean containsAttribut(String attr) {	
 		boolean check = false;
 		for(String attrLst : this.attributs.keySet()) {
-			if (attrLst.toLowerCase().equals(attr))
+			if (attrLst.toLowerCase().equals(attr.toLowerCase()))
 				check = true;
 		}
 		return check; 

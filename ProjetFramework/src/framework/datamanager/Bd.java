@@ -42,7 +42,9 @@ public class Bd extends ZoneStockage {
 	 */
 	public ResultSet request(Requete req) { 
 		try {
-			return req.execute(this.connexionBD.createStatement());
+			ResultSet rs = req.execute(this.connexionBD.createStatement());
+			this.connexionBD.commit();
+			return rs;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

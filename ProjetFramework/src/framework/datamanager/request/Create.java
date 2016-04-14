@@ -3,16 +3,17 @@ package framework.datamanager.request;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 
 public class Create extends Requete {
 	/** La table à créer **/
 	private DAOTable table;
 	/** Indice de primary key par rapport à la liste des attributs de la table **/
-	private int IndicePrimaryKey;
-	/** ... **/
+	private List<Integer> IndicesPrimaryKey;
+	/** Représente la requête complexe **/
 	private String req;
-	/** ... **/
+	/** Représente l'utilisation ou non de la requête complexe **/
 	private boolean reqUser = false;
 	
 	/**
@@ -20,15 +21,15 @@ public class Create extends Requete {
 	 * @param table La table à créer
 	 * @param indicePK L'indice de primary key par rapport à la liste des attributs de la table
 	 */
-	public Create(DAOTable table, int indicePK) {
+	public Create(DAOTable table, List<Integer> indicesPK) {
 		super();
 		this.table = table;
-		this.IndicePrimaryKey = indicePK;
+		this.IndicesPrimaryKey = indicesPK;
 	}
 	
 	/**
-	 * Constructeur public
-	 * @param req La requete de création
+	 * Constructeur public de la requête create complexe
+	 * @param req La requete complexe de création
 	 */
 	public Create(String req) {
 		super();
@@ -40,6 +41,7 @@ public class Create extends Requete {
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
 
+		System.out.println(this.req);
 		if (reqUser)
 			return stmt.executeQuery(this.req);
 		
@@ -54,7 +56,10 @@ public class Create extends Requete {
 			
 			req += attr + " " + this.table.getAttributs().get(attr).toString();
 			
-			if (cptAttr == this.IndicePrimaryKey) req += " PRIMARY KEY";
+			if (this.IndicesPrimaryKey.contains(cptAttr)) {
+				req += " PRIMARY KEY";
+				this.IndicesPrimaryKey.remove(cptAttr);
+			}
 			
 			if (this.table.getAttributs().keySet().size() == cptAttr) break;
 			
@@ -62,16 +67,16 @@ public class Create extends Requete {
 		}
 		
 		//WIP
-		int cptJoins = 0;
-		for(DAOTable table : this.table.getJointures().keySet()) {
-			cptJoins++;
-			
-			//req += attr + " " + this.table.getAttributs().get(attr).toString();
-			
-			if (cptJoins == this.table.getJointures().size()) break;
-			
-			req += ", ";
-		}
+//		int cptJoins = 0;
+//		for(DAOTable table : this.table.getJointures().keySet()) {
+//			cptJoins++;
+//			
+//			//req += attr + " " + this.table.getAttributs().get(attr).toString();
+//			
+//			if (cptJoins == this.table.getJointures().size()) break;
+//			
+//			req += ", ";
+//		}
 		
 		req += " )";
 		

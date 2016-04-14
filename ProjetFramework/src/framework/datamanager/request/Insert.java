@@ -4,10 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import framework.datamanager.exception.DMException;
 
 public class Insert extends Requete {
 	/** La liste des attributs à créer avec leur valeur **/
@@ -38,7 +35,7 @@ public class Insert extends Requete {
 		for(String attr : this.attributs.keySet()) {
 			cptAttr++;
 			
-			if (!this.table.getAttributs().containsKey(attr)) throw new SQLException("Attribut non existant");
+			if (!this.table.containsAttribut(attr)) throw new SQLException("Attribut non existant");
 			
 			req += attr;
 			

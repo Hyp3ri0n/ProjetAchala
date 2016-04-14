@@ -87,19 +87,26 @@ public class Select extends Requete {
 		req += " FROM ";
 		DAOTable nextTbl;
 
-		int cptTbls = 0;
-		for(DAOTable table : this.tables) {
-			cptTbls++;
-			
-			if (this.tables.size() >= cptTbls + 1) {
-				nextTbl = this.tables.get(cptTbls);
+		if (this.tables.size() == 1)
+		{
+			//Requête simple (une seul table)
+			req += " " + this.tables.get(0).getNomTable() + " ";
+		} else {
+			//Requête complexe (plusieurs tables)
+			int cptTbls = 0;
+			for(DAOTable table : this.tables) {
+				cptTbls++;
 				
-				if (table.getJointures().get(nextTbl) == null) throw new SQLException("Jointure inexistante");
-				
-				req += table.getNomTable() + " JOIN " + nextTbl.getNomTable() + " ON " + table.getJointures().get(nextTbl);
-				
+				if (this.tables.size() >= cptTbls + 1) {
+					nextTbl = this.tables.get(cptTbls);
+					
+					if (table.getJointures().get(nextTbl) == null) throw new SQLException("Jointure inexistante");
+					
+					req += table.getNomTable() + " JOIN " + nextTbl.getNomTable() + " ON " + table.getJointures().get(nextTbl);
+					
+				}
+				req += " ";
 			}
-			req += " ";
 		}
 		
 		req += " " + where + " " + groupBy + " " + having;

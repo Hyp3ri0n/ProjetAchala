@@ -14,6 +14,9 @@ public class ManagerDAO {
 	
 	private ManagerDAO() {
 		
+		/**______________Partie obligatoire______________**/
+		
+		
 		/*********************************/
 		/**		Création connexion bd	**/
 		/*********************************/
@@ -24,18 +27,34 @@ public class ManagerDAO {
 		}
 		
 		
-		/*****************************************************/
-		/**		Création des tables sans clés étrangère		**/
-		/*****************************************************/
+		/*************************************************************/
+		/**		Création des objets DAO avec jointures (ou pas)		**/
+		/*************************************************************/
+		//Création des tables sans clés étrangères en premier
 		DAOTable2 = new DAOTable2(null);
-		
-		
-		/*****************************************************/
-		/**		Création des tables avec clés étrangère		**/
-		/*****************************************************/
+		//Puis les tables avec clés étrangères (même système BDD)
 		HashMap<DAOTable, String> lstJointuresTbl1 = new HashMap<>();
-		lstJointuresTbl1.put(DAOTable2, "Table1.Attr1 = Table2.Attr2");
+		lstJointuresTbl1.put(DAOTable2, "Table1.AttrE = Table2.AttrA");
 		DAOTable1 = new DAOTable1(lstJointuresTbl1);
+		
+		
+		
+		
+		/**______________Partie non obligatoire______________**/
+		
+		
+		/*****************************************************/
+		/**				Suppression des tables				**/
+		/*****************************************************/
+		bd.request(DAOTable1.drop());			//Pas obligatoire si déjà créer en BDD
+		bd.request(DAOTable2.drop());			//Pas obligatoire si déjà créer en BDD
+		
+		
+		/*****************************************************/
+		/**			Création des tables en Base	 			**/
+		/*****************************************************/
+		bd.request(DAOTable2.createTable());	//Pas obligatoire si déjà créer en BDD
+		bd.request(DAOTable1.createTable());	//Pas obligatoire si déjà créer en BDD
 		
 	}
 

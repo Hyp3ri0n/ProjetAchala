@@ -1,6 +1,8 @@
 package framework.datamanager.test.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import framework.datamanager.request.Create;
@@ -8,6 +10,7 @@ import framework.datamanager.request.DAOTable;
 import framework.datamanager.request.Drop;
 import framework.datamanager.request.Insert;
 import framework.datamanager.request.Requete;
+import framework.datamanager.request.Select;
 import framework.datamanager.request.TypeBD;
 import framework.datamanager.request.Update;
 
@@ -24,8 +27,9 @@ public class DAOTable2 extends DAOTable {
 		this.setNomTable("Table2");
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
-		lstAttrs.put("Table2.Attr1", TypeBD.STRING);
-		lstAttrs.put("Table2.Attr2", TypeBD.STRING);
+		lstAttrs.put("AttrA", TypeBD.INTEGER);
+		lstAttrs.put("AttrB", TypeBD.STRING);
+		lstAttrs.put("AttrC", TypeBD.STRING);
 		
 		this.setAttributs(lstAttrs);
 	}
@@ -34,30 +38,61 @@ public class DAOTable2 extends DAOTable {
 	@Override
 	protected Requete createTable() {
 		return new Create("CREATE TABLE Table2 ("
-						+ "attr1 VARCHAR2(25),"
-						+ "attr2 VARCHAR2(25)"
+							+ "AttrA INTEGER PRIMARY KEY,"
+							+ "AttrB VARCHAR2(25),"
+							+ "AttrC VARCHAR2(25)"
 						+ ")");	
 	}
+
 	
-	
-	public Requete updateSomething() {		
-		HashMap<String, String> lstAttrsValue = new HashMap<>();
-		lstAttrsValue.put("Table1.Attr1", "42");
+	/**
+	 * Permet de Selectionner tout les lignes de la table "Table2"
+	 * @return La requête à executer (objet)
+	 */
+	public Requete selectAll() {
+		List<DAOTable> lstTables = new ArrayList<>();
+		lstTables.add(ManagerDAO.getDAOTable2());
 		
-		return new Update(lstAttrsValue, ManagerDAO.getDAOTable1(), "WHERE Table1.attr1 > 42");
+		List<String> lstAttrs = new ArrayList<>();
+		lstAttrs.add("*");
+		
+		return new Select(lstAttrs, lstTables);
 	}
 	
 	
-	public Requete insertSomething() {		
+	/**
+	 * Permet de modifier une ou plusieurs lignes dans la table "Table2"
+	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
+	 * @param where La clause WHERE de la requête
+	 * @return La requête à executer (objet)
+	 */
+	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
+		return new Update(lstAttrsValues, ManagerDAO.getDAOTable1(), where);
+	}
+	
+	
+	/**
+	 * Permet d'insérer une ligne dans la table "Table2"
+	 * @param attrA Le premier attribut
+	 * @param attrB Le second attribut
+	 * @param attrC Le troisième attribut
+	 * @return La requête à executer (objet)
+	 */
+	public Requete insert(String attrA, String attrB, String attrC) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
-		lstAttrsValue.put("Table2.Attr1", "42");
-		lstAttrsValue.put("Table2.Attr2", "84");
+		lstAttrsValue.put("AttrA", attrA);
+		lstAttrsValue.put("AttrB", attrB);
+		lstAttrsValue.put("AttrC", attrC);
 		
 		return new Insert(lstAttrsValue, ManagerDAO.getDAOTable2());
 	}
 
 	
-	public Requete dropSomething() {		
+	/**
+	 * Permet de supprimer la table en base
+	 * @return La requête à executer (objet)
+	 */
+	public Requete drop() {		
 		return new Drop(ManagerDAO.getDAOTable2());
 	}
 }

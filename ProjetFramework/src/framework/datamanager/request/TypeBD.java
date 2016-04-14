@@ -2,8 +2,11 @@ package framework.datamanager.request;
 
 public enum TypeBD {
 	
-	INTEGER("INT"),
-	STRING("VARCHAR2");
+	INTEGER("INTEGER"),
+	STRING("VARCHAR2"),
+	DOUBLE("NUMBER"),
+	DATE("DATE"),
+	CHAR("CHAR");
 	
 	/** Représente le type sql **/
 	String typeSQL;
@@ -24,11 +27,20 @@ public enum TypeBD {
 		String valueDone;
 		
 		switch (type) {
+		case CHAR:
+			valueDone = value;
+			break;
+		case DATE:
+			valueDone = "TO_DATE(\'" + value + "\', \'dd-mm-yyyy\')";
+			break;
+		case DOUBLE:
+			valueDone = value;
+			break;
 		case INTEGER:
 			valueDone = value;
 			break;
 		case STRING:
-			valueDone = "\"" + value + "\"";
+			valueDone = "\'" + value + "\'";
 			break;
 		default:
 			valueDone = value;
