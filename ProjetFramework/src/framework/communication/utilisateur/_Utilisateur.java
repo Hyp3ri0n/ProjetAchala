@@ -1,4 +1,4 @@
-package framework.Communication.Utilisateur;
+package framework.communication.utilisateur;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

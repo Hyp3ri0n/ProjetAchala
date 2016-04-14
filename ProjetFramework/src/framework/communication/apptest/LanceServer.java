@@ -1,11 +1,11 @@
-package framework.appTest;
+package framework.communication.apptest;
 
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import framework.Server.Server;
-import framework.Server._Server;
+import framework.communication.server.Server;
+import framework.communication.server._Server;
 
 public class LanceServer {
 

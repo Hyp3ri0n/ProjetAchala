@@ -1,4 +1,4 @@
-package framework.Communication;
+package framework.communication;
 
 import java.io.File;
 import java.rmi.RemoteException;

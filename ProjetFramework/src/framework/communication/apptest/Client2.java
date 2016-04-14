@@ -1,15 +1,15 @@
-package framework.appTest;
+package framework.communication.apptest;
 
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.util.Scanner;
 
-import framework.Communication.Message;
-import framework.Communication._RemotableObject;
-import framework.Communication._Shared;
-import framework.Communication.Utilisateur.Utilisateur;
-import framework.Communication.Utilisateur._Utilisateur;
-import framework.Server._Server;
+import framework.communication.Message;
+import framework.communication._RemotableObject;
+import framework.communication._Shared;
+import framework.communication.server._Server;
+import framework.communication.utilisateur.Utilisateur;
+import framework.communication.utilisateur._Utilisateur;
 
 public class Client2 {
 

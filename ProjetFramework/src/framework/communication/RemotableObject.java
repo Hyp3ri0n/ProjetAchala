@@ -1,12 +1,12 @@
-package framework.Communication;
+package framework.communication;
 
 import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
-import framework.Communication.Exception.CommunicationException;
-import framework.Communication.Utilisateur._Utilisateur;
+import framework.communication.exception.CommunicationException;
+import framework.communication.utilisateur._Utilisateur;
 
 public abstract class RemotableObject extends UnicastRemoteObject implements _RemotableObject {
 

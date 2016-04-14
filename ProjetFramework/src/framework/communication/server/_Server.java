@@ -1,11 +1,11 @@
-package framework.Server;
+package framework.communication.server;
 
 import java.net.UnknownHostException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Set;
 
-import framework.Communication.Utilisateur._Utilisateur;
+import framework.communication.utilisateur._Utilisateur;
 
 public interface _Server extends Remote {
 

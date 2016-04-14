@@ -1,10 +1,10 @@
-package framework.Communication;
+package framework.communication;
 
 import java.io.File;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import framework.Communication.Utilisateur.Utilisateur;
+import framework.communication.utilisateur.Utilisateur;
 
 public class Fichier extends RemotableObject {
 

@@ -1,4 +1,4 @@
-package framework.Server;
+package framework.communication.server;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -8,9 +8,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashSet;
 import java.util.Set;
 
-import framework.Communication.Correspondance;
-import framework.Communication._Shared;
-import framework.Communication.Utilisateur._Utilisateur;
+import framework.communication.Correspondance;
+import framework.communication._Shared;
+import framework.communication.utilisateur._Utilisateur;
 
 public class Server extends UnicastRemoteObject implements _Server {
 

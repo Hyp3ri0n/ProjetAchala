@@ -1,4 +1,4 @@
-package framework.Communication.Exception;
+package framework.communication.exception;
 
 public class CommunicationException extends Exception {
 

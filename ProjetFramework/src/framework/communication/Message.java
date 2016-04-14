@@ -1,9 +1,9 @@
-package framework.Communication;
+package framework.communication;
 
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import framework.Communication.Utilisateur._Utilisateur;
+import framework.communication.utilisateur._Utilisateur;
 
 public class Message extends RemotableObject {
 
