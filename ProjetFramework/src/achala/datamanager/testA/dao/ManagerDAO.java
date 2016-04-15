@@ -1,5 +1,6 @@
 package achala.datamanager.testA.dao;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import achala.datamanager.Bd;
@@ -19,8 +20,11 @@ public class ManagerDAO {
 		/*********************************/
 		/**		Cr�ation connexion bd	**/
 		/*********************************/
-		bd = new Bd("", "", "");
-		
+		try {
+			bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "claudeau", "bd");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		/*****************************************************/
 		/**		Cr�ation des tables sans cl�s �trang�re		**/

@@ -34,27 +34,27 @@ public class DAOUtilisateur extends DAOTable{
 			this.setAttributs(lstAttrs);
 		}
 
-		public Requete selectSomething() {
-			List<DAOTable> lstTables = new ArrayList<>();
-			lstTables.add(ManagerDAO.getDAOUtilisateur());
-			lstTables.add(ManagerDAO.getDAOArticle());
-			
-			List<String> lstAttrs = new ArrayList<>();
-			lstAttrs.add("Utilisateur.nom");
-			lstAttrs.add("Utilisateur.prenom");
-			
-			return new Select(lstAttrs, lstTables, "WHERE Utilisateur.id = 1");
-		}
+	public Requete selectSomething() {
+		List<DAOTable> lstTables = new ArrayList<>();
+		lstTables.add(ManagerDAO.getDAOUtilisateur());
+		lstTables.add(ManagerDAO.getDAOArticle());
 		
-		public Requete insertSomething(int id, String nom,String prenom) {		
-			
-			HashMap<String, String> lstAttrsValue = new HashMap<>();
-			lstAttrsValue.put("Utilisateur.id", id+"");
-			lstAttrsValue.put("Utilisateur.nom",nom);
-			lstAttrsValue.put("Utilisateur.prenom",prenom);
-			
-			return new Insert(lstAttrsValue, ManagerDAO.getDAOUtilisateur());
-		}
+		List<String> lstAttrs = new ArrayList<>();
+		lstAttrs.add("Utilisateur.nom");
+		lstAttrs.add("Utilisateur.prenom");
+		
+		return new Select(lstAttrs, lstTables, "WHERE Article.id = 1");
+	}
+	
+	/*public Requete insertSomething(int id, String nom,String prenom) {		
+		
+		HashMap<String, String> lstAttrsValue = new HashMap<>();
+		lstAttrsValue.put("Utilisateur.id", id+"");
+		lstAttrsValue.put("Utilisateur.nom",nom);
+		lstAttrsValue.put("Utilisateur.prenom",prenom);
+		
+		return new Insert(lstAttrsValue, ManagerDAO.getDAOUtilisateur());
+	}*/
 		
 
 }
