@@ -19,6 +19,21 @@ public class Select extends Requete {
 	private String groupBy = "";
 	/** La clause having **/
 	private String having = "";
+	/** Représente la requête complexe **/
+	private String req;
+	/** Représente l'utilisation ou non de la requête complexe **/
+	private boolean reqUser = false;
+	
+	/**
+	 * Constructeur public
+	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 */
+	public Select(String req) {
+		super();
+		this.req = req;
+		this.reqUser = true;
+	}
 	
 	/**
 	 * Constructeur public
@@ -71,6 +86,13 @@ public class Select extends Requete {
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
 		
+		//Gestion requête complexe
+		if (reqUser) {
+			System.out.println(this.req);
+			return stmt.executeQuery(this.req);
+		}
+		
+		//Gestion requête simple
 		String req = "SELECT ";
 		
 		int cptAttrs = 0;
