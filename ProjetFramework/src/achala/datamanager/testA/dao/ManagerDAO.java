@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import achala.datamanager.Bd;
 import achala.datamanager.bdd.DAOTable;
+import achala.datamanager.test.dao.DAOTable1;
+import achala.datamanager.test.dao.DAOTable2;
 import achala.datamanager.testA.dao.DAOArticle;
 import achala.datamanager.testA.dao.DAOUtilisateur;
 import achala.datamanager.testA.dao.ManagerDAO;
@@ -16,6 +18,8 @@ public class ManagerDAO {
 	private static DAOArticle DAOArticle;
 	
 	private ManagerDAO() {
+/**______________Partie obligatoire______________**/
+		
 		
 		/*********************************/
 		/**		Cr�ation connexion bd	**/
@@ -26,18 +30,35 @@ public class ManagerDAO {
 			e.printStackTrace();
 		}
 		
-		/*****************************************************/
-		/**		Cr�ation des tables sans cl�s �trang�re		**/
-		/*****************************************************/
-		DAOArticle= new DAOArticle(null);
 		
-		
-		/*****************************************************/
-		/**		Cr�ation des tables avec cl�s �trang�re		**/
-		/*****************************************************/
+		/*************************************************************/
+		/**		Cr�ation des objets DAO avec jointures (ou pas)		**/
+		/*************************************************************/
+		//Cr�ation des tables sans cl�s �trang�res en premier
+		DAOArticle = new DAOArticle(null);
+		//Puis les tables avec cl�s �trang�res (m�me syst�me BDD)
 		HashMap<DAOTable, String> lstJointuresTbl1 = new HashMap<>();
-		lstJointuresTbl1.put(DAOArticle, "Utilisateur.id = Article.idediteur");
-		DAOUtilisateur = new DAOUtilisateur(lstJointuresTbl1);
+		lstJointuresTbl1.put(DAOArticle, "Utilisateur.id = Article.id");
+		DAOUtilisateur= new DAOUtilisateur(lstJointuresTbl1);
+		
+		
+		
+		
+		/**______________Partie non obligatoire______________**/
+		
+		
+		/*****************************************************/
+		/**				Suppression des tables				**/
+		/*****************************************************/
+		bd.request(DAOUtilisateur.drop());			//Pas obligatoire si d�j� cr�er en BDD
+		bd.request(DAOArticle.drop());			//Pas obligatoire si d�j� cr�er en BDD
+		
+		
+		/*****************************************************/
+		/**			Cr�ation des tables en Base	 			**/
+		/*****************************************************/
+		bd.request(DAOArticle.createTable());	//Pas obligatoire si d�j� cr�er en BDD
+		bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si d�j� cr�er en BDD
 		
 	}
 
@@ -48,5 +69,6 @@ public class ManagerDAO {
 	public static DAOArticle getDAOArticle() { return DAOArticle; }
 
 	public static Bd getBd() { return bd; }
+	
 	
 }
