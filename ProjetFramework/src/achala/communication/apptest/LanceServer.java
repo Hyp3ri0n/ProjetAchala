@@ -13,8 +13,8 @@ public class LanceServer {
 	{
 		try
 		{
-			System.setProperty("java.security.policy", "src/policy");
-			System.setProperty("java.net.SocketPermission", "src/policy");
+			System.setProperty("java.security.policy", "src/achala/communication/policy");
+			System.setProperty("java.net.SocketPermission", "src/achala/communication/policy");
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}
