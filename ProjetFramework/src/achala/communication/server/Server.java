@@ -20,8 +20,13 @@ public class Server extends UnicastRemoteObject implements _Server {
 	
 	private Set<_Utilisateur> users;
 	private Set<_Shared> shares;
-	private Registry r;
+	private Registry register;
 	
+	/**
+	 * Constructeur d'un serveur
+	 * @param r Registry registre du serveur
+	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 */
 	public Server(Registry r) throws RemoteException {
 		super();
 		this.setRegistry(r);
@@ -30,11 +35,11 @@ public class Server extends UnicastRemoteObject implements _Server {
 	}
 
 	private Registry getRegistry() {
-		return this.r;
+		return this.register;
 	}
 	
 	private void setRegistry(Registry r) {
-		this.r = r;
+		this.register = r;
 	}
 
 	private static int getIdUser() {
@@ -52,10 +57,6 @@ public class Server extends UnicastRemoteObject implements _Server {
 
 	public void setShares(Set<_Shared> shares) {
 		this.shares = shares;
-	}
-
-	public void setUsers(Set<_Utilisateur> users) {
-		this.users = users;
 	}
 	
 	@Override
@@ -102,11 +103,11 @@ public class Server extends UnicastRemoteObject implements _Server {
 	}
 
 	@Override
-	public String getSharedZone(_Utilisateur u1) throws RemoteException, UnknownHostException {
+	public String getSharedZone(_Utilisateur u) throws RemoteException, UnknownHostException {
 		String url = "";
 		url += "rmi://";
 		url += InetAddress.getLocalHost().getHostAddress();
-		url += "/" + u1.identify();
+		url += "/" + u.identify();
 		
 		//TODO this.getRegistry().rebind(url, new Drive(url));
 		
@@ -117,10 +118,23 @@ public class Server extends UnicastRemoteObject implements _Server {
 	public void connect(_Utilisateur u) throws RemoteException {
 		u.setId(getIdUser());
 		this.getUtilisateurs().add(u);
-		for(_Utilisateur u1 : this.getUtilisateurs())
-			System.out.println("User : " + u1.getPrenom());
+		
+		System.out.println("Ajouté : " + u.getNom() + " " + u.getPrenom());
 	}
 	
+	public void disconnect(_Utilisateur u) throws RemoteException {
+		System.out.println("del ... : " + u.getNom() + " " + u.getPrenom());
+		if(this.getUtilisateurs().contains(u))
+			this.getUtilisateurs().remove(u);
+	}
+	
+	/**
+	 * Recupere l'url du partage entre les utilisateur u1 et u2
+	 * @param u1 _Utilisateur : utilisateur participant au partage
+	 * @param u2 _Utilisateur : utilisateur participant au partage
+	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si elle existe, la chaine vide ("") sinon
+	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 */
 	private String getRMIShared(_Utilisateur u1, _Utilisateur u2) throws RemoteException {
 		String url = "";
 		

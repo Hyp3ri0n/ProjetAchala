@@ -25,8 +25,8 @@ public class Client1 {
 
 			_Utilisateur alexis = new Utilisateur("Martinier", "Alexis");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://127.0.0.1/srv");
-			srv.connect(alexis);
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.16/srv");
+			/*srv.connect(alexis);
 			
 			System.out.println("Start ?");
 			read.next();
@@ -45,7 +45,25 @@ public class Client1 {
 			
 			corres.send(new Message(alexis, message));
 			
-			System.out.println(url);
+			System.out.println(url);*/
+			
+			alexis.connect(srv);
+			
+			System.out.println("Start ?");
+			read.next();
+			
+			String urlLuc = srv.getSharedZone(alexis, srv.getUtilisateur("Ortiz", "Luc"));
+			_Shared luc = (_Shared) Naming.lookup(urlLuc);
+			System.out.println("url " + urlLuc);
+			read.nextLine();
+			System.out.println("Votre message : ");
+			String message = read.nextLine();
+			
+			alexis.send(luc, new Message(alexis, message));
+
+			System.out.println("Deconnexion ");
+			alexis.disconnect();
+			
 			
 		}
 		catch(Exception e)

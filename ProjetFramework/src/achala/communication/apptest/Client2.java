@@ -26,8 +26,8 @@ public class Client2 {
 			
 			_Utilisateur luc = new Utilisateur("Ortiz", "Luc");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://localhost/srv");
-			srv.connect(luc);
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.16/srv");
+			/*srv.connect(luc);
 			
 			System.out.println("Start ?");
 			read.next();
@@ -44,8 +44,24 @@ public class Client2 {
 			
 			String message = read.next();
 			
-			corres.send(new Message(luc, message));
+			corres.send(new Message(luc, message));*/
 			
+			luc.connect(srv);
+			
+			System.out.println("Start ?");
+			read.next();
+			
+			String urlAlexis = srv.getSharedZone(luc, srv.getUtilisateur("Martinier", "Alexis"));
+			_Shared alexis = (_Shared)Naming.lookup(urlAlexis);
+			System.out.println("url " + urlAlexis);
+			
+			System.out.println("Votre correspondant a envoyé : ");
+			for(_RemotableObject o : luc.receive(alexis))
+			{
+				System.out.println(o.getObject().toString());
+			}
+			System.out.println("Deconnexion ");
+			luc.disconnect();
 		}
 		catch(Exception e)
 		{

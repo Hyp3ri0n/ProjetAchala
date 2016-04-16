@@ -11,52 +11,55 @@ public interface _Server extends Remote {
 
 	
 	/**
-	 * Renvoi la liste de tous les _Utilisateurs présent sur le serveur
-	 * @return Set<_Utilisateur> liste des utilisateurs connecté au serveur
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * Renvoi la liste de tous les utilisateurs present sur le serveur
+	 * @return Set<_Utilisateur> : liste des utilisateurs connecte au serveur
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	Set<_Utilisateur> getUtilisateurs() throws RemoteException;
+	public Set<_Utilisateur> getUtilisateurs() throws RemoteException;
 	
 	/**
-	 * Retourne la liste des _Utilisateurs du serveur portant le nom passé en paramètre
-	 * @param name String nom d'utilisateur
-	 * @return Set<_Utilisateur> liste des utilisateurs portant le nom passé en paramètre connecté au serveur
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * Retourne la liste des utilisateurs du serveur portant le nom passe en parametre
+	 * @param name String : nom d'utilisateur
+	 * @return Set<_Utilisateur> : liste des utilisateurs portant le nom passe en parametre connecte au serveur
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	Set<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
+	public Set<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
 	
 	/**
-	 * Retourne le premier _Utilisateur correspondant au nom et prenom
-	 * @param nom String nom de l'utilisateur
-	 * @param prenom String prenom de l'utilisateur
-	 * @return _Utilisateur utilisateur correspondant
-	 * @throws RemoteException
+	 * Retourne le premier utilisateur correspondant au nom et prenom
+	 * @param nom String : nom de l'utilisateur
+	 * @param prenom String : prenom de l'utilisateur
+	 * @return _Utilisateur : utilisateur correspondant
+	 * @throws RemoteException leve une excpetion en cas d'echec de communication
 	 */
-	_Utilisateur getUtilisateur(String nom, String prenom) throws RemoteException;
+	public _Utilisateur getUtilisateur(String nom, String prenom) throws RemoteException;
 	
 	/**
-	 * Crée le bind d'une correspondance (espace partagé entre 2 _Utilisateur)
-	 * Renvoie la chaine de connexion permettant la correspondance entre 2 personnes
-	 * @param u1 _Utilisateur personne demandant la connexion
-	 * @param u2 _Utilisateur personne avec qui u1 souhaite correspondre
+	 * Cree le bind d'une correspondance (espace partage entre u1 et u2)
+	 * Renvoie la chaine de connexion permettant la correspondance entre u1 et u2
+	 * @param u1 _Utilisateur : utilisateur demandant la connexion
+	 * @param u2 _Utilisateur : utilisateur avec qui u1 souhaite correspondre
+	 * @return String : chaine permettant le lookup sur le server
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
+	public String getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException;
+	
+	/**
+	 * Cree le bind d'un espace partage par l'utilisateur u
+	 * Renvoie la chaine de connexion permettant d'acceder a cette zone
+	 * @param u _Utilisateur : ?
 	 * @return String chaine permettant le lookup sur le server
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	String getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException;
+	public String getSharedZone(_Utilisateur u) throws RemoteException, UnknownHostException;
 	
 	/**
-	 * Crée le bind d'un espace partagé (espace d'un _Utilisateur)
-	 * @param u1 _Utilisateur ?
-	 * @return String chaine permettant le lookup sur le server
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * Ajoute l'utilisateur u au serveur
+	 * @param u _Utilisateur : utilisateur à ajouter
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	String getSharedZone(_Utilisateur u1) throws RemoteException, UnknownHostException;
+	public void connect(_Utilisateur u) throws RemoteException;
 	
-	/**
-	 * Ajoute un utilisateur au serveur
-	 * @param u _Utilisateur utilisateur à ajouter
-	 * @throws RemoteException lève une exception en cas d'echec de communication
-	 */
-	void connect(_Utilisateur u) throws RemoteException;
+	public void disconnect(_Utilisateur u) throws RemoteException;
 	
 }
