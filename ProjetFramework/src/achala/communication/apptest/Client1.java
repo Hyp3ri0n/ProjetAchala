@@ -4,11 +4,10 @@ import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.util.Scanner;
 
-import achala.communication.Message;
-import achala.communication._Shared;
 import achala.communication.server._Server;
 import achala.communication.utilisateur.Utilisateur;
 import achala.communication.utilisateur._Utilisateur;
+import achala.modules.chat.Chat;
 
 public class Client1 {
 
@@ -25,7 +24,8 @@ public class Client1 {
 
 			_Utilisateur alexis = new Utilisateur("Martinier", "Alexis");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.16/srv");
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.22/srv");
+			alexis.connect(srv);
 			/*srv.connect(alexis);
 			
 			System.out.println("Start ?");
@@ -47,7 +47,7 @@ public class Client1 {
 			
 			System.out.println(url);*/
 			
-			alexis.connect(srv);
+			/*alexis.connect(srv);
 			
 			System.out.println("Start ?");
 			read.next();
@@ -62,7 +62,17 @@ public class Client1 {
 			alexis.send(luc, new Message(alexis, message));
 
 			System.out.println("Deconnexion ");
-			alexis.disconnect();
+			alexis.disconnect();*/
+			
+			System.out.println("Start ?");
+			read.next();
+			
+			_Utilisateur luc = srv.getUtilisateur("Ortiz", "Luc");
+			
+			Chat c = new Chat(srv, alexis, luc);
+			
+			//c.listener(alexis);
+			c.sender(alexis, "exit");
 			
 			
 		}
@@ -71,7 +81,7 @@ public class Client1 {
 			e.printStackTrace();
 		}
 		
-		read.close();
+		//read.close();
 
 	}
 

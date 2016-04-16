@@ -1,7 +1,10 @@
 package achala.communication.server;
 
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.UnknownHostException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -26,12 +29,14 @@ public class Server extends UnicastRemoteObject implements _Server {
 	 * Constructeur d'un serveur
 	 * @param r Registry registre du serveur
 	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * @throws UnknownHostException leve une exception en cas d'adresse inconnue
 	 */
-	public Server(Registry r) throws RemoteException {
+	public Server(Registry r) throws RemoteException, UnknownHostException {
 		super();
 		this.setRegistry(r);
 		this.users = new HashSet<>();
 		this.shares = new HashSet<>();
+		System.out.println("Server run at : " + InetAddress.getLocalHost().getHostAddress());
 	}
 
 	private Registry getRegistry() {
@@ -91,7 +96,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 		if(!url.equals("")) return url;
 
 		url  = "rmi://";
-		url += "127.0.0.1";
+		url += InetAddress.getLocalHost().getHostAddress();
 		url += "/" + u1.identify() + "_" + u2.identify();
 		
 		_Shared s = new Correspondance(u1, u2, url);
@@ -119,11 +124,12 @@ public class Server extends UnicastRemoteObject implements _Server {
 		u.setId(getIdUser());
 		this.getUtilisateurs().add(u);
 		
-		System.out.println("Ajouté : " + u.getNom() + " " + u.getPrenom());
+		System.out.println("Connexion : " + u.getNom() + " " + u.getPrenom());
 	}
 	
+	@Override
 	public void disconnect(_Utilisateur u) throws RemoteException {
-		System.out.println("del ... : " + u.getNom() + " " + u.getPrenom());
+		System.out.println("Deconnexion : " + u.getNom() + " " + u.getPrenom());
 		if(this.getUtilisateurs().contains(u))
 			this.getUtilisateurs().remove(u);
 	}
@@ -140,12 +146,23 @@ public class Server extends UnicastRemoteObject implements _Server {
 		
 		for(_Shared s : this.getShares()) {
 			if((s.getUserA().equals(u1) && s.getUserB().equals(u2)) || (s.getUserA().equals(u2) && s.getUserB().equals(u1))) {
-				url = s.getRmiAdresse();
-				break;
+				return s.getRmiAdresse();
 			}
 		}
 		
 		return url;
+	}
+	
+	/**
+	 * Recupere le serveur lance a l'adresse donnee
+	 * @param ipAdresse String : ip du serveur
+	 * @return _Server : serveur de communication
+	 * @throws MalformedURLException leve une exception en cas d'URL mal formee
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws NotBoundException leve une exception en cas d'echec de Bind
+	 */
+	public static _Server getServer(String ipAdresse) throws MalformedURLException, RemoteException, NotBoundException{
+		return (_Server) Naming.lookup("rmi://" + ipAdresse + "/srv");
 	}
 
 }

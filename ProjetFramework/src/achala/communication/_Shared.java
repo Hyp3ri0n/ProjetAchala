@@ -19,6 +19,7 @@ public interface _Shared extends Remote {
 	
 	/**
 	 * Envoi un objet dans l'objet partagé
+	 * @require Participe : isAllowed(object.getSender()) == true
 	 * @ensure ... : odl(this.getObjects().size()) < this.getObjects().size()
 	 * @param object _RemotableObject objet à envoyer dans le partage 
 	 * @throws RemoteException lève une exception en cas d'echec de communication
@@ -58,9 +59,32 @@ public interface _Shared extends Remote {
 	 */
 	public void setWait(boolean wait) throws RemoteException;
 	
+	/**
+	 * Retourne un des utilisateurs du partage (utilisateur renseigne en premier)
+	 * @return _Utilisateur : premier utilisateur du partage
+	 * @throws RemoteException leve une exception en cas d'echec de communucation
+	 */
 	public _Utilisateur getUserA() throws RemoteException;
 	
+	/**
+	 * Retourne un des utilisateurs du partage (utilisateur renseigne en second)
+	 * @return _Utilisateur : second utilisateur du partage
+	 * @throws RemoteException leve une exception en cas d'echec de communucation
+	 */
 	public _Utilisateur getUserB() throws RemoteException;
 	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException leve une exception en cas d'echec de communucation
+	 */
 	public String getRmiAdresse() throws RemoteException;
+	
+	/**
+	 * Definie si l'utilisateur u peut acceder au partage
+	 * @param u _Utilisateur : utilisateur a tester
+	 * @return boolean : true si l'utilisateur peut acceder au partage, false sinon
+	 * @throws RemoteException leve une exception en cas d'echec de communucation
+	 */
+	public boolean isAllowed(_Utilisateur u) throws RemoteException;
 }

@@ -14,11 +14,23 @@ public class Correspondance extends Shared {
 	private _Utilisateur userA;
 	private _Utilisateur userB;
 	
+	/**
+	 * Construit une correspondance
+	 * @param rmiAdresse String : url permattant l'acces a la correspondance
+	 * @throws RemoteException leve une excpetion en cas d'echec de communication
+	 */
 	protected Correspondance(String rmiAdresse) throws RemoteException {
 		super(rmiAdresse);
 		setWait(false);
 	}
 	
+	/**
+	 * Construit une correspondance entre les utilisateurs u1 et u2
+	 * @param user1 _Utilisateur : utilisateur souhaitant communiquer
+	 * @param user2 _Utilisateur : utilisateur souhaitant communiquer
+	 * @param rmiAdresse String : url permattant l'acces a la correspondance
+	 * @throws RemoteException leve une excpetion en cas d'echec de communication
+	 */
 	public Correspondance(_Utilisateur user1, _Utilisateur user2, String rmiAdresse)throws RemoteException {
 		this(rmiAdresse);
 		this.setUserA(user1);
@@ -41,7 +53,8 @@ public class Correspondance extends Shared {
 		this.userB = userB;
 	}
 	
-	public void send( _RemotableObject object) throws CommunicationException, RemoteException {
+	// need to be synchronized for ThreadSafe
+	public synchronized void send( _RemotableObject object) throws CommunicationException, RemoteException {
 		if(!this.isAllowed(object.getSender())) throw new CommunicationException("Acces denied");
 		
 		if(!this.getObjects().contains(object)) {

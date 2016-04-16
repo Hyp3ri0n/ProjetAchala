@@ -1,8 +1,12 @@
 package achala.communication;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,9 +18,14 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 	protected List<_RemotableObject> RObjectList;
 	protected boolean wait;
 	
+	/**
+	 * Construit une zone de partage
+	 * @param rmiAdresse String : url donnant acces au partage
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	protected Shared(String rmiAdresse) throws RemoteException {
 		super();
-		this.RObjectList = new LinkedList<>();
+		this.RObjectList = Collections.synchronizedList(new LinkedList<_RemotableObject>());
 		this.setRmiAdresse(rmiAdresse);
 	}
 	
@@ -40,7 +49,8 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		this.wait = wait;
 	}
 	
-	public boolean isWait() throws RemoteException {
+	// need to be synchrnoized for ThreadSafe
+	public synchronized boolean isWait() throws RemoteException {
 		for(_RemotableObject o : this.getObjects()){
 			if(o.isWait()) {
 				this.setWait(true);
@@ -48,6 +58,18 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 			}
 		}
 		return this.wait;
+	}
+	
+	/**
+	 * recupere l'objet _Shared partage par l'url
+	 * @param url String : url du partage
+	 * @return _Shared : objet partage
+	 * @throws MalformedURLException leve une exception en cas d'url incorrect
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws NotBoundException leve une erreur en cas d'erreur de bind
+	 */
+	public static _Shared getShared(String url) throws MalformedURLException, RemoteException, NotBoundException {
+		return (_Shared) Naming.lookup(url);
 	}
 
 }

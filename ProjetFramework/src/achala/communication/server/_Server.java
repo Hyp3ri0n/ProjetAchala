@@ -60,6 +60,11 @@ public interface _Server extends Remote {
 	 */
 	public void connect(_Utilisateur u) throws RemoteException;
 	
+	/**
+	 * Deconnecte l'utilisateur du serveur
+	 * @param u _Utilisateur : utilisateur a deconnecter
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public void disconnect(_Utilisateur u) throws RemoteException;
 	
 }

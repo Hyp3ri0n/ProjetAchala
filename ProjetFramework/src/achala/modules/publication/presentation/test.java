@@ -1,4 +1,4 @@
-package achala.publication.presentation;
+package achala.modules.publication.presentation;
 
 public class test {
 
