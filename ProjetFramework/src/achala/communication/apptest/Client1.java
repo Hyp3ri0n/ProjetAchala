@@ -71,7 +71,7 @@ public class Client1 {
 			
 			Chat c = new Chat(srv, alexis, luc);
 			
-			//c.listener(alexis);
+			c.listener(alexis);
 			c.sender(alexis, "exit");
 			
 			

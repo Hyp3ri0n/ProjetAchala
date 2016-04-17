@@ -35,17 +35,15 @@ public class SenderThread extends Thread {
 		try
 		{
 			
-			while(!message.equals(this.getEscape())){
-				System.out.println("url ");
-				read.nextLine();
-				System.out.println("Votre message : ");
+			while(!message.equals(this.getEscape()))
+			{
+				sleep(2000);
+				//System.out.println("Votre message : ");
 				message = read.nextLine();
 				
 				_RemotableObject msg = new Message(this.getU(), message);
 				this.getU().send(this.getS(), msg);
 			}
-			
-			//read.close();
 		}
 		catch(Exception e)
 		{

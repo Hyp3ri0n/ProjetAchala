@@ -64,20 +64,23 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 	
 	
 	
-	
+	@Override
 	public void connect(_Server server) throws RemoteException {
 		this.setServer(server);
 		this.getServer().connect(this);
 	}
 	
+	@Override
 	public void send(_Shared share, _RemotableObject rObject) throws RemoteException, CommunicationException {
 		share.send(rObject);
 	}
 
+	@Override
 	public List<_RemotableObject> receive(_Shared share) throws RemoteException, CommunicationException {
 		return share.receive(this);
 	}
 	
+	@Override
 	public void disconnect() throws RemoteException {
 		this.getServer().disconnect(this);
 	}
@@ -90,13 +93,21 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 		return this.getNom() + " " + this.getPrenom();
 	}
 	
+	@Override
 	public String identify() throws RemoteException {
 		return this.getNom() + this.getId();
 	}
 	
+	/**
+	 * Teste l'egalite de deux utilisateur
+	 * @param u _Utilisateur : utilisateur a comparer
+	 * @return boolean : true si l'utilisateur courant et l'utilisateur u sont les memes
+	 * @throws RemoteException leve une excpetion en cas d'echec de communication
+	 */
 	public boolean equals(Utilisateur u) throws RemoteException {
 		if(!this.getNom().equals(u.getNom())) return false;
 		if(!this.getPrenom().equals(u.getPrenom())) return false;
+		if(this.getId() != u.getId()) return false;
 		return true;
 	}
 }

@@ -70,7 +70,7 @@ public class Correspondance extends Shared {
 		
 		if(this.isWait()){
 			for(_RemotableObject o : this.getObjects()){
-				if(o.isWait()){
+				if(o.isWait() && (!o.getSender().equals(u))){
 					newObjs.add(o);
 					o.setWait(false);
 				}

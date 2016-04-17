@@ -70,7 +70,7 @@ public class Client2 {
 			Chat c = new Chat(srv, luc, alexis);
 			
 			c.listener(luc);
-			//c.sender(luc, "exit");
+			c.sender(luc, "exit");
 		}
 		catch(Exception e)
 		{

@@ -1,10 +1,14 @@
 package achala.communication.server;
 
+import java.net.MalformedURLException;
 import java.net.UnknownHostException;
+import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Set;
 
+import achala.communication._Shared;
+import achala.communication.server.exception.ServerException;
 import achala.communication.utilisateur._Utilisateur;
 
 public interface _Server extends Remote {
@@ -36,13 +40,18 @@ public interface _Server extends Remote {
 	
 	/**
 	 * Cree le bind d'une correspondance (espace partage entre u1 et u2)
-	 * Renvoie la chaine de connexion permettant la correspondance entre u1 et u2
+	 * Renvoie zone de correspondance entre u1 et u2
+	 * @require logged : this.getUtilisateurs().contains(u1) && this.getUtilisateurs().contains(u2)
 	 * @param u1 _Utilisateur : utilisateur demandant la connexion
 	 * @param u2 _Utilisateur : utilisateur avec qui u1 souhaite correspondre
-	 * @return String : chaine permettant le lookup sur le server
+	 * @return _Shared : zone de partage entre u1 et u2
 	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws UnknownHostException leve une exception en cas d'hote inconnu
+	 * @throws ServerException leve une exception dans le cas ou u1 ou u2 ne sont pas connus
+	 * @throws MalformedURLException leve une exception en cas d'URL incorrect
+	 * @throws NotBoundException leve une exception en cas d'eched de bind
 	 */
-	public String getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException;
+	public _Shared getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException, ServerException, MalformedURLException, NotBoundException;
 	
 	/**
 	 * Cree le bind d'un espace partage par l'utilisateur u

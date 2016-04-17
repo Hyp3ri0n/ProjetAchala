@@ -34,8 +34,10 @@ public class Chat {
 			this.setUser1(u1);
 			this.setUser2(u2);
 			
-			String url = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
-			_Shared correspondance = Shared.getShared(url);
+			/*String url = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
+			_Shared correspondance = Shared.getShared(url);*/
+			
+			_Shared correspondance = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
 			
 			this.setCorrespondance(correspondance);
 		}
@@ -59,8 +61,7 @@ public class Chat {
 			this.setUser1(u1);
 			this.setUser2(u2);
 			
-			String url = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
-			_Shared correspondance = Shared.getShared(url);
+			_Shared correspondance = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
 			
 			this.setCorrespondance(correspondance);
 		}

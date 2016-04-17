@@ -29,6 +29,7 @@ public class ListenerThread extends Thread {
 		while(true) {
 			try
 			{
+				sleep(2000);
 				objs = this.getU().receive(this.getS());
 				for(_RemotableObject o : objs) {
 					System.out.println(o.getObject().toString());

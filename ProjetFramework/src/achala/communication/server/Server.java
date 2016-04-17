@@ -13,6 +13,7 @@ import java.util.Set;
 
 import achala.communication.Correspondance;
 import achala.communication._Shared;
+import achala.communication.server.exception.ServerException;
 import achala.communication.utilisateur._Utilisateur;
 
 public class Server extends UnicastRemoteObject implements _Server {
@@ -91,20 +92,23 @@ public class Server extends UnicastRemoteObject implements _Server {
 	}
 
 	@Override
-	public String getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException {
+	public _Shared getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException, ServerException, MalformedURLException, NotBoundException {
+		if(!this.getUtilisateurs().contains(u1) || !this.getUtilisateurs().contains(u2))
+			throw new ServerException("Server : u1 or u2 isn't recorded on this server");
+		
 		String url = this.getRMIShared(u1, u2);
-		if(!url.equals("")) return url;
-
-		url  = "rmi://";
-		url += InetAddress.getLocalHost().getHostAddress();
-		url += "/" + u1.identify() + "_" + u2.identify();
-		
-		_Shared s = new Correspondance(u1, u2, url);
-		this.getShares().add(s);
-		
-		this.getRegistry().rebind(u1.identify() + "_" + u2.identify(), s);
-		
-		return url;
+		if(url.equals("")){
+			url  = "rmi://";
+			url += InetAddress.getLocalHost().getHostAddress();
+			url += "/" + u1.identify() + "_" + u2.identify();
+			
+			_Shared s = new Correspondance(u1, u2, url);
+			this.getShares().add(s);
+			
+			this.getRegistry().rebind(u1.identify() + "_" + u2.identify(), s);
+		}
+		//return url;
+		return (_Shared) Naming.lookup(url);
 	}
 
 	@Override
