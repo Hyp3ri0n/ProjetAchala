@@ -26,7 +26,11 @@ public class Commentaire {
 	 */
 	public void creer() {
 		//APPEL DAO
-		ManagerDAO.getDAOCommentaire().insert(this.id, this.contenu, this.nomAuteur);
+		try {
+			ManagerDAO.getDAOCommentaire().insert(this.id, this.contenu, this.nomAuteur);
+		} catch(Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	public void modifier(Commentaire nouveauCommentaire) throws PublicationException {
