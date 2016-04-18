@@ -15,5 +15,5 @@ public enum TypeFichier {
 	TypeFichier(String extension) { this.extension = extension; }
 	
 	@Override
-	public String toString() {	return this.extension; }
+	public String toString() {	return "." + this.extension; }
 }
