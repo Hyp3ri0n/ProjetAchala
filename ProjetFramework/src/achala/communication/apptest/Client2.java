@@ -24,7 +24,7 @@ public class Client2 {
 			
 			_Utilisateur luc = new Utilisateur("Ortiz", "Luc");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.22/srv");
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.16/srv");
 			luc.connect(srv);
 			/*srv.connect(luc);
 			

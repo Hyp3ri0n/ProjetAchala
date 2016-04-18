@@ -2,7 +2,6 @@ package achala.modules.chat;
 
 import java.rmi.RemoteException;
 
-import achala.communication.Shared;
 import achala.communication._Shared;
 import achala.communication.server.Server;
 import achala.communication.server._Server;
