@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import achala.communication.utilisateur.Utilisateur;
 import achala.datamanager.bdd.Create;
 import achala.datamanager.bdd.DAOTable;
 import achala.datamanager.bdd.Drop;
@@ -45,9 +44,9 @@ public class DAOCommentaire extends DAOTable {
 		return new Create("CREATE TABLE Commentaire ("
 							+ "id INTEGER PRIMARY KEY,"
 							+ "contenu VARCHAR2(100),"
-							+ "auteur INTEGER "
-							+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
-						+ ")");	
+							+ "auteur VARCHAR2(250) "
+							//+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
+						+ ")");
 	}
 
 	
@@ -71,11 +70,11 @@ public class DAOCommentaire extends DAOTable {
 	 * @param auteur Le troisieme attributt
 	 * @return La requete a executer (objet)
 	 */
-	public Requete insert(int id, String contenu, Utilisateur auteur) {		
+	public Requete insert(int id, String contenu, String nomAuteur) {
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", id+"");
 		lstAttrsValue.put("contenu", contenu);
-		lstAttrsValue.put("auteur", auteur.getId()+"");
+		lstAttrsValue.put("auteur", nomAuteur);
 		
 		return new Insert(lstAttrsValue, ManagerDAO.getDAOCommentaire());
 	}

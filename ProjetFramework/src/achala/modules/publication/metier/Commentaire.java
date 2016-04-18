@@ -1,5 +1,8 @@
 package achala.modules.publication.metier;
 
+import achala.modules.publication.dao.ManagerDAO;
+import achala.modules.publication.exception.PublicationException;
+
 public class Commentaire {
 	
 	/**
@@ -7,7 +10,7 @@ public class Commentaire {
 	 */
 	private int id;
 	private String contenu;
-	private String auteur;
+	private String nomAuteur;
 	
 	/**
 	 * Constructeur
@@ -15,7 +18,7 @@ public class Commentaire {
 	public Commentaire(int unId, String unContenu, String unAuteur) {
 		this.id = unId;
 		this.contenu = unContenu;
-		this.auteur = unAuteur;
+		this.nomAuteur = unAuteur;
 	}
 	
 	/**
@@ -23,16 +26,17 @@ public class Commentaire {
 	 */
 	public void creer() {
 		//APPEL DAO
+		ManagerDAO.getDAOCommentaire().insert(this.id, this.contenu, this.nomAuteur);
 	}
 	
-//	public void modifier(Commentaire nouveauCommentaire) throws ModuleException {
-//		if (this.getId() == nouveauCommentaire.getId()) {
-//			//APPEL DAO
-//		}
-//		else {
-//			throw new ModuleException("L'id du nouveau commentaire ne correspond pas à l'id actuel du commentaire.");
-//		}
-//	}
+	public void modifier(Commentaire nouveauCommentaire) throws PublicationException {
+		if (this.getId() == nouveauCommentaire.getId()) {
+			//APPEL DAO
+		}
+		else {
+			throw new PublicationException("L'id du nouveau commentaire ne correspond pas à l'id actuel du commentaire.");
+		}
+	}
 	
 	public void supprimer() {
 		//APPEL DAO
@@ -58,11 +62,11 @@ public class Commentaire {
 	}
 
 	public String getAuteur() {
-		return auteur;
+		return nomAuteur;
 	}
 
 	public void setAuteur(String auteur) {
-		this.auteur = auteur;
+		this.nomAuteur = auteur;
 	}
 	
 

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import achala.communication.utilisateur.Utilisateur;
 import achala.datamanager.bdd.Create;
 import achala.datamanager.bdd.DAOTable;
 import achala.datamanager.bdd.Drop;
@@ -34,7 +33,7 @@ public class DAOArticle extends DAOTable {
 		lstAttrs.put("Article.id", TypeBD.STRING);
 		lstAttrs.put("Article.titre", TypeBD.STRING);
 		lstAttrs.put("Article.auteur", TypeBD.STRING);
-		lstAttrs.put("Article.lescommentaires", TypeBD.STRING);
+		lstAttrs.put("Article.contenu", TypeBD.STRING);
 		
 		this.setAttributs(lstAttrs);
 	}
@@ -46,9 +45,9 @@ public class DAOArticle extends DAOTable {
 		return new Create("CREATE TABLE Article ("
 							+ "id INTEGER PRIMARY KEY,"
 							+ "titre VARCHAR2(50),"
-							+ "auteur INTEGER "
-							+ "lescommentaires VARCHAR2(200)"
-							+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
+							+ "auteur VARCHAR2 (250),"
+							+ "contenu TEXT"
+							//+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
 						+ ")");	
 	}
 
@@ -74,12 +73,12 @@ public class DAOArticle extends DAOTable {
 	 * @param lescommentaires Le quatrieme attribut
 	 * @return La requete a executer (objet)
 	 */
-	public Requete insert(int id, String titre, Utilisateur auteur, String lescommentaires) {		
+	public Requete insert(int id, String titre, String nomAuteur, String contenu) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", id+"");
 		lstAttrsValue.put("titre", titre);
-		lstAttrsValue.put("auteur", auteur.getId()+"");
-		lstAttrsValue.put("lescommentaires", lescommentaires);
+		lstAttrsValue.put("contenu", contenu);
+		lstAttrsValue.put("nomAuteur", nomAuteur+"");
 		return new Insert(lstAttrsValue, ManagerDAO.getDAOArticle());
 	}
 
