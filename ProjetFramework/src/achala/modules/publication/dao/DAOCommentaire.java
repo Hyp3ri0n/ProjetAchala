@@ -43,7 +43,7 @@ public class DAOCommentaire extends DAOTable {
 	protected Requete createTable() {
 		return new Create("CREATE TABLE Commentaire ("
 							+ "id INTEGER PRIMARY KEY,"
-							+ "date DATE,"
+							+ "dateC DATE,"
 							+ "contenu VARCHAR2(250),"
 							+ "auteur VARCHAR2(250), "
 							+ "article INTEGER NOT NULL, "

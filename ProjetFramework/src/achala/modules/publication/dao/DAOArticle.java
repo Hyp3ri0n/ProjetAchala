@@ -31,7 +31,7 @@ public class DAOArticle extends DAOTable {
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
 		lstAttrs.put("id", TypeBD.INTEGER);
-		lstAttrs.put("date", TypeBD.DATE);
+		lstAttrs.put("dateA", TypeBD.DATE);
 		lstAttrs.put("titre", TypeBD.STRING);
 		lstAttrs.put("contenu", TypeBD.STRING);
 		lstAttrs.put("auteur", TypeBD.STRING);
@@ -45,9 +45,9 @@ public class DAOArticle extends DAOTable {
 	protected Requete createTable() {
 		return new Create("CREATE TABLE Article ("
 							+ "id INTEGER PRIMARY KEY,"
-							+ "date DATE,"
+							+ "dateA DATE,"
 							+ "titre VARCHAR2(50),"
-							+ "contenu TEXT,"
+							+ "contenu VARCHAR2(2500),"
 							+ "auteur VARCHAR2 (250)"
 						+ ")");
 	}

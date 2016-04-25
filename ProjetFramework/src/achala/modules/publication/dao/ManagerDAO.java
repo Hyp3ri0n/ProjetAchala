@@ -24,7 +24,7 @@ public class ManagerDAO {
 			/**		Creation connexion bd	**/
 			/*********************************/
 			try {
-				bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "claudeau", "bd");
+				bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "ortizlu", "bd");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
