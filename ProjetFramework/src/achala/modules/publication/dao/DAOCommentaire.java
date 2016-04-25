@@ -1,5 +1,6 @@
 package achala.modules.publication.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,10 +15,6 @@ import achala.datamanager.bdd.Select;
 import achala.datamanager.bdd.TypeBD;
 import achala.datamanager.bdd.Update;
 
-
-
-
-
 public class DAOCommentaire extends DAOTable {
 
 	protected DAOCommentaire(Map<DAOTable, String> jointures) {
@@ -31,6 +28,7 @@ public class DAOCommentaire extends DAOTable {
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
 		lstAttrs.put("Commentaire.id", TypeBD.STRING);
+		lstAttrs.put("date", TypeBD.DATE);
 		lstAttrs.put("Commentaire.contenu", TypeBD.STRING);
 		lstAttrs.put("Commentaire.auteur", TypeBD.STRING);
 		
@@ -43,9 +41,11 @@ public class DAOCommentaire extends DAOTable {
 	protected Requete createTable() {
 		return new Create("CREATE TABLE Commentaire ("
 							+ "id INTEGER PRIMARY KEY,"
-							+ "contenu VARCHAR2(100),"
-							+ "auteur VARCHAR2(250) "
-							//+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
+							+ "date DATE,"
+							+ "contenu VARCHAR2(250),"
+							+ "auteur VARCHAR2(250), "
+							+ "article INTEGER NOT NULL, "
+							+ "CONSTRAINT fk FOREIGN KEY (article) REFERENCES Article(id)"
 						+ ")");
 	}
 
@@ -70,11 +70,13 @@ public class DAOCommentaire extends DAOTable {
 	 * @param auteur Le troisieme attributt
 	 * @return La requete a executer (objet)
 	 */
-	public Requete insert(int id, String contenu, String nomAuteur) {
+	public Requete insert(int id, Date date, String contenu, String nomAuteur, int idArticle) {
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
-		lstAttrsValue.put("id", id+"");
+		lstAttrsValue.put("id", String.valueOf(id));
+		lstAttrsValue.put("date", TypeBD.syntaxe(date.toString(), TypeBD.DATE));
 		lstAttrsValue.put("contenu", contenu);
 		lstAttrsValue.put("auteur", nomAuteur);
+		lstAttrsValue.put("article", String.valueOf(idArticle));
 		
 		return new Insert(lstAttrsValue, ManagerDAO.getDAOCommentaire());
 	}
@@ -88,7 +90,10 @@ public class DAOCommentaire extends DAOTable {
 		return new Drop(ManagerDAO.getDAOCommentaire());
 	}
 	
-	
+	/**
+	 * Permet de récupperer tout les commentaires
+	 * @return La requete a executer (objet)
+	 */
 	public Requete selectAll() {
 		List<DAOTable> lstTables = new ArrayList<>();
 		lstTables.add(ManagerDAO.getDAOCommentaire());
@@ -99,29 +104,18 @@ public class DAOCommentaire extends DAOTable {
 		return new Select(lstAttrs, lstTables);
 	}
 	
-	
-	/** creation de requete */
-	
-	public Requete updateSomething() {		
-		HashMap<String, String> lstAttrsValue = new HashMap<>();
-		lstAttrsValue.put("Article.id", "1");
-		// ATTENTION DAO UTILISATEUR SUPPRIMEE
-		return new Update(lstAttrsValue, null, "WHERE Article.id = 1");
-	}
-	
-	
 
-	public Requete selectSomething() {
-		List<DAOTable> lstTables = new ArrayList<>();
-		lstTables.add(ManagerDAO.getDAOCommentaire());
-		lstTables.add(ManagerDAO.getDAOArticle());
-		
-		List<String> lstAttrs = new ArrayList<>();
-		lstAttrs.add("Article.titre");
-		lstAttrs.add("Utilisateur.prenom");
-		lstAttrs.add("Article.libelle");
-		
-		return new Select(lstAttrs, lstTables, "WHERE Utilisateur.id = 1");
-	}
+//	public Requete selectSomething() {
+//		List<DAOTable> lstTables = new ArrayList<>();
+//		lstTables.add(ManagerDAO.getDAOCommentaire());
+//		lstTables.add(ManagerDAO.getDAOArticle());
+//		
+//		List<String> lstAttrs = new ArrayList<>();
+//		lstAttrs.add("Article.titre");
+//		lstAttrs.add("Utilisateur.prenom");
+//		lstAttrs.add("Article.libelle");
+//		
+//		return new Select(lstAttrs, lstTables, "WHERE Utilisateur.id = 1");
+//	}
 	
 }
