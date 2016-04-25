@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import achala.datamanager.bdd.TypeBD;
 import achala.modules.publication.dao.ManagerDAO;
-import achala.modules.publication.exception.PublicationException;
+//import achala.modules.publication.exception.PublicationException;
 
 public class Commentaire {
 	
@@ -38,18 +38,14 @@ public class Commentaire {
 			e.getMessage();
 		}
 	}
-	
-	public void modifier(Commentaire nouveauCommentaire) throws PublicationException {
-		if (this.getId() == nouveauCommentaire.getId()) {
-			//APPEL DAO
-		}
-		else {
-			throw new PublicationException("L'id du nouveau commentaire ne correspond pas à l'id actuel du commentaire.");
-		}
-	}
-	
+
 	public void supprimer() {
 		//APPEL DAO
+		try {
+			ManagerDAO.getDAOCommentaire().delete(this.id);
+		} catch(Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	/**

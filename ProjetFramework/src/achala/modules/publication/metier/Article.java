@@ -6,7 +6,7 @@ import java.util.HashMap;
 import achala.datamanager.bdd.TypeBD;
 import achala.modules.publication.dao.ManagerDAO;
 
-import achala.modules.publication.exception.PublicationException;
+//import achala.modules.publication.exception.PublicationException;
 
 
 public class Article {
@@ -57,17 +57,16 @@ public class Article {
 		}
 	}
 	
-	public void modifier(Article nouvelArticle) throws PublicationException {
-		if (this.getId() == nouvelArticle.getId()) {
-			//APPEL DAO
-		}
-		else {
-			throw new PublicationException("L'id du nouvel article ne correspond pas à l'id actuel de l'article.");
-		}
-	}
-	
 	public void supprimer() {
 		//APPEL DAO
+		try {
+			for(Commentaire com : lesCommentaires) {
+				com.supprimer();
+			}
+			ManagerDAO.getDAOArticle().delete(this.id);
+		} catch(Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	//Ajout du commentaire en base puis ajout dans la liste
