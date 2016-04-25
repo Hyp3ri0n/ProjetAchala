@@ -27,7 +27,7 @@ public class ManagerApp {
 		
 		try {
 			while (rs.next()) {
-				listArticles.add(new Article(rs.getInt("id"),rs.getString("titre"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("date")));
+				listArticles.add(new Article(rs.getInt("id"),rs.getString("titre"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("dateA")));
 			}
 		
 			rs = ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().selectAll());
@@ -37,7 +37,7 @@ public class ManagerApp {
 				for(Article art : listArticles) {
 					// Si l'article correspond bien
 					if (art.getId() == rs.getInt("article")) {
-						com = new Commentaire(rs.getInt("id"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("date"));
+						com = new Commentaire(rs.getInt("id"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("dateC"));
 						if(listCommentaires.add(com)) {
 							art.ajouterCommentaire(com);
 						}
@@ -56,7 +56,7 @@ public class ManagerApp {
 
 	public static ManagerApp Instance() { return instance;	}
 
-	public List<Article> getListTable1() { return listArticles; }
+	public List<Article> getListArticles() { return listArticles; }
 
-	public List<Commentaire> getListTable2() { return listCommentaires; }
+	public List<Commentaire> getListCommentaires() { return listCommentaires; }
 }
