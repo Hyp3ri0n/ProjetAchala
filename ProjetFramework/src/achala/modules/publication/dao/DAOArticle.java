@@ -30,7 +30,7 @@ public class DAOArticle extends DAOTable {
 		this.setNomTable("Article");
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
-		lstAttrs.put("id", TypeBD.STRING);
+		lstAttrs.put("id", TypeBD.INTEGER);
 		lstAttrs.put("date", TypeBD.DATE);
 		lstAttrs.put("titre", TypeBD.STRING);
 		lstAttrs.put("contenu", TypeBD.STRING);

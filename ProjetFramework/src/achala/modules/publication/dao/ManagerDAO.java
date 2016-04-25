@@ -11,15 +11,13 @@ import achala.modules.publication.dao.ManagerDAO;
 
 public class ManagerDAO {
 
-	
-
 		private static ManagerDAO instance = new ManagerDAO();
 		private static Bd bd;
 		private static DAOArticle DAOArticle ;
 		private static DAOCommentaire DAOCommentaire ;
 		
 		private ManagerDAO() {
-	/**______________Partie obligatoire______________**/
+			/**______________Partie obligatoire______________**/
 			
 			
 			/*********************************/
@@ -37,28 +35,11 @@ public class ManagerDAO {
 			/*************************************************************/
 			//Creation des tables sans cles etrangeres en premier
 			DAOArticle = new DAOArticle(null);
+			
 			//Puis les tables avec cles etrangeres (meme systeme BDD)
-			HashMap<DAOTable, String> lstJointuresTbl1 = new HashMap<>();
-			lstJointuresTbl1.put(DAOArticle, "Utilisateur.id = Article.auteur");
-			lstJointuresTbl1.put(DAOArticle, "Utilisateur.id = Commentaire.auteur");
-			DAOArticle= new DAOArticle(lstJointuresTbl1);
-			DAOCommentaire= new DAOCommentaire(lstJointuresTbl1);
-			
-			
-			
-			/**______________Partie non obligatoire______________**/
-			
-			
-			/*****************************************************/
-			/**				Suppression des tables				**/
-			/*****************************************************/
-			//bd.request(DAOArticle.drop());			//Pas obligatoire si deja creer en BDD
-			
-			
-			/*****************************************************/
-			/**			Creation des tables en Base	 			**/
-			/*****************************************************/
-			//bd.request(DAOArticle.createTable());	//Pas obligatoire si deja creer en BDD
+			HashMap<DAOTable, String> lstJointuresTbl = new HashMap<>();
+			lstJointuresTbl.put(DAOArticle, "Commentaire.article = Article.id");
+			DAOCommentaire= new DAOCommentaire(lstJointuresTbl);
 			
 		}
 

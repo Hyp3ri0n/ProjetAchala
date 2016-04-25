@@ -28,10 +28,11 @@ public class DAOCommentaire extends DAOTable {
 		this.setNomTable("Commentaire");
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
-		lstAttrs.put("Commentaire.id", TypeBD.STRING);
+		lstAttrs.put("id", TypeBD.INTEGER);
 		lstAttrs.put("date", TypeBD.DATE);
-		lstAttrs.put("Commentaire.contenu", TypeBD.STRING);
-		lstAttrs.put("Commentaire.auteur", TypeBD.STRING);
+		lstAttrs.put("contenu", TypeBD.STRING);
+		lstAttrs.put("auteur", TypeBD.STRING);
+		lstAttrs.put("article", TypeBD.INTEGER);
 		
 		this.setAttributs(lstAttrs);
 	}
