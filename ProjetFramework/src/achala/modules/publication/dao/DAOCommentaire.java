@@ -105,8 +105,8 @@ public class DAOCommentaire extends DAOTable {
 	public Requete updateSomething() {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("Article.id", "1");
-		
-		return new Update(lstAttrsValue, ManagerDAO.getDAOUtilisateur(), "WHERE Article.id = 1");
+		// ATTENTION DAO UTILISATEUR SUPPRIMEE
+		return new Update(lstAttrsValue, null, "WHERE Article.id = 1");
 	}
 	
 	

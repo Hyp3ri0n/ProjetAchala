@@ -48,7 +48,7 @@ public class DAOArticle extends DAOTable {
 							+ "auteur VARCHAR2 (250),"
 							+ "contenu TEXT"
 							//+ "CONSTRAINT fk FOREIGN KEY (auteur) REFERENCES Utilisateur(id)"
-						+ ")");	
+						+ ")");
 	}
 
 	
@@ -108,8 +108,8 @@ public class DAOArticle extends DAOTable {
 	public Requete updateSomething() {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("Article.id", "1");
-		
-		return new Update(lstAttrsValue, ManagerDAO.getDAOUtilisateur(), "WHERE Article.id = 1");
+		// ATTENTION DAO UTILISATEUR SUPPRIMEE
+		return new Update(lstAttrsValue,null, "WHERE Article.id = 1");
 	}
 	
 	

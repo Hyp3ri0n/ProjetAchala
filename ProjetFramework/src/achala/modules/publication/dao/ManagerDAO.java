@@ -8,9 +8,6 @@ import achala.modules.publication.dao.DAOArticle;
 import achala.modules.publication.dao.DAOCommentaire;
 import achala.modules.publication.dao.ManagerDAO;
 
-// Verifier l'emplacement de DAO utilisateur
-import achala.modules.publication.dao.DAOUtilisateur;
-
 
 public class ManagerDAO {
 
@@ -18,7 +15,6 @@ public class ManagerDAO {
 
 		private static ManagerDAO instance = new ManagerDAO();
 		private static Bd bd;
-		private static DAOUtilisateur DAOUtilisateur ;
 		private static DAOArticle DAOArticle ;
 		private static DAOCommentaire DAOCommentaire ;
 		
@@ -56,7 +52,6 @@ public class ManagerDAO {
 			/*****************************************************/
 			/**				Suppression des tables				**/
 			/*****************************************************/
-			//bd.request(DAOUtilisateur.drop());			//Pas obligatoire si deja creer en BDD
 			//bd.request(DAOArticle.drop());			//Pas obligatoire si deja creer en BDD
 			
 			
@@ -64,13 +59,10 @@ public class ManagerDAO {
 			/**			Creation des tables en Base	 			**/
 			/*****************************************************/
 			//bd.request(DAOArticle.createTable());	//Pas obligatoire si deja creer en BDD
-			//bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si deja creer en BDD
 			
 		}
 
 		public static ManagerDAO getInstance() { return instance; }
-
-		public static DAOUtilisateur getDAOUtilisateur() { return DAOUtilisateur; }
 
 		public static DAOArticle getDAOArticle() { return DAOArticle; }
 
