@@ -7,13 +7,13 @@ import java.util.List;
 
 import achala.modules.publication.dao.ManagerDAO;
 
-public class ContextManager {
+public class ManagerApp {
 	
-	private static final ContextManager instance = new ContextManager();
+	private static final ManagerApp instance = new ManagerApp();
 	private List<Article> listArticles = new ArrayList<>();
 	private List<Commentaire> listCommentaires = new ArrayList<>();
 	
-	private ContextManager() {}
+	private ManagerApp() {}
 	
 	public void initialisation() {
 		
@@ -53,7 +53,7 @@ public class ContextManager {
 		}
 	}
 
-	public static ContextManager Instance() { return instance;	}
+	public static ManagerApp Instance() { return instance;	}
 
 	public List<Article> getListTable1() { return listArticles; }
 
