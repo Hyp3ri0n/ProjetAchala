@@ -8,6 +8,7 @@ import java.util.Map;
 
 import achala.datamanager.bdd.Create;
 import achala.datamanager.bdd.DAOTable;
+import achala.datamanager.bdd.Delete;
 import achala.datamanager.bdd.Drop;
 import achala.datamanager.bdd.Insert;
 import achala.datamanager.bdd.Requete;
@@ -22,6 +23,7 @@ public class DAOArticle extends DAOTable {
 		super(jointures);
 		// TODO Auto-generated constructor stub
 	}
+	
 	@Override
 	public void initialisation() {
 		
@@ -90,6 +92,16 @@ public class DAOArticle extends DAOTable {
 	public Requete drop() {		
 		return new Drop(ManagerDAO.getDAOArticle());
 	}
+
+	
+	/**
+	 * Permet de supprimer la ligne en base
+	 * @return La requete a executer (objet)
+	 */
+	public Requete delete(int id) {		
+		return new Delete(ManagerDAO.getDAOArticle(), "WHERE id = " + id);
+	}
+	
 	
 	/**
 	 * Permet de sélectionner tous les articles de la BDD

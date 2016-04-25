@@ -8,6 +8,7 @@ import java.util.Map;
 
 import achala.datamanager.bdd.Create;
 import achala.datamanager.bdd.DAOTable;
+import achala.datamanager.bdd.Delete;
 import achala.datamanager.bdd.Drop;
 import achala.datamanager.bdd.Insert;
 import achala.datamanager.bdd.Requete;
@@ -89,6 +90,16 @@ public class DAOCommentaire extends DAOTable {
 	public Requete drop() {		
 		return new Drop(ManagerDAO.getDAOCommentaire());
 	}
+
+	
+	/**
+	 * Permet de supprimer la ligne en base
+	 * @return La requete a executer (objet)
+	 */
+	public Requete delete(int id) {		
+		return new Delete(ManagerDAO.getDAOCommentaire(), "WHERE id = " + id);
+	}
+	
 	
 	/**
 	 * Permet de récupperer tout les commentaires
