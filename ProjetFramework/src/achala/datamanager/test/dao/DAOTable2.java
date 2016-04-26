@@ -72,7 +72,7 @@ public class DAOTable2 extends DAOTable {
 	
 	
 	/**
-	 * Permet d'insérer une ligne dans la table "Table2"
+	 * Permet d'inserer une ligne dans la table "Table2"
 	 * @param attrA Le premier attribut
 	 * @param attrB Le second attribut
 	 * @param attrC Le troisième attribut

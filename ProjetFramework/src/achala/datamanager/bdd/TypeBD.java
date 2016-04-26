@@ -8,17 +8,17 @@ public enum TypeBD {
 	DATE("DATE"),
 	CHAR("CHAR");
 	
-	/** Représente le type sql **/
+	/** Represente le type sql **/
 	String typeSQL;
 	
 	/**
-	 * Constructeur par défaut
+	 * Constructeur par defaut
 	 * @param typeSQL Le type sql
 	 */
 	TypeBD(String typeSQL) { this.typeSQL = typeSQL; }
 	
 	/**
-	 * Permet de récuperer la valeurs avec la bonne syntaxe pour oracle
+	 * Permet de recuperer la valeurs avec la bonne syntaxe pour oracle
 	 * @param value La valeur à traiter
 	 * @param type Le type de la valeur
 	 * @return La valeur avec la bonne syntaxe

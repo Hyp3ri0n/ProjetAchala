@@ -9,15 +9,15 @@ import achala.datamanager.bdd.Requete;
 
 public class Bd extends ZoneStockage {
 	
-	/** Représente le driver pour se connecter à la BD **/
+	/** Represente le driver pour se connecter à la BD **/
 	private static final String driver = "oracle.jdbc.driver.OracleDriver";
-	/** Représente l'url pour la connexion **/
+	/** Represente l'url pour la connexion **/
 	private String url;
-	/** Représente le nom d'utilisateur pour la connexion **/
+	/** Represente le nom d'utilisateur pour la connexion **/
 	private String username;
-	/** Représente le mot de passe pour la connexion **/
+	/** Represente le mot de passe pour la connexion **/
 	private String password;
-	/** Représente la connexion **/
+	/** Represente la connexion **/
 	private Connection connexionBD;
 	
 	/**
@@ -36,9 +36,9 @@ public class Bd extends ZoneStockage {
 	}
 	
 	/**
-	 * Permet d'executer la requete passée en paramètre
+	 * Permet d'executer la requete passee en paramètre
 	 * @param req Un objet de type requete (Select, Update, Create, Insert, Delete, Drop)
-	 * @return Un ResultSet null si vide sinon le résultat
+	 * @return Un ResultSet null si vide sinon le resultat
 	 */
 	public ResultSet request(Requete req) { 
 		try {
@@ -52,13 +52,13 @@ public class Bd extends ZoneStockage {
 	}
 
 	/**
-	 * Permet de récupérer le driver
+	 * Permet de recuperer le driver
 	 * @return Le driver au format String
 	 */
 	public String getDriver() {	return driver;	}
 
 	/**
-	 * Permet de récupérer le nom d'utilisateur
+	 * Permet de recuperer le nom d'utilisateur
 	 * @return Le nom d'utilisateur au format String
 	 */
 	public String getUsername() { return this.username;	}

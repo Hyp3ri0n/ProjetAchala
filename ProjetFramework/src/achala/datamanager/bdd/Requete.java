@@ -8,9 +8,9 @@ import java.sql.Statement;
 public abstract class Requete {
 	
 	/**
-	 * Permet d'éxecuter la requête
+	 * Permet d'executer la requête
 	 * @param stmt la connexion avec la bdd
-	 * @return Un ResultSet null si vide sinon le résultat
+	 * @return Un ResultSet null si vide sinon le resultat
 	 * @throws SQLException 
 	 */
 	public abstract ResultSet execute(Statement stmt) throws SQLException;

@@ -11,7 +11,7 @@ public class Select extends Requete {
 	
 	/** La liste des attributs à afficher **/
 	private List<String> attributs = new ArrayList<>();
-	/** La liste des tables à référencer **/
+	/** La liste des tables à referencer **/
 	private List<DAOTable> tables = new ArrayList<>();
 	/** La clause where **/
 	private String where = "";
@@ -19,15 +19,15 @@ public class Select extends Requete {
 	private String groupBy = "";
 	/** La clause having **/
 	private String having = "";
-	/** Représente la requête complexe **/
+	/** Represente la requête complexe **/
 	private String req;
-	/** Représente l'utilisation ou non de la requête complexe **/
+	/** Represente l'utilisation ou non de la requête complexe **/
 	private boolean reqUser = false;
 	
 	/**
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
 	 */
 	public Select(String req) {
 		super();
@@ -38,7 +38,7 @@ public class Select extends Requete {
 	/**
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables) {
 		super();
@@ -49,7 +49,7 @@ public class Select extends Requete {
 	/**
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where) {
@@ -60,7 +60,7 @@ public class Select extends Requete {
 	/**
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
 	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2")
 	 */
@@ -72,7 +72,7 @@ public class Select extends Requete {
 	/**
 	 * Constructeur public
 	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à référencer ([...] From table1 JOIN table2 ON [...])
+	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
 	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2" [...])
 	 * @param having La clause "having" au format string avec le having ([...] "having count(attr1) > 42")

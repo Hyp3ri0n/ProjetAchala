@@ -5,9 +5,9 @@ import java.util.Map;
 
 public abstract class DAOTable {
 	
-	/** Représente le nom de la table **/
+	/** Represente le nom de la table **/
 	private String nomTable;
-	/** Permet de pouvoir définir le nom qu'une seul fois **/
+	/** Permet de pouvoir definir le nom qu'une seul fois **/
 	private boolean nomSet = false;
 	/** les attributs de la table avec leurs typeBD **/
 	private Map<String, TypeBD> attributs = new HashMap<>();
@@ -26,7 +26,7 @@ public abstract class DAOTable {
 	
 	/**
 	 * /!\ Do nothing, Override to do something /!\
-	 * Création de la table
+	 * Creation de la table
 	 * @return Do nothing, Override to do something
 	 */
 	protected Requete createTable() {
@@ -35,13 +35,13 @@ public abstract class DAOTable {
 	}
 	
 	/**
-	 * Permet de récuperer le nom de la table
+	 * Permet de recuperer le nom de la table
 	 * @return le nom de la table au format string
 	 */
 	public String getNomTable() { return nomTable;	}
 
 	/**
-	 * Permet de définir le nom de la table
+	 * Permet de definir le nom de la table
 	 * @param nomTable le nouveau nom de la table
 	 */
 	public void setNomTable(String nomTable) { 
@@ -66,25 +66,25 @@ public abstract class DAOTable {
 	}
 
 	/**
-	 * Permet de récupérer les attributs de la table avec leurs typeBD
+	 * Permet de recuperer les attributs de la table avec leurs typeBD
 	 * @return les attributs de la table avec leurs typeBD
 	 */
 	public Map<String, TypeBD> getAttributs() {	return this.attributs; }
 
 	/**
-	 * Permet de définir les attributs de la table avec leurs typeBD
+	 * Permet de definir les attributs de la table avec leurs typeBD
 	 * @param attributs les nouveaux attributs de la table avec leurs typeBD
 	 */
 	public void setAttributs(Map<String, TypeBD> attributs) { this.attributs = attributs; }
 
 	/**
-	 * Permet de récupérer les jointures des tables
+	 * Permet de recuperer les jointures des tables
 	 * @return les jointures des tables
 	 */
 	public Map<DAOTable, String> getJointures() { return this.jointures; }
 
 	/**
-	 * Permet de récupérer les jointures des tables
+	 * Permet de recuperer les jointures des tables
 	 * @param attributs les jointures des tables
 	 */
 	public void setJointures(Map<DAOTable, String> jointures) { this.jointures = jointures; }

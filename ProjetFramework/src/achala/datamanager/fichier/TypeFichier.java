@@ -5,11 +5,11 @@ public enum TypeFichier {
 	TEXT("txt"),
 	SQL("sql");
 	
-	/** Représente l'extension **/
+	/** Represente l'extension **/
 	String extension;
 	
 	/**
-	 * Constructeur par défaut
+	 * Constructeur par defaut
 	 * @param extension l'extension
 	 */
 	TypeFichier(String extension) { this.extension = extension; }

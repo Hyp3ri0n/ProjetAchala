@@ -16,7 +16,7 @@ public class Fichier extends ZoneStockage {
 	private String path;
 	/** Le nom du fichier **/
 	private String name;
-	/** Le type de fichier contenant les données **/
+	/** Le type de fichier contenant les donnees **/
 	private TypeFichier type;
 	/** Le contenu du fichier **/
 	private String content;
@@ -66,37 +66,37 @@ public class Fichier extends ZoneStockage {
 	
 	
 	/**
-	 * Permet de récupérer le chemin du fichier contenant les données
+	 * Permet de recuperer le chemin du fichier contenant les donnees
 	 * @return Le chemin du fichier au format String
 	 */
 	public String getPath() { return this.path;	}
 
 	/**
-	 * Permet de définir le chemin du fichier contenant les données
+	 * Permet de definir le chemin du fichier contenant les donnees
 	 * @param path le nouveau chemin du fichier
 	 */
 	public void setPath(String path) { this.path = path; }
 
 	/**
-	 * Permet de récupérer le type du fichier contenant les données
+	 * Permet de recuperer le type du fichier contenant les donnees
 	 * @return Le type du fichier au format String
 	 */
 	public TypeFichier getType() { return type; }
 
 	/**
-	 * Permet de définir le type du fichier contenant les données
+	 * Permet de definir le type du fichier contenant les donnees
 	 * @param path le nouveau type du fichier
 	 */
 	public void setType(TypeFichier type) { this.type = type; }
 
 	/**
-	 * Permet de récupérer le contenu du fichier
+	 * Permet de recuperer le contenu du fichier
 	 * @return Le Contenu du fichier au format String
 	 */
 	public String getContent() { return this.content; }
 
 	/**
-	 * Permet de définir le contenu du fichier
+	 * Permet de definir le contenu du fichier
 	 * @param content le nouveau contenu du fichier
 	 */
 	public void setContent(String content) { this.content = content; }
@@ -108,25 +108,25 @@ public class Fichier extends ZoneStockage {
 	public void addContent(String content) { this.content += content; }
 
 	/**
-	 * Permet de récupérer le nom du fichier
+	 * Permet de recuperer le nom du fichier
 	 * @return Le nom du fichier au format String
 	 */
 	public String getName() { return this.name; }
 
 	/**
-	 * Permet de définir le nom du fichier
+	 * Permet de definir le nom du fichier
 	 * @param content le nouveau nom du fichier
 	 */
 	public void setName(String name) { this.name = name; }
 	
 	/**
-	 * Permet de récuperer le chemin complet (chemin + nom + extension)
+	 * Permet de recuperer le chemin complet (chemin + nom + extension)
 	 * @return Le chemin complet
 	 */
 	public String getFullPath() { return this.path + this.name + this.type.toString(); }
 	
 	/**
-	 * Permet de récuperer Le contenu du fichier si existant
+	 * Permet de recuperer Le contenu du fichier si existant
 	 * @return Le contenu du fichier si existant
 	 */
 	private String getFileContent() { 

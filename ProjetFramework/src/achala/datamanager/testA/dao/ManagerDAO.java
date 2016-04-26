@@ -22,7 +22,7 @@ public class ManagerDAO {
 		
 		
 		/*********************************/
-		/**		Cr�ation connexion bd	**/
+		/**		Creation connexion bd	**/
 		/*********************************/
 		try {
 			bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "claudeau", "bd");
@@ -32,11 +32,11 @@ public class ManagerDAO {
 		
 		
 		/*************************************************************/
-		/**		Cr�ation des objets DAO avec jointures (ou pas)		**/
+		/**		Creation des objets DAO avec jointures (ou pas)		**/
 		/*************************************************************/
-		//Cr�ation des tables sans cl�s �trang�res en premier
+		//Creation des tables sans cles etrangeres en premier
 		DAOArticle = new DAOArticle(null);
-		//Puis les tables avec cl�s �trang�res (m�me syst�me BDD)
+		//Puis les tables avec cles etrangeres (meme systeme BDD)
 		HashMap<DAOTable, String> lstJointuresTbl1 = new HashMap<>();
 		lstJointuresTbl1.put(DAOArticle, "Utilisateur.id = Article.id");
 		DAOUtilisateur= new DAOUtilisateur(lstJointuresTbl1);
@@ -50,15 +50,15 @@ public class ManagerDAO {
 		/*****************************************************/
 		/**				Suppression des tables				**/
 		/*****************************************************/
-		bd.request(DAOUtilisateur.drop());			//Pas obligatoire si d�j� cr�er en BDD
-		bd.request(DAOArticle.drop());			//Pas obligatoire si d�j� cr�er en BDD
+		bd.request(DAOUtilisateur.drop());			//Pas obligatoire si deje creer en BDD
+		bd.request(DAOArticle.drop());			//Pas obligatoire si deje creer en BDD
 		
 		
 		/*****************************************************/
-		/**			Cr�ation des tables en Base	 			**/
+		/**			Creation des tables en Base	 			**/
 		/*****************************************************/
-		bd.request(DAOArticle.createTable());	//Pas obligatoire si d�j� cr�er en BDD
-		bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si d�j� cr�er en BDD
+		bd.request(DAOArticle.createTable());	//Pas obligatoire si deje creer en BDD
+		bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si deje creer en BDD
 		
 	}
 

@@ -7,15 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Insert extends Requete {
-	/** La liste des attributs à créer avec leur valeur **/
+	/** La liste des attributs à creer avec leur valeur **/
 	private Map<String, String> attributs = new HashMap<>();
-	/** La table à référencer **/
+	/** La table à referencer **/
 	private DAOTable table;
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à créer avec leurs valeurs
-	 * @param table La table à référencer
+	 * @param attributs La liste des attributs à creer avec leurs valeurs
+	 * @param table La table à referencer
 	 */
 	public Insert(HashMap<String, String> attributs, DAOTable table) {
 		super();

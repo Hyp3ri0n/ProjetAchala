@@ -21,7 +21,7 @@ public class ContextApp {
 		
 		
 		/*************************************************************/
-		/**				Création des objets Metier					**/
+		/**				Creation des objets Metier					**/
 		/*************************************************************/
 		ResultSet rs = ManagerDAO.getBd().request(ManagerDAO.getDAOTable2().selectAll());
 		

@@ -9,7 +9,7 @@ public class Drop extends DeleteManager {
 	
 	/**
 	 * Constructeur public
-	 * @param table La table à créer
+	 * @param table La table à creer
 	 * @param where La clause where
 	 */
 	public Drop(DAOTable table) {
