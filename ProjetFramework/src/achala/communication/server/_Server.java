@@ -13,6 +13,7 @@ import achala.communication.utilisateur._Utilisateur;
 
 public interface _Server extends Remote {
 
+	public Set<_Shared> getShares() throws RemoteException;
 	
 	/**
 	 * Renvoi la liste de tous les utilisateurs present sur le serveur

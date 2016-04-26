@@ -8,6 +8,7 @@ import achala.communication.server._Server;
 import achala.communication.utilisateur._Utilisateur;
 import achala.modules.chat.exception.ChatException;
 import achala.modules.chat.thread.ListenerThread;
+import achala.modules.chat.thread.NotificationThread;
 import achala.modules.chat.thread.SenderThread;
 import achala.modules.chat.util.Util.Cmd;
 
@@ -108,6 +109,9 @@ public class Chat {
 		
 		ListenerThread listener = new ListenerThread(u, this.getCorrespondance());
 		listener.start();
+		
+		NotificationThread notif = new NotificationThread(this.getServer(), u);
+		notif.start();
 	}
 	
 	/**

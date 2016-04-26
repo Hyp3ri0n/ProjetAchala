@@ -33,6 +33,13 @@ public interface _Utilisateur extends Remote {
 	public String getPrenom() throws RemoteException;
 	
 	/**
+	 * Recupere l'identifiant (sur le serveur) de l'utilisateur
+	 * @return int : identifiant de l'utilisateur
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
+	public int getId() throws RemoteException;
+	
+	/**
 	 * Change l'identifiant de l'utilisateur
 	 * @param id int : nouvel identifiant
 	 * @throws RemoteException leve une exception en cas d'echec de communication
@@ -69,4 +76,18 @@ public interface _Utilisateur extends Remote {
 	 * @throws CommunicationException leve une exception en cas d'acces refuse
 	 */
 	public List<_RemotableObject> receive(_Shared share) throws RemoteException, CommunicationException;
+	
+	/**
+	 * Verifie l'egalite de l'utilisateur avec l'utilisateur passe en parametre
+	 * @param u _Utilisateur : utilisateur a comparer
+	 * @return boolean : true si les utilisateurs sont identique, false dans le cas contraire
+	 * @throws RemoteException
+	 */
+	public boolean equals(_Utilisateur u) throws RemoteException;
+	
+	/**
+	 * Retourne l'utilisateur courant sous chaine de caracteres
+	 * @return String : chaine de caractere representant l'utilisateur
+	 */
+	public String toString();
 }

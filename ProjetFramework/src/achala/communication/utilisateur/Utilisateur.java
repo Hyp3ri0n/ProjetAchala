@@ -104,7 +104,7 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 	 * @return boolean : true si l'utilisateur courant et l'utilisateur u sont les memes
 	 * @throws RemoteException leve une excpetion en cas d'echec de communication
 	 */
-	public boolean equals(Utilisateur u) throws RemoteException {
+	public boolean equals(_Utilisateur u) throws RemoteException {
 		if(!this.getNom().equals(u.getNom())) return false;
 		if(!this.getPrenom().equals(u.getPrenom())) return false;
 		if(this.getId() != u.getId()) return false;

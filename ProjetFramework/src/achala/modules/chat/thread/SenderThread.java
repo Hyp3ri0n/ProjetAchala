@@ -36,9 +36,9 @@ public class SenderThread extends Thread {
 		try
 		{
 			
-			while(!message.equals(this.getEscape()))
+			while(!message.equals(this.getEscape().toString()))
 			{
-				if(message.equals(this.getEscape())) break;
+				if(message.equals(this.getEscape().toString())) break;
 				sleep(2000);
 				message = read.nextLine();
 				
