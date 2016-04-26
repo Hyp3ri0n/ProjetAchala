@@ -9,12 +9,12 @@ import achala.communication.utilisateur._Utilisateur;
 import achala.modules.chat.exception.ChatException;
 import achala.modules.chat.thread.ListenerThread;
 import achala.modules.chat.thread.SenderThread;
+import achala.modules.chat.util.Util.Cmd;
 
 public class Chat {
 
 	private _Utilisateur user1;
 	private _Utilisateur user2;
-	//private List<_Utilisateur> users;
 	private _Server server;
 	private _Shared correspondance;
 	
@@ -30,9 +30,6 @@ public class Chat {
 		try
 		{
 			this.setServer(Server.getServer(ipSrv));
-//			this.setUser1(u1);
-//			this.setUser2(this.getServer().getUtilisateur(u2.getNom(), u2.getPrenom()));
-//			this.getUser1().connect(this.getServer());
 			this.setUser1(u1);
 			this.setUser2(u2);
 			
@@ -120,7 +117,7 @@ public class Chat {
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 * @throws ChatException leve une exception en cas d'erreur sur le chat
 	 */
-	public void sender(_Utilisateur u, String escape) throws RemoteException, ChatException {
+	public void sender(_Utilisateur u, Cmd escape) throws RemoteException, ChatException {
 		if(!this.getCorrespondance().isAllowed(u)) throw new ChatException("Utilisateur non autorisé");
 		
 		SenderThread sender = new SenderThread(u, this.getCorrespondance(), escape);

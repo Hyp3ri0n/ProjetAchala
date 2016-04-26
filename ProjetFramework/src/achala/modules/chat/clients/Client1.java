@@ -1,14 +1,14 @@
-package achala.communication.apptest;
+package achala.modules.chat.clients;
 
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.util.Scanner;
 
-import achala.communication.Message;
-import achala.communication._Shared;
 import achala.communication.server._Server;
 import achala.communication.utilisateur.Utilisateur;
 import achala.communication.utilisateur._Utilisateur;
+import achala.modules.chat.Chat;
+import achala.modules.chat.util.Util.Cmd;
 
 @SuppressWarnings("deprecation")
 public class Client1 {
@@ -18,8 +18,8 @@ public class Client1 {
 		Scanner read = new Scanner(System.in);
 		try
 		{
-			System.setProperty("java.security.policy", "src/achala/communication/apptest/policy");
-			System.setProperty("java.net.SocketPermission", "src/achala/communication/apptest/policy");
+			System.setProperty("java.security.policy", "src/achala/modules/chat/clients/policy");
+			System.setProperty("java.net.SocketPermission", "src/achala/modules/chat/clients/policy");
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}
@@ -28,17 +28,16 @@ public class Client1 {
 			
 			_Server srv = (_Server)Naming.lookup("rmi://130.190.29.31/srv");
 			alexis.connect(srv);
-			//srv.connect(alexis);
 			
 			System.out.println("Start ?");
-			read.next();			
+			read.next();
 			
-			_Shared corres = srv.getSharedZone(alexis, srv.getUtilisateur("Ortiz", "Luc"));
+			_Utilisateur luc = srv.getUtilisateur("Ortiz", "Luc");
 			
-			System.out.println("Votre message : ");
-			String message = read.next();
+			Chat c = new Chat(srv, alexis, luc);
 			
-			corres.send(new Message(alexis, message));
+			c.listener(alexis);
+			c.sender(alexis, Cmd.EXIT);
 			
 			
 		}

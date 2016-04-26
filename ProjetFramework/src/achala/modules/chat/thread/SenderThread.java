@@ -6,12 +6,13 @@ import achala.communication.Message;
 import achala.communication._RemotableObject;
 import achala.communication._Shared;
 import achala.communication.utilisateur._Utilisateur;
+import achala.modules.chat.util.Util.Cmd;
 
 public class SenderThread extends Thread {
 
 	private _Utilisateur u;
 	private _Shared s;
-	private String escape;
+	private Cmd escape;
 	
 	/**
 	 * Construit un thread d'envoi de message
@@ -19,7 +20,7 @@ public class SenderThread extends Thread {
 	 * @param s _Shared : zone dans laquelle les messages sont envoye
 	 * @param escape String : chaine de caracteres mettant fin a la communication
 	 */
-	public SenderThread(_Utilisateur sender, _Shared s, String escape) {
+	public SenderThread(_Utilisateur sender, _Shared s, Cmd escape) {
 		this.setU(sender);
 		this.setS(s);
 		this.setEscape(escape);
@@ -39,13 +40,11 @@ public class SenderThread extends Thread {
 			{
 				if(message.equals(this.getEscape())) break;
 				sleep(2000);
-				//System.out.println("Votre message : ");
 				message = read.nextLine();
 				
 				_RemotableObject msg = new Message(this.getU(), message);
 				this.getU().send(this.getS(), msg);
 			}
-			//If /exit
 			_RemotableObject msg = new Message(this.getU(), "Votre correspondant n'est plus connecté");
 			this.getU().send(this.getS(), msg);
 		}
@@ -73,11 +72,11 @@ public class SenderThread extends Thread {
 		this.s = s;
 	}
 
-	private String getEscape() {
+	private Cmd getEscape() {
 		return this.escape;
 	}
 
-	private void setEscape(String escape) {
+	private void setEscape(Cmd escape) {
 		this.escape = escape;
 	}
 }

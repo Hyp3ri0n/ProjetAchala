@@ -5,7 +5,9 @@ import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashSet;
@@ -16,6 +18,7 @@ import achala.communication._Shared;
 import achala.communication.server.exception.ServerException;
 import achala.communication.utilisateur._Utilisateur;
 
+@SuppressWarnings("deprecation")
 public class Server extends UnicastRemoteObject implements _Server {
 
 	private static final long serialVersionUID = -1500108230668609512L;
@@ -33,7 +36,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 * @throws UnknownHostException leve une exception en cas d'adresse inconnue
 	 */
-	public Server(Registry r) throws RemoteException, UnknownHostException {
+	private Server(Registry r) throws RemoteException, UnknownHostException {
 		super();
 		this.setRegistry(r);
 		this.users = new HashSet<>();
@@ -172,6 +175,25 @@ public class Server extends UnicastRemoteObject implements _Server {
 	 */
 	public static _Server getServer(String ipAdresse) throws MalformedURLException, RemoteException, NotBoundException{
 		return (_Server) Naming.lookup("rmi://" + ipAdresse + "/srv");
+	}
+	
+	public static void startServer(String policyPath){
+		try {
+			System.setProperty("java.security.policy", policyPath);
+			System.setProperty("java.net.SocketPermission", policyPath);
+			if (System.getSecurityManager() == null) {
+				System.setSecurityManager(new RMISecurityManager());
+			}
+			
+			Registry registry = LocateRegistry.createRegistry(1099);
+			_Server server = new Server(registry);
+			
+			registry.rebind("srv", server);
+			
+			System.out.println("Serveur lancé !");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
