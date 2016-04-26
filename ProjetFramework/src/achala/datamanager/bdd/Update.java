@@ -64,9 +64,7 @@ public class Update extends Requete {
 		
 		System.out.println(req);
 		
-		stmt.executeUpdate(req);
-		//Return null car modification
-		return null;
+		return stmt.executeQuery(req);
 	}
 
 }

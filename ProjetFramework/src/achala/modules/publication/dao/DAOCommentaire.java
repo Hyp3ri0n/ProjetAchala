@@ -28,7 +28,7 @@ public class DAOCommentaire extends DAOTable {
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
 		lstAttrs.put("id", TypeBD.INTEGER);
-		lstAttrs.put("date", TypeBD.DATE);
+		lstAttrs.put("dateC", TypeBD.DATE);
 		lstAttrs.put("contenu", TypeBD.STRING);
 		lstAttrs.put("auteur", TypeBD.STRING);
 		lstAttrs.put("article", TypeBD.INTEGER);
@@ -59,7 +59,7 @@ public class DAOCommentaire extends DAOTable {
 	 * @return La requete a executer (objet)
 	 */
 	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
-		return new Update(lstAttrsValues, ManagerDAO.getDAOArticle(), where);
+		return new Update(lstAttrsValues, ManagerDAO.getDAOCommentaire(), where);
 	}
 	
 	
@@ -74,7 +74,7 @@ public class DAOCommentaire extends DAOTable {
 	public Requete insert(int id, String date, String contenu, String nomAuteur, int idArticle) {
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", String.valueOf(id));
-		lstAttrsValue.put("date", date);
+		lstAttrsValue.put("dateC", date);
 		lstAttrsValue.put("contenu", contenu);
 		lstAttrsValue.put("auteur", nomAuteur);
 		lstAttrsValue.put("article", String.valueOf(idArticle));

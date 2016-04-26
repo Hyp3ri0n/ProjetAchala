@@ -76,7 +76,7 @@ public class DAOArticle extends DAOTable {
 	public Requete insert(int id, String date, String titre, String nomAuteur, String contenu) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", String.valueOf(id));
-		lstAttrsValue.put("date", date);
+		lstAttrsValue.put("dateA", date);
 		lstAttrsValue.put("titre", titre);
 		lstAttrsValue.put("contenu", contenu);
 		lstAttrsValue.put("auteur", nomAuteur);
