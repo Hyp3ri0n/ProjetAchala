@@ -6,6 +6,7 @@ import java.util.HashMap;
 import achala.datamanager.bdd.TypeBD;
 import achala.modules.publication.dao.ManagerDAO;
 //import achala.modules.publication.exception.PublicationException;
+import achala.modules.publication.exception.PublicationException;
 
 public class Commentaire {
 	
@@ -27,7 +28,11 @@ public class Commentaire {
 		this.nomAuteur = unAuteur;
 		this.date = uneDate;
 		this.idArticle = idArticle;
-		Article.getArticleById(idArticle).ajouterCommentaire(this);
+		try{
+			Article.getArticleById(idArticle).ajouterCommentaire(this);
+		} catch(PublicationException e) {
+			e.getMessage();
+		}
 	}
 	
 	/**
@@ -37,7 +42,7 @@ public class Commentaire {
 		//APPEL DAO
 		try {
 			ManagerDAO.getDAOCommentaire().insert(this.id, this.date, this.contenu, this.nomAuteur, this.idArticle);
-			ManagerApp.Instance().getListCommentaires().remove(this);
+			ManagerApp.Instance().getListCommentaires().add(this);
 		} catch(Exception e) {
 			e.getMessage();
 		}

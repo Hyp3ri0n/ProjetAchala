@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import achala.datamanager.bdd.TypeBD;
 import achala.modules.publication.dao.ManagerDAO;
+import achala.modules.publication.exception.PublicationException;
 
 //import achala.modules.publication.exception.PublicationException;
 
@@ -129,12 +130,12 @@ public class Article {
 		return lesCommentaires;
 	}
 	
-	public static Article getArticleById(int id) {
+	public static Article getArticleById(int id) throws PublicationException {
 		for(Article art:ManagerApp.Instance().getListArticles()) {
 			if(id == art.getId()) {
 				return art;
 			}
 		}
-		return null;
+		throw new PublicationException("L'article n'existe pas.");
 	}
 }
