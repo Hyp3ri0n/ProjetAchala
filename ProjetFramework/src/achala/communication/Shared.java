@@ -1,6 +1,5 @@
 package achala.communication;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -9,6 +8,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import achala.datamanager.Fichier;
+import achala.datamanager.exception.DMException;
 
 public abstract class Shared extends UnicastRemoteObject implements _Shared {
 
@@ -41,8 +43,12 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		this.rmiAdresse = rmiAdresse;
 	}
 
-	public void save(File fichier) {
-		// TODO
+	public void save(Fichier fichier) {
+		try {
+			fichier.save();
+		} catch (DMException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setWait(boolean wait) throws RemoteException {

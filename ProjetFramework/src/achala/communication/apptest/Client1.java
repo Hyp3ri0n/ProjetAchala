@@ -24,7 +24,7 @@ public class Client1 {
 
 			_Utilisateur alexis = new Utilisateur("Martinier", "Alexis");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://192.168.1.16/srv");
+			_Server srv = (_Server)Naming.lookup("rmi://130.190.29.31/srv");
 			alexis.connect(srv);
 			/*srv.connect(alexis);
 			
@@ -72,7 +72,7 @@ public class Client1 {
 			Chat c = new Chat(srv, alexis, luc);
 			
 			c.listener(alexis);
-			c.sender(alexis, "exit");
+			c.sender(alexis, "/exit");
 			
 			
 		}

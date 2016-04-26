@@ -4,7 +4,7 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-import achala.communication.utilisateur.Utilisateur;
+import achala.communication.utilisateur._Utilisateur;
 
 public class Fichier extends RemotableObject {
 
@@ -12,7 +12,7 @@ public class Fichier extends RemotableObject {
 
 	private File fichier;
 	
-	protected Fichier(Utilisateur sender, File fichier) throws RemoteException {
+	protected Fichier(_Utilisateur sender, File fichier) throws RemoteException {
 		super(sender, new Date());
 		this.setFichier(fichier);
 	}

@@ -1,4 +1,4 @@
-package achala.communication.apptest;
+package achala.communication.server;
 
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;

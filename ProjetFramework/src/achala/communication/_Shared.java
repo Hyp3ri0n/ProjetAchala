@@ -1,12 +1,12 @@
 package achala.communication;
 
-import java.io.File;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
+import achala.datamanager.Fichier;
 
 public interface _Shared extends Remote {
 	/**
@@ -43,7 +43,7 @@ public interface _Shared extends Remote {
 	 * @param fichier File fichier de sauvegarde
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 */
-	void save(File fichier) throws RemoteException;
+	void save(Fichier fichier) throws RemoteException;
 	
 	/**
 	 * Indique si l'objet de partage est en attente de lecture

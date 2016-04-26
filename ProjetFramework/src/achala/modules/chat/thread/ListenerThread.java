@@ -10,6 +10,7 @@ public class ListenerThread extends Thread {
 
 	private _Utilisateur u;
 	private _Shared s;
+	//private _UI interface;
 	
 	/**
 	 * Construit un thread de reception de messages
@@ -32,7 +33,9 @@ public class ListenerThread extends Thread {
 				sleep(2000);
 				objs = this.getU().receive(this.getS());
 				for(_RemotableObject o : objs) {
+					System.out.println(o.getDate().toString());
 					System.out.println(o.getObject().toString());
+					//interface.afficher(o.getObject().toString());
 				}
 			}
 			catch(Exception e)

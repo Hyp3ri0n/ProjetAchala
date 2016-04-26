@@ -16,8 +16,6 @@ public class Chat {
 	private _Utilisateur user2;
 	private _Server server;
 	private _Shared correspondance;
-	private ListenerThread listener;
-	private SenderThread sender;
 	
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
@@ -33,11 +31,7 @@ public class Chat {
 			this.setUser1(u1);
 			this.setUser2(u2);
 			
-			/*String url = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
-			_Shared correspondance = Shared.getShared(url);*/
-			
 			_Shared correspondance = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
-			
 			this.setCorrespondance(correspondance);
 		}
 		catch (Exception e)
@@ -61,7 +55,6 @@ public class Chat {
 			this.setUser2(u2);
 			
 			_Shared correspondance = this.getServer().getSharedZone(this.getUser1(), this.getUser2());
-			
 			this.setCorrespondance(correspondance);
 		}
 		catch (Exception e)
@@ -111,7 +104,7 @@ public class Chat {
 	public void listener(_Utilisateur u) throws RemoteException, ChatException {
 		if(!this.getCorrespondance().isAllowed(u)) throw new ChatException("Utilisateur non autorisé");
 		
-		listener = new ListenerThread(u, this.getCorrespondance());
+		ListenerThread listener = new ListenerThread(u, this.getCorrespondance());
 		listener.start();
 	}
 	
@@ -125,13 +118,8 @@ public class Chat {
 	public void sender(_Utilisateur u, String escape) throws RemoteException, ChatException {
 		if(!this.getCorrespondance().isAllowed(u)) throw new ChatException("Utilisateur non autorisé");
 		
-		sender = new SenderThread(u, this.getCorrespondance(), escape);
+		SenderThread sender = new SenderThread(u, this.getCorrespondance(), escape);
 		sender.start();
 	}
 	
-	/*private _Utilisateur getOther(_Utilisateur u) {
-		if(u.equals(this.getUser1())) return this.getUser2();
-		if(u.equals(this.getUser2())) return this.getUser1();
-		return null;
-	}*/
 }

@@ -37,6 +37,7 @@ public class SenderThread extends Thread {
 			
 			while(!message.equals(this.getEscape()))
 			{
+				if(message.equals(this.getEscape())) break;
 				sleep(2000);
 				//System.out.println("Votre message : ");
 				message = read.nextLine();
@@ -44,12 +45,14 @@ public class SenderThread extends Thread {
 				_RemotableObject msg = new Message(this.getU(), message);
 				this.getU().send(this.getS(), msg);
 			}
+			//If /exit
+			_RemotableObject msg = new Message(this.getU(), "Votre correspondant n'est plus connecté");
+			this.getU().send(this.getS(), msg);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
 		System.out.println("Exit Sender");
 		read.close();
 	}
