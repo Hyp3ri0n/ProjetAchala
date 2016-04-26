@@ -14,20 +14,25 @@ public class Chat {
 
 	private _Utilisateur user1;
 	private _Utilisateur user2;
+	//private List<_Utilisateur> users;
 	private _Server server;
 	private _Shared correspondance;
 	
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
+	 * @require connected : u1 & u2 connecte
 	 * @param ipSrv String : ip du serveur
-	 * @param u1 _Utilisateur : utilisateur souhaitant communiquer
-	 * @param u2 _Utilisateur : utilisateur souhaitant communiquer
+	 * @param u1 _Utilisateur : utilisateur souhaitant communiquer avec u2
+	 * @param u2 _Utilisateur : utilisateur à contacter
 	 */
 	public Chat(String ipSrv, _Utilisateur u1, _Utilisateur u2) {
 		
 		try
 		{
 			this.setServer(Server.getServer(ipSrv));
+//			this.setUser1(u1);
+//			this.setUser2(this.getServer().getUtilisateur(u2.getNom(), u2.getPrenom()));
+//			this.getUser1().connect(this.getServer());
 			this.setUser1(u1);
 			this.setUser2(u2);
 			
@@ -43,8 +48,8 @@ public class Chat {
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
 	 * @param srv _Server : serveur de communication
-	 * @param u1 _Utilisateur : utilisateur souhaitant communiquer
-	 * @param u2 _Utilisateur : utilisateur souhaitant communiquer
+	 * @param u1 _Utilisateur : utilisateur souhaitant communiquer avec u2
+	 * @param u2 _Utilisateur : utilisateur à contacter
 	 */
 	public Chat(_Server srv, _Utilisateur u1, _Utilisateur u2) {
 		

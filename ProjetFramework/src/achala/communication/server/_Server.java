@@ -64,6 +64,7 @@ public interface _Server extends Remote {
 	
 	/**
 	 * Ajoute l'utilisateur u au serveur
+	 * @require ... : this.getUtilisateur().contains(u) == false 
 	 * @param u _Utilisateur : utilisateur à ajouter
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
@@ -71,6 +72,7 @@ public interface _Server extends Remote {
 	
 	/**
 	 * Deconnecte l'utilisateur du serveur
+	 * @require ... : this.getUtilisateurs().contains(u) == true
 	 * @param u _Utilisateur : utilisateur a deconnecter
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */

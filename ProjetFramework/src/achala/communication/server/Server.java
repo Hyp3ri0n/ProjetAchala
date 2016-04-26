@@ -25,6 +25,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 	private Set<_Utilisateur> users;
 	private Set<_Shared> shares;
 	private Registry register;
+	private String ip;
 	
 	/**
 	 * Constructeur d'un serveur
@@ -37,7 +38,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 		this.setRegistry(r);
 		this.users = new HashSet<>();
 		this.shares = new HashSet<>();
-		System.out.println("Server run at : " + InetAddress.getLocalHost().getHostAddress());
+		this.ip = InetAddress.getLocalHost().getHostAddress();
+		System.out.println("Server run at : " + ip);
 	}
 
 	private Registry getRegistry() {
@@ -99,7 +101,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 		String url = this.getRMIShared(u1, u2);
 		if(url.equals("")){
 			url  = "rmi://";
-			url += InetAddress.getLocalHost().getHostAddress();
+			url += this.ip;
 			url += "/" + u1.identify() + "_" + u2.identify();
 			
 			_Shared s = new Correspondance(u1, u2, url);
@@ -115,7 +117,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 	public String getSharedZone(_Utilisateur u) throws RemoteException, UnknownHostException {
 		String url = "";
 		url += "rmi://";
-		url += InetAddress.getLocalHost().getHostAddress();
+		url += this.ip;
 		url += "/" + u.identify();
 		
 		//TODO this.getRegistry().rebind(url, new Drive(url));
@@ -125,6 +127,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 
 	@Override
 	public void connect(_Utilisateur u) throws RemoteException {
+		if(this.getUtilisateurs().contains(u)) return;
+		
 		u.setId(getIdUser());
 		this.getUtilisateurs().add(u);
 		
@@ -133,9 +137,10 @@ public class Server extends UnicastRemoteObject implements _Server {
 	
 	@Override
 	public void disconnect(_Utilisateur u) throws RemoteException {
+		if(!this.getUtilisateurs().contains(u)) return;
+		
 		System.out.println("Deconnexion : " + u.getNom() + " " + u.getPrenom());
-		if(this.getUtilisateurs().contains(u))
-			this.getUtilisateurs().remove(u);
+		this.getUtilisateurs().remove(u);
 	}
 	
 	/**

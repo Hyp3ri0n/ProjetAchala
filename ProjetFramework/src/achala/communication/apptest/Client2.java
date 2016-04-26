@@ -9,6 +9,7 @@ import achala.communication.utilisateur.Utilisateur;
 import achala.communication.utilisateur._Utilisateur;
 import achala.modules.chat.Chat;
 
+@SuppressWarnings("deprecation")
 public class Client2 {
 
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class Client2 {
 			
 			_Utilisateur luc = new Utilisateur("Ortiz", "Luc");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://130.190.29.31/srv");
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.43.84/srv");
 			luc.connect(srv);
 			/*srv.connect(luc);
 			
@@ -75,6 +76,7 @@ public class Client2 {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			read.close();
 		}
 		
 		//read.close();

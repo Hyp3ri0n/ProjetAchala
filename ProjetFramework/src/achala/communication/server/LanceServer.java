@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import achala.communication.server.Server;
 import achala.communication.server._Server;
 
+@SuppressWarnings("deprecation")
 public class LanceServer {
 
 	public static void main(String[] args)
