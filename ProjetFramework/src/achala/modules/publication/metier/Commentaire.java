@@ -16,24 +16,28 @@ public class Commentaire {
 	private String contenu;
 	private String nomAuteur;
 	private Date date;
+	private int idArticle;
 	
 	/**
 	 * Constructeur
 	 */
-	public Commentaire(int unId, String unContenu, String unAuteur, Date uneDate) {
+	public Commentaire(int unId, String unContenu, String unAuteur, Date uneDate, int idArticle) {
 		this.id = unId;
 		this.contenu = unContenu;
 		this.nomAuteur = unAuteur;
 		this.date = uneDate;
+		this.idArticle = idArticle;
+		Article.getArticleById(idArticle).ajouterCommentaire(this);
 	}
 	
 	/**
 	 * Méthodes
 	 */
-	public void creer(int idArticle) {
+	public void creer() {
 		//APPEL DAO
 		try {
-			ManagerDAO.getDAOCommentaire().insert(this.id, this.date, this.contenu, this.nomAuteur, idArticle);
+			ManagerDAO.getDAOCommentaire().insert(this.id, this.date, this.contenu, this.nomAuteur, this.idArticle);
+			ManagerApp.Instance().getListCommentaires().remove(this);
 		} catch(Exception e) {
 			e.getMessage();
 		}
@@ -43,6 +47,7 @@ public class Commentaire {
 		//APPEL DAO
 		try {
 			ManagerDAO.getDAOCommentaire().delete(this.id);
+			ManagerApp.Instance().getListCommentaires().remove(this);
 		} catch(Exception e) {
 			e.getMessage();
 		}
@@ -87,6 +92,15 @@ public class Commentaire {
 		lstAttrsValues.put("date", TypeBD.syntaxe(date.toString(), TypeBD.DATE));
 		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues, "WHERE id = " + this.id));
 		this.date = date;
+	}
+	
+	public static Commentaire getCommentaireById(int id) {
+		for(Commentaire com:ManagerApp.Instance().getListCommentaires()) {
+			if(id == com.getId()) {
+				return com;
+			}
+		}
+		return null;
 	}
 	
 

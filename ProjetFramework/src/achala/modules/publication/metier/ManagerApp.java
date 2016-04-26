@@ -37,7 +37,7 @@ public class ManagerApp {
 				for(Article art : listArticles) {
 					// Si l'article correspond bien
 					if (art.getId() == rs.getInt("article")) {
-						com = new Commentaire(rs.getInt("id"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("dateC"));
+						com = new Commentaire(rs.getInt("id"),rs.getString("contenu"),rs.getString("auteur"),rs.getDate("dateC"),rs.getInt("article"));
 						if(listCommentaires.add(com)) {
 							art.ajouterCommentaire(com);
 						}
@@ -57,6 +57,15 @@ public class ManagerApp {
 	public static ManagerApp Instance() { return instance;	}
 
 	public List<Article> getListArticles() { return listArticles; }
+	
+	public Article getArticleById(int id) {
+		for(Article art:this.getListArticles()) {
+			if(id == art.getId()) {
+				return art;
+			}
+		}
+		return null;
+	}
 
 	public List<Commentaire> getListCommentaires() { return listCommentaires; }
 }

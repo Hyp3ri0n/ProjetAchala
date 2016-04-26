@@ -20,18 +20,6 @@ public class Article {
 	private String nomAuteur;
 	private Date date;
 	private ArrayList<Commentaire> lesCommentaires;
-	
-	/**
-	 * Constructeur sans contenu
-	 */
-	public Article(int unId, String unTitre, String unNomAuteur, Date uneDate) {
-		this.id = unId;
-		this.titre = unTitre;
-		this.contenu = null;
-		this.nomAuteur = unNomAuteur;
-		this.date = uneDate;
-		this.lesCommentaires = new ArrayList<Commentaire>();
-	}
 
 	/**
 	 * Constructeur complet
@@ -43,27 +31,30 @@ public class Article {
 		this.nomAuteur = unNomAuteur;
 		this.date = uneDate;
 		this.lesCommentaires = new ArrayList<Commentaire>();
+		creer();
 	}
 	
 	/**
 	 * Methodes
 	 */
 	public void creer() {
-		//APPEL DAO
+		//Mise à jour des données
 		try {
 			ManagerDAO.getDAOArticle().insert(this.id,this.date, this.titre, this.contenu, this.nomAuteur );
+			ManagerApp.Instance().getListArticles().add(this);
 		} catch(Exception e) {
 			e.getMessage();
 		}
 	}
 	
 	public void supprimer() {
-		//APPEL DAO
+		//Mise à jour des données
 		try {
 			for(Commentaire com : lesCommentaires) {
 				com.supprimer();
 			}
 			ManagerDAO.getDAOArticle().delete(this.id);
+			ManagerApp.Instance().getListArticles().remove(this);
 		} catch(Exception e) {
 			e.getMessage();
 		}
@@ -71,7 +62,7 @@ public class Article {
 	
 	//Ajout du commentaire en base puis ajout dans la liste
 	public void ajouterCommentaire(Commentaire com) {
-		com.creer(this.id);
+		com.creer();
 		this.lesCommentaires.add(com);
 	}
 	
@@ -136,5 +127,14 @@ public class Article {
 	//Pas de set commentaires possible
 	public ArrayList<Commentaire> getLesCommentaires() {
 		return lesCommentaires;
+	}
+	
+	public static Article getArticleById(int id) {
+		for(Article art:ManagerApp.Instance().getListArticles()) {
+			if(id == art.getId()) {
+				return art;
+			}
+		}
+		return null;
 	}
 }
