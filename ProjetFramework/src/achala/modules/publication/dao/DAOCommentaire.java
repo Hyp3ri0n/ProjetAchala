@@ -1,6 +1,5 @@
 package achala.modules.publication.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,10 +71,10 @@ public class DAOCommentaire extends DAOTable {
 	 * @param auteur Le troisieme attributt
 	 * @return La requete a executer (objet)
 	 */
-	public Requete insert(int id, Date date, String contenu, String nomAuteur, int idArticle) {
+	public Requete insert(int id, String date, String contenu, String nomAuteur, int idArticle) {
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", String.valueOf(id));
-		lstAttrsValue.put("date", TypeBD.syntaxe(date.toString(), TypeBD.DATE));
+		lstAttrsValue.put("date", date);
 		lstAttrsValue.put("contenu", contenu);
 		lstAttrsValue.put("auteur", nomAuteur);
 		lstAttrsValue.put("article", String.valueOf(idArticle));
