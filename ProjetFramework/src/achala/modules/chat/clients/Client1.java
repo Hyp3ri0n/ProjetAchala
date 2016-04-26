@@ -26,7 +26,7 @@ public class Client1 {
 
 			_Utilisateur alexis = new Utilisateur("Martinier", "Alexis");
 			
-			_Server srv = (_Server)Naming.lookup("rmi://130.190.29.31/srv");
+			_Server srv = (_Server)Naming.lookup("rmi://192.168.56.1/srv");
 			alexis.connect(srv);
 			
 			System.out.println("Start ?");

@@ -84,10 +84,4 @@ public interface _Utilisateur extends Remote {
 	 * @throws RemoteException
 	 */
 	public boolean equals(_Utilisateur u) throws RemoteException;
-	
-	/**
-	 * Retourne l'utilisateur courant sous chaine de caracteres
-	 * @return String : chaine de caractere representant l'utilisateur
-	 */
-	public String toString();
 }
