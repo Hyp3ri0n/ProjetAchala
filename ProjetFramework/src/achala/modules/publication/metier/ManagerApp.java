@@ -3,6 +3,7 @@ package achala.modules.publication.metier;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import achala.modules.publication.dao.ManagerDAO;
@@ -47,7 +48,8 @@ public class ManagerApp {
 			}
 			
 			rs.close();
-
+			Collections.sort(listArticles);
+			Collections.sort(listCommentaires);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

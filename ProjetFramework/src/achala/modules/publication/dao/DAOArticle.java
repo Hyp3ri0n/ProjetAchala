@@ -74,13 +74,13 @@ public class DAOArticle extends DAOTable {
 	 * @param lescommentaires Le quatrieme attribut
 	 * @return La requete a executer (objet)
 	 */
-	public Requete insert(int id, String date, String titre, String nomAuteur, String contenu) {		
+	public Requete insert(int id, String date, String titre, String auteur, String contenu) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
 		lstAttrsValue.put("id", String.valueOf(id));
 		lstAttrsValue.put("dateA", date);
 		lstAttrsValue.put("titre", titre);
 		lstAttrsValue.put("contenu", contenu);
-		lstAttrsValue.put("auteur", nomAuteur);
+		lstAttrsValue.put("auteur", auteur);
 		return new Insert(lstAttrsValue, ManagerDAO.getDAOArticle());
 	}
 

@@ -9,7 +9,7 @@ import achala.modules.publication.dao.ManagerDAO;
 import achala.modules.publication.exception.PublicationException;
 
 
-public class Article {
+public class Article implements Comparable<Article> {
 
 	/**
 	 * Attributs privés
@@ -52,7 +52,7 @@ public class Article {
 	public void creer() {
 		//Mise à jour des données BD + Context
 		try {
-			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.contenu, this.auteur));
+			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.auteur, this.contenu));
 			ManagerApp.Instance().getListArticles().add(this);
 		} catch(Exception e) {
 			e.getMessage();
@@ -159,5 +159,17 @@ public class Article {
 			}
 		}
 		throw new PublicationException("L'article n'existe pas.");
+	}
+	
+	//Comparable méthode retourne -1 si < / 0 si = / 1 si >
+	@Override
+	public int compareTo(Article o) {
+		if(this.getId() < o.getId()) {
+			return -1;
+		} else if (this.getId() > o.getId()) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }

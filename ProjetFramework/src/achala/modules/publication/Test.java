@@ -18,13 +18,21 @@ public class Test extends TestCase {
 		Article a3 = new Article("Article 3","Contenu 3","Oxford","26-04-2016");
 		c5.setAuteur("Jean");
 		c4.supprimer();
+		
+		// Test tri par id
+		/*for(Article art:ManagerApp.Instance().getListArticles()) {
+			System.out.println("Art id :"+art.getId());
+		}
+		for(Commentaire com:ManagerApp.Instance().getListCommentaires()) {
+			System.out.println("Com id :"+com.getId());
+		}*/
 	}
 	
 	//Test
 	public void test2() throws Exception {
 		assertEquals(2,sizeCommentaires + 2);
 		assertEquals(3,sizeArticles + 3);
-		assertEquals("Jean",Commentaire.getCommentaireById(2).getAuteur());
+		assertEquals("Jean",Commentaire.getCommentaireById(2).getAuteur());	
 	}
 	
 	//After
