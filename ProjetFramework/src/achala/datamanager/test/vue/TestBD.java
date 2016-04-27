@@ -1,12 +1,5 @@
 package achala.datamanager.test.vue;
 
-import achala.datamanager.Fichier;
-import achala.datamanager.exception.DMException;
-import achala.datamanager.fichier.TypeFichier;
-import achala.datamanager.test.metier.ContextApp;
-import achala.datamanager.test.metier.Table1;
-import achala.datamanager.test.metier.Table2;
-
 public class TestBD {
 
 	public static void main(String[] args) {		
@@ -25,8 +18,8 @@ public class TestBD {
 		//System.out.println(ContextApp.Instance().getListTable1().get(0).selectSomething());
 		
 		
-		/** TEST BDD **/
-		Fichier f = new Fichier("C:/Users/TEMP/", "test", TypeFichier.TEXT);
+		/** TEST Fichier **/
+		/*Fichier f = new Fichier("C:/Users/TEMP/", "test", TypeFichier.TEXT);
 		f.setContent("42");
 		f.addContent("test42");
 		try {
@@ -34,7 +27,7 @@ public class TestBD {
 		} catch (DMException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }
