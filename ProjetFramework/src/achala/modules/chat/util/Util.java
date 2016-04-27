@@ -1,5 +1,9 @@
 package achala.modules.chat.util;
 
+import java.rmi.RemoteException;
+
+import achala.communication.utilisateur._Utilisateur;
+
 public class Util {
 
 	private Util instance = new Util();
@@ -28,13 +32,13 @@ public class Util {
 			return null;
 		}
 		
-		public static String message(Cmd cmd, String str){
+		public static String message(Cmd cmd, _Utilisateur user) throws RemoteException{
 			String strReturn = "";
 			
 			switch(cmd)
 			{
 				case EXIT:
-					strReturn = str + " a quitter la conversation";
+					strReturn = user.toStringRemote() + " a quitter la conversation";
 					break;
 				case HELP:
 					strReturn = "Liste des commandes :\n"
@@ -43,10 +47,10 @@ public class Util {
 								+ "\t-/wizz : envoyer un wizz à votre correspondant";
 					break;
 				case IP:
-					strReturn = "Votre adresse IP est " + str;
+					strReturn = "Votre adresse IP est " + user.getIp();
 					break;
 				case WIZZ:
-					strReturn = str + " vous a envoyé un wizz";
+					strReturn = user.toStringRemote() + " vous a envoyé un wizz";
 					break;
 				default:
 					strReturn = "Command not found";

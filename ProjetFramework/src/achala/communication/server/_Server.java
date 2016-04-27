@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Set;
+import java.util.List;
 
 import achala.communication._Shared;
 import achala.communication.server.exception.ServerException;
@@ -13,14 +13,14 @@ import achala.communication.utilisateur._Utilisateur;
 
 public interface _Server extends Remote {
 
-	public Set<_Shared> getShares() throws RemoteException;
+	public List<_Shared> getShares() throws RemoteException;
 	
 	/**
 	 * Renvoi la liste de tous les utilisateurs present sur le serveur
 	 * @return Set<_Utilisateur> : liste des utilisateurs connecte au serveur
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	public Set<_Utilisateur> getUtilisateurs() throws RemoteException;
+	public List<_Utilisateur> getUtilisateurs() throws RemoteException;
 	
 	/**
 	 * Retourne la liste des utilisateurs du serveur portant le nom passe en parametre
@@ -28,7 +28,7 @@ public interface _Server extends Remote {
 	 * @return Set<_Utilisateur> : liste des utilisateurs portant le nom passe en parametre connecte au serveur
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	public Set<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
+	public List<_Utilisateur> getUtilisateurs(String name) throws RemoteException;
 	
 	/**
 	 * Retourne le premier utilisateur correspondant au nom et prenom

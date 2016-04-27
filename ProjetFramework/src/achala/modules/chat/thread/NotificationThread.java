@@ -29,7 +29,7 @@ public class NotificationThread extends Thread {
 						for(_RemotableObject rObj : s.getObjects())
 						{
 							if(!rObj.getSender().equals(this.getUser()))
-								System.out.println("NOTIFICATION : " + rObj.getSender().getPrenom());
+								System.out.println("NOTIFICATION : " + rObj.getSender().toStringRemote());
 						}
 					}
 				}

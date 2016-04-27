@@ -10,8 +10,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import achala.communication.Correspondance;
 import achala.communication._Shared;
@@ -25,8 +25,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 
 	private static int idUser = 0;
 	
-	private Set<_Utilisateur> users;
-	private Set<_Shared> shares;
+	private List<_Utilisateur> users;
+	private List<_Shared> shares;
 	private Registry register;
 	private String ip;
 	
@@ -39,8 +39,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 	private Server(Registry r) throws RemoteException, UnknownHostException {
 		super();
 		this.setRegistry(r);
-		this.users = new HashSet<>();
-		this.shares = new HashSet<>();
+		this.users = new ArrayList<>();
+		this.shares = new ArrayList<>();
 		this.ip = InetAddress.getLocalHost().getHostAddress();
 		System.out.println("Server run at : " + ip);
 	}
@@ -62,22 +62,22 @@ public class Server extends UnicastRemoteObject implements _Server {
 		Server.idUser = idUser;
 	}
 
-	public Set<_Shared> getShares() {
+	public List<_Shared> getShares() {
 		return this.shares;
 	}
 
-	public void setShares(Set<_Shared> shares) {
+	public void setShares(List<_Shared> shares) {
 		this.shares = shares;
 	}
 	
 	@Override
-	public Set<_Utilisateur> getUtilisateurs() throws RemoteException {
+	public List<_Utilisateur> getUtilisateurs() throws RemoteException {
 		return this.users;
 	}
 
 	@Override
-	public Set<_Utilisateur> getUtilisateurs(String name) throws RemoteException {
-		Set<_Utilisateur> _users = new HashSet<>();
+	public List<_Utilisateur> getUtilisateurs(String name) throws RemoteException {
+		List<_Utilisateur> _users = new ArrayList<>();
 		for(_Utilisateur u : this.getUtilisateurs()) {
 			if(u.getNom().equals(name)) {
 				_users.add(u);
@@ -135,14 +135,14 @@ public class Server extends UnicastRemoteObject implements _Server {
 		u.setId(getIdUser());
 		this.getUtilisateurs().add(u);
 		
-		System.out.println("Connexion : " + u.getNom() + " " + u.getPrenom());
+		System.out.println("Connexion : " + u.toStringRemote());
 	}
 	
 	@Override
 	public void disconnect(_Utilisateur u) throws RemoteException {
 		if(!this.getUtilisateurs().contains(u)) return;
 		
-		System.out.println("Deconnexion : " + u.getNom() + " " + u.getPrenom());
+		System.out.println("Deconnexion : " + u.toStringRemote());
 		this.getUtilisateurs().remove(u);
 	}
 	
@@ -177,6 +177,10 @@ public class Server extends UnicastRemoteObject implements _Server {
 		return (_Server) Naming.lookup("rmi://" + ipAdresse + "/srv");
 	}
 	
+	/**
+	 * Demarre le serveur sur le poste, avec le policyFile pour les droits d'acces
+	 * @param policyPath String : chemin d'acces au policyFile
+	 */
 	public static void startServer(String policyPath){
 		try {
 			System.setProperty("java.security.policy", policyPath);

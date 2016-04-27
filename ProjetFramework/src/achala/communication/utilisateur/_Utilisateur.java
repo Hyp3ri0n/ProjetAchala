@@ -47,6 +47,13 @@ public interface _Utilisateur extends Remote {
 	public void setId(int id) throws RemoteException;
 	
 	/**
+	 * Recupere l'adresse IP local de l'utilisateur
+	 * @return String : ip locale
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
+	public String getIp() throws RemoteException;
+	
+	/**
 	 * Connecte l'utilisateur courant au serveur
 	 * @param server _Server : serveur ou l'utilisateur souhaite se connecter
 	 * @throws RemoteException leve une exception en cas d'echec de communication
@@ -81,7 +88,15 @@ public interface _Utilisateur extends Remote {
 	 * Verifie l'egalite de l'utilisateur avec l'utilisateur passe en parametre
 	 * @param u _Utilisateur : utilisateur a comparer
 	 * @return boolean : true si les utilisateurs sont identique, false dans le cas contraire
-	 * @throws RemoteException
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
 	public boolean equals(_Utilisateur u) throws RemoteException;
+	
+	/**
+	 * Overide de la methode toString()
+	 * impossible d'overide la mtehode toString() pour RMI
+	 * @return String : representation de l'utilisateur (nom prenom)
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
+	public String toStringRemote() throws RemoteException;
 }

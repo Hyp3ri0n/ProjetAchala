@@ -35,18 +35,20 @@ public class SenderThread extends Thread {
 		String message = "";
 		try
 		{
-			
 			while(!message.equals(this.getEscape().toString()))
 			{
-				if(message.equals(this.getEscape().toString())) break;
 				sleep(2000);
 				message = read.nextLine();
 				
-				_RemotableObject msg = new Message(this.getU(), message);
-				this.getU().send(this.getS(), msg);
+				if(message.equals(Cmd.HELP.toString())){
+					System.out.println(Cmd.message(Cmd.HELP, this.getU()));
+				} else if(message.equals(Cmd.IP.toString())) {
+					System.out.println(Cmd.message(Cmd.IP, this.getU()));
+				} else {
+					_RemotableObject msg = new Message(this.getU(), message);
+					this.getU().send(this.getS(), msg);
+				}
 			}
-			_RemotableObject msg = new Message(this.getU(), "Votre correspondant n'est plus connecté");
-			this.getU().send(this.getS(), msg);
 		}
 		catch(Exception e)
 		{

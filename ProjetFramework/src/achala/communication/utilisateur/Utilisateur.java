@@ -1,5 +1,7 @@
 package achala.communication.utilisateur;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -17,14 +19,20 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 	private String lastName;
 	private String firstName;
 	private _Server server;
+	private String ip;
 	
-	public Utilisateur(String nom, String prenom) throws RemoteException {
+	public Utilisateur() throws RemoteException, UnknownHostException{
 		super();
+		this.setIp(InetAddress.getLocalHost().getHostAddress());
+	}
+	
+	public Utilisateur(String nom, String prenom) throws RemoteException, UnknownHostException {
+		this();
 		this.setNom(nom);
 		this.setPrenom(prenom);
 	}
 	
-	public Utilisateur(String nom, String prenom, _Server server) throws RemoteException {
+	public Utilisateur(String nom, String prenom, _Server server) throws RemoteException, UnknownHostException {
 		this(nom, prenom);
 		this.setServer(server);
 	}
@@ -62,8 +70,14 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 	}
 	
 	
-	
-	
+	public String getIp() {
+		return ip;
+	}
+
+	private void setIp(String ip) {
+		this.ip = ip;
+	}
+
 	@Override
 	public void connect(_Server server) throws RemoteException {
 		this.setServer(server);
@@ -86,10 +100,12 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 	}
 	
 	
-	
-	
 	@Override
 	public String toString() {
+		return this.getNom() + " " + this.getPrenom();
+	}
+	
+	public String toStringRemote() {
 		return this.getNom() + " " + this.getPrenom();
 	}
 	
@@ -98,12 +114,6 @@ public class Utilisateur extends UnicastRemoteObject implements _Utilisateur{
 		return this.getNom() + this.getId();
 	}
 	
-	/**
-	 * Teste l'egalite de deux utilisateur
-	 * @param u _Utilisateur : utilisateur a comparer
-	 * @return boolean : true si l'utilisateur courant et l'utilisateur u sont les memes
-	 * @throws RemoteException leve une excpetion en cas d'echec de communication
-	 */
 	public boolean equals(_Utilisateur u) throws RemoteException {
 		if(!this.getNom().equals(u.getNom())) return false;
 		if(!this.getPrenom().equals(u.getPrenom())) return false;
