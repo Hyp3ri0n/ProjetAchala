@@ -17,18 +17,18 @@ public class Article {
 	private int id;
 	private String titre;
 	private String contenu;
-	private String nomAuteur;
+	private String auteur;
 	private String date;
 	private ArrayList<Commentaire> lesCommentaires;
 
 	/**
 	 * Constructeur sans id
 	 */
-	public Article(String unTitre, String unContenu, String unNomAuteur, String uneDate) {
+	public Article(String unTitre, String unContenu, String unAuteur, String uneDate) {
 		this.id = Article.getIdCourant();
 		this.titre = unTitre;
 		this.contenu = unContenu;
-		this.nomAuteur = unNomAuteur;
+		this.auteur = unAuteur;
 		this.date = uneDate;
 		this.lesCommentaires = new ArrayList<Commentaire>();
 		creer();
@@ -41,7 +41,7 @@ public class Article {
 		this.id = unId;
 		this.titre = unTitre;
 		this.contenu = unContenu;
-		this.nomAuteur = unNomAuteur;
+		this.auteur = unNomAuteur;
 		this.date = uneDate;
 		this.lesCommentaires = new ArrayList<Commentaire>();
 	}
@@ -52,7 +52,7 @@ public class Article {
 	public void creer() {
 		//Mise à jour des données BD + Context
 		try {
-			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.contenu, this.nomAuteur));
+			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.contenu, this.auteur));
 			ManagerApp.Instance().getListArticles().add(this);
 		} catch(Exception e) {
 			e.getMessage();
@@ -125,15 +125,15 @@ public class Article {
 		this.contenu = contenu;
 	}
 
-	public String getNomAuteur() {
-		return nomAuteur;
+	public String getAuteur() {
+		return auteur;
 	}
 
-	public void setNomAuteur(String nomAuteur) {
+	public void setAuteur(String auteur) {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
-		lstAttrsValues.put("nomAuteur", nomAuteur);
+		lstAttrsValues.put("auteur", auteur);
 		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues, "WHERE id = " + this.id));
-		this.nomAuteur = nomAuteur;
+		this.auteur = auteur;
 	}
 	
 	public String getDate() {

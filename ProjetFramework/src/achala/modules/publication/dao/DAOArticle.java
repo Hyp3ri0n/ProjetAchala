@@ -25,7 +25,8 @@ public class DAOArticle extends DAOTable {
 	
 	@Override
 	public void initialisation() {
-		
+		//A décommenter pour créer la table
+		//ManagerDAO.getBd().request(this.createTable());
 		this.setNomTable("Article");
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
