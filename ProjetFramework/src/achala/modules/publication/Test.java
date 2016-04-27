@@ -11,9 +11,9 @@ public class Test extends TestCase {
 		ManagerApp.Instance().initialisation();
 		sizeArticles = ManagerApp.Instance().getListArticles().size();
 		sizeCommentaires = ManagerApp.Instance().getListCommentaires().size();
-		Commentaire c4 = new Commentaire(4, "Commentaire 4", "Aurélien Fernandes","25-04-2016",1,false);
-		Commentaire c5 = new Commentaire(5, "Commentaire 5", "Audrey C.","25-04-2016",2,false);
-		Article a3 = new Article(3,"Article 3","Contenu 3","Oxford","26-04-2016",false);
+		Commentaire c4 = new Commentaire("Commentaire 4", "Aurélien Fernandes","25-04-2016",1);
+		Commentaire c5 = new Commentaire("Commentaire 5", "Audrey C.","25-04-2016",2);
+		Article a3 = new Article("Article 3","Contenu 3","Oxford","26-04-2016");
 		c5.setAuteur("Jean");
 		c4.supprimer();
 	}
@@ -21,7 +21,7 @@ public class Test extends TestCase {
 	//Test
 	public void test2() throws Exception {
 		assertEquals(5,sizeCommentaires + 1);
-		assertEquals(3,sizeArticles + 1);
+		assertEquals(4,sizeArticles + 1);
 		assertEquals("Jean",Commentaire.getCommentaireById(5).getAuteur());
 	}
 	
