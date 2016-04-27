@@ -7,50 +7,53 @@ import java.util.List;
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
 
-public class Correspondance extends Shared {
+public class Correspondance extends Shared implements _Correspondance {
 
 	private static final long serialVersionUID = -6280164128188470470L;
 
-	private _Utilisateur userA;
-	private _Utilisateur userB;
+	protected List<_Utilisateur> users;
 	
 	/**
 	 * Construit une correspondance
 	 * @param rmiAdresse String : url permattant l'acces a la correspondance
 	 * @throws RemoteException leve une excpetion en cas d'echec de communication
 	 */
-	protected Correspondance(String rmiAdresse) throws RemoteException {
-		super(rmiAdresse);
+	protected Correspondance(String rmiAdresse, String zoneName) throws RemoteException {
+		super(rmiAdresse, zoneName);
 		setWait(false);
 	}
 	
 	/**
 	 * Construit une correspondance entre les utilisateurs u1 et u2
-	 * @param user1 _Utilisateur : utilisateur souhaitant communiquer
-	 * @param user2 _Utilisateur : utilisateur souhaitant communiquer
+	 * @param users List<_Utilisateur> : utilisateurs de la correspondance
 	 * @param rmiAdresse String : url permattant l'acces a la correspondance
+	 * @param zoneName String : nom de la zone de partage
 	 * @throws RemoteException leve une excpetion en cas d'echec de communication
 	 */
-	public Correspondance(_Utilisateur user1, _Utilisateur user2, String rmiAdresse)throws RemoteException {
-		this(rmiAdresse);
-		this.setUserA(user1);
-		this.setUserB(user2);
-	}
-
-	public _Utilisateur getUserA() {
-		return userA;
-	}
-
-	private void setUserA(_Utilisateur userA) {
-		this.userA = userA;
+	public Correspondance(List<_Utilisateur> users, String rmiAdresse, String zoneName) throws RemoteException {
+		this(rmiAdresse, zoneName);
+		this.setUtilisateurs(users);
 	}
 	
-	public _Utilisateur getUserB() {
-		return userB;
+	public List<_Utilisateur> getUtilisateurs() {
+		return users;
 	}
 
-	private void setUserB(_Utilisateur userB) {
-		this.userB = userB;
+	protected void setUtilisateurs(List<_Utilisateur> users) {
+		this.users = users;
+	}
+	
+	public void addUsers(List<_Utilisateur> users) {
+		for(_Utilisateur u : users) {
+			if(!this.getUtilisateurs().contains(u)){
+				this.getUtilisateurs().add(u);
+			}
+		}
+	}
+	
+	public void addUser(_Utilisateur user) throws RemoteException, CommunicationException {
+		if(this.getUtilisateurs().contains(user)) throw new CommunicationException("Correspondance : " + user.toStringRemote() + " est deja enregistre");
+		this.getUtilisateurs().add(user);
 	}
 	
 	// need to be synchronized for ThreadSafe
@@ -82,7 +85,7 @@ public class Correspondance extends Shared {
 	}
 	
 	public boolean isAllowed(_Utilisateur u) throws RemoteException {
-		return this.getUserA().equals(u) || this.getUserB().equals(u);
+		return this.getUtilisateurs().contains(u);
 	}
 
 }

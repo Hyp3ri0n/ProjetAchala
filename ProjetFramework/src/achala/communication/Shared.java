@@ -16,7 +16,8 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 
 	private static final long serialVersionUID = 5253539907891735969L;
 
-	private String rmiAdresse;
+	protected String rmiAdresse;
+	protected String zoneName;
 	protected List<_RemotableObject> RObjectList;
 	protected boolean wait;
 	
@@ -25,10 +26,11 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 	 * @param rmiAdresse String : url donnant acces au partage
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	protected Shared(String rmiAdresse) throws RemoteException {
+	protected Shared(String rmiAdresse, String zoneName) throws RemoteException {
 		super();
 		this.RObjectList = Collections.synchronizedList(new LinkedList<_RemotableObject>());
 		this.setRmiAdresse(rmiAdresse);
+		this.setZoneName(zoneName);
 	}
 	
 	public List<_RemotableObject> getObjects() throws RemoteException{
@@ -78,4 +80,19 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		return (_Shared) Naming.lookup(url);
 	}
 
+	protected List<_RemotableObject> getRObjectList() {
+		return RObjectList;
+	}
+
+	protected void setRObjectList(List<_RemotableObject> rObjectList) {
+		RObjectList = rObjectList;
+	}
+
+	public String getZoneName() {
+		return zoneName;
+	}
+
+	protected void setZoneName(String zoneName) {
+		this.zoneName = zoneName;
+	}
 }

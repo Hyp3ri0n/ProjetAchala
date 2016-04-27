@@ -15,6 +15,7 @@ import java.util.List;
 
 import achala.communication.Correspondance;
 import achala.communication._Shared;
+import achala.communication.exception.CommunicationException;
 import achala.communication.server.exception.ServerException;
 import achala.communication.utilisateur._Utilisateur;
 
@@ -33,7 +34,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 	/**
 	 * Constructeur d'un serveur
 	 * @param r Registry registre du serveur
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 * @throws UnknownHostException leve une exception en cas d'adresse inconnue
 	 */
 	private Server(Registry r) throws RemoteException, UnknownHostException {
@@ -95,37 +96,30 @@ public class Server extends UnicastRemoteObject implements _Server {
 		}
 		return null;
 	}
-
-	@Override
-	public _Shared getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException, ServerException, MalformedURLException, NotBoundException {
-		if(!this.getUtilisateurs().contains(u1) || !this.getUtilisateurs().contains(u2))
-			throw new ServerException("Server : u1 or u2 isn't recorded on this server");
+	
+	public _Shared getSharedZone(_Utilisateur user, String zoneName) throws RemoteException, ServerException, MalformedURLException, NotBoundException, CommunicationException {
+		if(!this.getUtilisateurs().contains(user))
+			throw new ServerException("Server : " + user.toStringRemote() + " isn't recorded on this server");
 		
-		String url = this.getRMIShared(u1, u2);
+		String url = this.getRMIShared(user, zoneName);
 		if(url.equals("")){
-			url  = "rmi://";
+			url += "rmi://";
 			url += this.ip;
-			url += "/" + u1.identify() + "_" + u2.identify();
-			
-			_Shared s = new Correspondance(u1, u2, url);
+			url += "/";
+			url += zoneName;
+
+			List<_Utilisateur> users = new ArrayList<>();
+			users.add(user);
+			_Shared s = new Correspondance(users, url, zoneName);
 			this.getShares().add(s);
 			
-			this.getRegistry().rebind(u1.identify() + "_" + u2.identify(), s);
+			this.getRegistry().rebind(zoneName, s);
 		}
-		//return url;
-		return (_Shared) Naming.lookup(url);
-	}
-
-	@Override
-	public String getSharedZone(_Utilisateur u) throws RemoteException, UnknownHostException {
-		String url = "";
-		url += "rmi://";
-		url += this.ip;
-		url += "/" + u.identify();
 		
-		//TODO this.getRegistry().rebind(url, new Drive(url));
+		_Shared _s = (_Shared)Naming.lookup(url);
+		if(!_s.isAllowed(user)) throw new CommunicationException(user.toStringRemote() + " Acces denied to " + _s.getZoneName());
 		
-		return url;
+		return _s;
 	}
 
 	@Override
@@ -148,21 +142,28 @@ public class Server extends UnicastRemoteObject implements _Server {
 	
 	/**
 	 * Recupere l'url du partage entre les utilisateur u1 et u2
-	 * @param u1 _Utilisateur : utilisateur participant au partage
-	 * @param u2 _Utilisateur : utilisateur participant au partage
+	 * @param user _Utilisateur : 
 	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si elle existe, la chaine vide ("") sinon
-	 * @throws RemoteException lève une exception en cas d'echec de communication
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	private String getRMIShared(_Utilisateur u1, _Utilisateur u2) throws RemoteException {
+	private String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException {
 		String url = "";
 		
 		for(_Shared s : this.getShares()) {
-			if((s.getUserA().equals(u1) && s.getUserB().equals(u2)) || (s.getUserA().equals(u2) && s.getUserB().equals(u1))) {
-				return s.getRmiAdresse();
-			}
+			if(s.getZoneName().equals(zoneName) && s.isAllowed(user))
+				url = s.getRmiAdresse();
 		}
 		
 		return url;
+	}
+	
+	public boolean alreadyExist(String zoneName) throws RemoteException {
+		for(_Shared s : this.getShares()) {
+			if(s.getZoneName().equals(zoneName)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package achala.modules.chat.clients;
 
 import java.rmi.RMISecurityManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import achala.communication.server.Server;
@@ -33,11 +35,12 @@ public class Client1 {
 			read.next();
 			
 			_Utilisateur luc = srv.getUtilisateur("Ortiz", "Luc");
+			List<_Utilisateur> users = new ArrayList<_Utilisateur>();
+			users.add(luc);
+			Chat c = new Chat(srv, alexis, users, "Luc_Alexis");
 			
-			Chat c = new Chat(srv, alexis, luc);
-			
-			c.listener(alexis);
-			c.sender(alexis, Cmd.EXIT);
+			c.listener();
+			c.sender(Cmd.EXIT);
 			
 			
 		}

@@ -8,11 +8,17 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import achala.communication._Shared;
+import achala.communication.exception.CommunicationException;
 import achala.communication.server.exception.ServerException;
 import achala.communication.utilisateur._Utilisateur;
 
 public interface _Server extends Remote {
 
+	/**
+	 * Renvoi la liste des zones partagees sur le serveur
+	 * @return List<_Shared> : liste des zones partagees sur le serveur
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public List<_Shared> getShares() throws RemoteException;
 	
 	/**
@@ -40,28 +46,20 @@ public interface _Server extends Remote {
 	public _Utilisateur getUtilisateur(String nom, String prenom) throws RemoteException;
 	
 	/**
-	 * Cree le bind d'une correspondance (espace partage entre u1 et u2)
-	 * Renvoie zone de correspondance entre u1 et u2
-	 * @require logged : this.getUtilisateurs().contains(u1) && this.getUtilisateurs().contains(u2)
-	 * @param u1 _Utilisateur : utilisateur demandant la connexion
-	 * @param u2 _Utilisateur : utilisateur avec qui u1 souhaite correspondre
-	 * @return _Shared : zone de partage entre u1 et u2
+	 * Cree le bind d'une correspondance
+	 * Renvoie zone de correspondance entre les utilisateurs
+	 * @require logged : this.getUtilisateurs().contains(user)
+	 * @param user _Utilisateur : utilisateur souhaitant acceder a la zone de partage
+	 * @param zoneName String : nom de la zone de partage souhaite
+	 * @return _Shared : zone de partage correspondant au nom
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 * @throws UnknownHostException leve une exception en cas d'hote inconnu
 	 * @throws ServerException leve une exception dans le cas ou u1 ou u2 ne sont pas connus
 	 * @throws MalformedURLException leve une exception en cas d'URL incorrect
 	 * @throws NotBoundException leve une exception en cas d'eched de bind
 	 */
-	public _Shared getSharedZone(_Utilisateur u1, _Utilisateur u2) throws RemoteException, UnknownHostException, ServerException, MalformedURLException, NotBoundException;
-	
-	/**
-	 * Cree le bind d'un espace partage par l'utilisateur u
-	 * Renvoie la chaine de connexion permettant d'acceder a cette zone
-	 * @param u _Utilisateur : ?
-	 * @return String chaine permettant le lookup sur le server
-	 * @throws RemoteException leve une exception en cas d'echec de communication
-	 */
-	public String getSharedZone(_Utilisateur u) throws RemoteException, UnknownHostException;
+	public _Shared getSharedZone(_Utilisateur user, String zoneName) throws RemoteException, ServerException, MalformedURLException, NotBoundException, CommunicationException;
+
 	
 	/**
 	 * Ajoute l'utilisateur u au serveur
@@ -78,5 +76,7 @@ public interface _Server extends Remote {
 	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
 	public void disconnect(_Utilisateur u) throws RemoteException;
+	
+	public boolean alreadyExist(String zoneName) throws RemoteException;
 	
 }

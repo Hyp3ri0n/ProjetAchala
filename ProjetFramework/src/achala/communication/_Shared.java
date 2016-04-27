@@ -9,6 +9,7 @@ import achala.communication.utilisateur._Utilisateur;
 import achala.datamanager.Fichier;
 
 public interface _Shared extends Remote {
+	
 	/**
 	 * Récupère l'ensemble des objets présents dans l'objet partagé
 	 * @ensure ... : old(this.getObjects().size()) == this.getObjects().size()
@@ -58,27 +59,16 @@ public interface _Shared extends Remote {
 	 * @throws RemoteException lève une exception en cas d'echec de communication
 	 */
 	public void setWait(boolean wait) throws RemoteException;
-	
-	/**
-	 * Retourne un des utilisateurs du partage (utilisateur renseigne en premier)
-	 * @return _Utilisateur : premier utilisateur du partage
-	 * @throws RemoteException leve une exception en cas d'echec de communucation
-	 */
-	public _Utilisateur getUserA() throws RemoteException;
-	
-	/**
-	 * Retourne un des utilisateurs du partage (utilisateur renseigne en second)
-	 * @return _Utilisateur : second utilisateur du partage
-	 * @throws RemoteException leve une exception en cas d'echec de communucation
-	 */
-	public _Utilisateur getUserB() throws RemoteException;
-	
-	/**
-	 * 
-	 * @return
-	 * @throws RemoteException leve une exception en cas d'echec de communucation
-	 */
+
 	public String getRmiAdresse() throws RemoteException;
+	
+	public String getZoneName() throws RemoteException;
+
+	public List<_Utilisateur> getUtilisateurs() throws RemoteException;
+	
+	public void addUser(_Utilisateur user) throws RemoteException, CommunicationException;
+	
+	public void addUsers(List<_Utilisateur> users) throws RemoteException, CommunicationException;
 	
 	/**
 	 * Definie si l'utilisateur u peut acceder au partage
