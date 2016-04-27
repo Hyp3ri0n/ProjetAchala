@@ -52,7 +52,7 @@ public class Article {
 	public void creer() {
 		//Mise à jour des données BD + Context
 		try {
-			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.contenu, this.auteur));
+			ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().insert(this.id, this.date, this.titre, this.auteur, this.contenu));
 			ManagerApp.Instance().getListArticles().add(this);
 		} catch(Exception e) {
 			e.getMessage();
