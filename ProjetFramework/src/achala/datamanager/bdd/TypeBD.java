@@ -28,7 +28,7 @@ public enum TypeBD {
 		
 		switch (type) {
 		case CHAR:
-			valueDone = value;
+			valueDone = "\'" + value.replaceAll("'", "''") + "\'";
 			break;
 		case DATE:
 			valueDone = "TO_DATE(\'" + value + "\', \'dd-mm-yyyy\')";
@@ -40,7 +40,7 @@ public enum TypeBD {
 			valueDone = value;
 			break;
 		case STRING:
-			valueDone = "\'" + value + "\'";
+			valueDone = "\'" + value.replaceAll("'", "''") + "\'";
 			break;
 		default:
 			valueDone = value;
