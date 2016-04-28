@@ -12,6 +12,7 @@ import achala.modules.publication.dao.ManagerDAO;
 public class ManagerApp {
 	
 	private static final ManagerApp instance = new ManagerApp();
+	private String typeTri = "id";
 	private List<Article> listArticles = new ArrayList<>();
 	private List<Commentaire> listCommentaires = new ArrayList<>();
 	
@@ -56,9 +57,29 @@ public class ManagerApp {
 		}
 	}
 	
-	public void tri() {
+	private void tri() {
 		Collections.sort(listArticles);
 		Collections.sort(listCommentaires);
+	}
+	
+	//Méthodes de tri
+	public String getTypeTri() {
+		return typeTri;
+	}
+	
+	public void triParId() {
+		typeTri = "id";
+		this.tri();
+	}
+	
+	public void triParTitre() {
+		typeTri = "titre";
+		this.tri();
+	}
+	
+	public void triParAuteur() {
+		typeTri = "auteur";
+		this.tri();
 	}
 
 	public static ManagerApp Instance() { return instance;	}
