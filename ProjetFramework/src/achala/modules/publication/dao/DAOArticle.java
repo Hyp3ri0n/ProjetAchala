@@ -20,7 +20,6 @@ public class DAOArticle extends DAOTable {
 
 	protected DAOArticle(Map<DAOTable, String> jointures) {
 		super(jointures);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

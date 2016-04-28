@@ -24,7 +24,7 @@ public class ManagerApp {
 		/*************************************************************/
 		/**				Création des objets Metier					**/
 		/*************************************************************/
-		ResultSet rs = ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().selectAllOrderByTitre());
+		ResultSet rs = ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().selectAll());
 		
 		try {
 			while (rs.next()) {
@@ -46,7 +46,7 @@ public class ManagerApp {
 					}	
 				}
 			}
-
+			this.tri();
 			rs.close();
 			
 		} catch (SQLException e) {
@@ -55,13 +55,8 @@ public class ManagerApp {
 		}
 	}
 	
-	public void tri(boolean triId) {
-		if(triId) {
-			Collections.sort(listArticles);
-		}
-		else {
-			this.initialisation();
-		}
+	public void tri() {
+		Collections.sort(listArticles);
 		Collections.sort(listCommentaires);
 	}
 
