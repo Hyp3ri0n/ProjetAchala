@@ -22,7 +22,7 @@ public class Test extends TestCase {
 		Article a3 = new Article("Noirs et professionnels","L'album est dans les bacs !","Roi Hennock","27-04-2016");
 		c5.setAuteur("Aurélien Fernando");
 		c4.supprimer();
-		ManagerApp.Instance().tri();
+		ManagerApp.Instance().triParId();
 		sizeArticlesAfter = ManagerApp.Instance().getListArticles().size();
 		sizeCommentairesAfter = ManagerApp.Instance().getListCommentaires().size();
 		

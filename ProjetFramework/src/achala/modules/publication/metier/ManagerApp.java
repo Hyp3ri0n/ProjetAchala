@@ -59,7 +59,6 @@ public class ManagerApp {
 	
 	private void tri() {
 		Collections.sort(listArticles);
-		Collections.sort(listCommentaires);
 	}
 	
 	//Méthodes de tri

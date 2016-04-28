@@ -7,7 +7,7 @@ import achala.datamanager.bdd.TypeBD;
 import achala.modules.publication.dao.ManagerDAO;
 import achala.modules.publication.exception.PublicationException;
 
-public class Commentaire implements Comparable<Commentaire> {
+public class Commentaire {
 	
 	/**
 	 * Attributs privés
@@ -129,18 +129,4 @@ public class Commentaire implements Comparable<Commentaire> {
 		}
 		return null;
 	}
-	
-	//Comparable méthode retourne -1 si < / 0 si = / 1 si >
-		@Override
-		public int compareTo(Commentaire o) {
-			if(this.getId() < o.getId()) {
-				return -1;
-			} else if (this.getId() > o.getId()) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-	
-
 }
