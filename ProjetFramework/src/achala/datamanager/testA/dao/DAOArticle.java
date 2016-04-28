@@ -39,7 +39,7 @@ public class DAOArticle extends DAOTable {
 	
 	/** Creation de la requete */
 	@Override
-	protected Requete createTable() {
+	public Requete createTable() {
 		return new Create("CREATE TABLE Article ("
 							+ "id INTEGER PRIMARY KEY,"
 							+ "libelle VARCHAR2(25),"

@@ -42,7 +42,7 @@ public class DAOUtilisateur extends DAOTable{
 
 	/**Création de la table */
 	@Override
-	protected Requete createTable() {
+	public Requete createTable() {
 		return new Create("CREATE TABLE Utilisateur ("
 							+ "id INTEGER PRIMARY KEY,"
 							+ "nom VARCHAR2(25) NOT NULL,"

@@ -36,7 +36,7 @@ public class DAOTable2 extends DAOTable {
 	
 	
 	@Override
-	protected Requete createTable() {
+	public Requete createTable() {
 		return new Create("CREATE TABLE Table2 ("
 							+ "AttrA INTEGER PRIMARY KEY,"
 							+ "AttrB VARCHAR2(25),"

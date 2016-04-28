@@ -29,7 +29,7 @@ public abstract class DAOTable {
 	 * Creation de la table
 	 * @return Do nothing, Override to do something
 	 */
-	protected Requete createTable() {
+	public Requete createTable() {
 		//Do nothing, Override to do something
 		return null;
 	}

@@ -23,8 +23,6 @@ public class DAOCommentaire extends DAOTable {
 	}
 	@Override
 	public void initialisation() {
-		//A décommenter pour créer la table
-		//ManagerDAO.getBd().request(this.createTable());
 		this.setNomTable("Commentaire");
 		
 		Map<String, TypeBD> lstAttrs = new HashMap<>();
@@ -40,7 +38,7 @@ public class DAOCommentaire extends DAOTable {
 	
 	/** Creation de la requete */
 	@Override
-	protected Requete createTable() {
+	public Requete createTable() {
 		return new Create("CREATE TABLE Commentaire ("
 							+ "id INTEGER PRIMARY KEY,"
 							+ "dateC DATE,"
@@ -129,19 +127,5 @@ public class DAOCommentaire extends DAOTable {
 		
 		return new Select(lstAttrs, lstTables);
 	}
-	
-
-//	public Requete selectSomething() {
-//		List<DAOTable> lstTables = new ArrayList<>();
-//		lstTables.add(ManagerDAO.getDAOCommentaire());
-//		lstTables.add(ManagerDAO.getDAOArticle());
-//		
-//		List<String> lstAttrs = new ArrayList<>();
-//		lstAttrs.add("Article.titre");
-//		lstAttrs.add("Utilisateur.prenom");
-//		lstAttrs.add("Article.libelle");
-//		
-//		return new Select(lstAttrs, lstTables, "WHERE Utilisateur.id = 1");
-//	}
 	
 }

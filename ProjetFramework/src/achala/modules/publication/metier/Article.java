@@ -37,11 +37,11 @@ public class Article implements Comparable<Article> {
 	/**
 	 * Constructeur complet
 	 */
-	public Article(int unId, String unTitre, String unContenu, String unNomAuteur, String uneDate) {
+	public Article(int unId, String unTitre, String unContenu, String unAuteur, String uneDate) {
 		this.id = unId;
 		this.titre = unTitre;
 		this.contenu = unContenu;
-		this.auteur = unNomAuteur;
+		this.auteur = unAuteur;
 		this.date = uneDate;
 		this.lesCommentaires = new ArrayList<Commentaire>();
 	}
