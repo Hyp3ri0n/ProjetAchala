@@ -24,6 +24,7 @@ public class Chat {
 	private _Server server;
 	private _Shared shared;
 	private ListenerThread listenerThread;
+	private NotificationThread notifs;
 	
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
@@ -115,8 +116,11 @@ public class Chat {
 		
 		if(listenerThread == null)
 			listenerThread = new ListenerThread(this.getCurrent(), this.getShared());
+		if(notifs == null)
+			notifs = new NotificationThread(this.getShared(), this.getCurrent());
 		
 		listenerThread.start();
+		notifs.start();
 	}
 	
 	public void stopListener() {
