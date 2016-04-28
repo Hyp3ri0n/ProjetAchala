@@ -11,6 +11,7 @@ public class ListenerThread extends Thread {
 
 	private _Utilisateur u;
 	private _Shared s;
+	private boolean run;
 	
 	/**
 	 * Construit un thread de reception de messages
@@ -20,6 +21,7 @@ public class ListenerThread extends Thread {
 	public ListenerThread(_Utilisateur u, _Shared s) {
 		this.setU(u);
 		this.setS(s);
+		this.setRun(true);
 	}
 	
 	/**
@@ -27,13 +29,15 @@ public class ListenerThread extends Thread {
 	 */
 	public void run(){
 		List<_RemotableObject> objs;
-		while(true) {
+		while(this.isRun()) {
 			try
 			{
 				sleep(2000);
 				objs = this.getU().receive(this.getS());
-				for(_RemotableObject o : objs) {
-					if(o.getObject().toString().equals(Cmd.EXIT.toString())){
+				for(_RemotableObject o : objs) 
+				{
+					if(o.getObject().toString().equals(Cmd.EXIT.toString()))
+					{
 						System.out.println(o.getDate().toString() + " " + o.getSender().toStringRemote() + " : ");
 						System.out.println(Cmd.message(Cmd.EXIT, o.getSender()));
 						System.out.println(o.getObject().toString());
@@ -65,5 +69,18 @@ public class ListenerThread extends Thread {
 
 	private void setS(_Shared s) {
 		this.s = s;
+	}
+	
+	private boolean isRun() {
+		return run;
+	}
+
+	private void setRun(boolean run) {
+		this.run = run;
+	}
+
+	public void stopListener()
+	{
+		this.setRun(false);
 	}
 }

@@ -3,6 +3,8 @@ package achala.modules.chat;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import javax.swing.JPanel;
+
 import achala.communication.Message;
 import achala.communication._RemotableObject;
 import achala.communication._Shared;
@@ -21,6 +23,7 @@ public class Chat {
 	private List<_Utilisateur> others;
 	private _Server server;
 	private _Shared shared;
+	private ListenerThread listenerThread;
 	
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
@@ -110,13 +113,16 @@ public class Chat {
 	 */
 	public void listener() throws RemoteException {
 		
-		ListenerThread listener = new ListenerThread(this.getCurrent(), this.getShared());
-		listener.start();
+		if(listenerThread == null)
+			listenerThread = new ListenerThread(this.getCurrent(), this.getShared());
 		
-		NotificationThread notif = new NotificationThread(this.getServer(), this.getCurrent());
-		notif.start();
+		listenerThread.start();
 	}
 	
+	public void stopListener() {
+		if(listenerThread != null)
+			listenerThread.stopListener();
+	}
 	/**
 	 * Lance le thread d'envoi sur le chat
 	 * @param escape String : chaine de caractere mettant fin a la communication

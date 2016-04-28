@@ -1,5 +1,6 @@
 package achala.modules.chat.clients;
 
+import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,8 @@ public class Client2 {
 			
 			_Utilisateur luc = new Utilisateur("Ortiz", "Luc");
 			
-			_Server srv = Server.getServer("130.190.30.214");
+			//_Server srv = Server.getServer("192.168.43.84");
+			_Server srv = (_Server) Naming.lookup("rmi://192.168.43.84/srv");
 			luc.connect(srv);
 			
 			System.out.println("Start ?");
