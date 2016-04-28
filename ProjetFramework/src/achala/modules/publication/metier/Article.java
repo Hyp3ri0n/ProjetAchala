@@ -20,7 +20,7 @@ public class Article implements Comparable<Article> {
 	private String auteur;
 	private String date;
 	private ArrayList<Commentaire> lesCommentaires;
-	private String typeTri;
+	private static String typeTri;
 
 	/**
 	 * Constructeur sans id
@@ -165,29 +165,29 @@ public class Article implements Comparable<Article> {
 	}
 	
 	//Méthodes de tri
-	public String getTypeTri() {
-		return this.typeTri;
+	public static String getTypeTri() {
+		return typeTri;
 	}
 	
-	public void triParId() {
-		this.typeTri = "id";
+	public static void triParId() {
+		typeTri = "id";
 		ManagerApp.Instance().tri();
 	}
 	
-	public void triParTitre() {
-		this.typeTri = "titre";
+	public static void triParTitre() {
+		typeTri = "titre";
 		ManagerApp.Instance().tri();
 	}
 	
-	public void triParAuteur() {
-		this.typeTri = "auteur";
+	public static void triParAuteur() {
+		typeTri = "auteur";
 		ManagerApp.Instance().tri();
 	}
 	
 	//Comparable méthode retourne -1 si < / 0 si = / 1 si >
 	@Override
 	public int compareTo(Article o) {
-		switch(this.typeTri) {
+		switch(typeTri) {
 			case "id" : 
 				if(this.getId() < o.getId()) {
 					return -1;

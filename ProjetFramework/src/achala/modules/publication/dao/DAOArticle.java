@@ -115,14 +115,6 @@ public class DAOArticle extends DAOTable {
 	}
 	
 	/**
-	 * Permet de selectionner tous les articles de la BDD ordonnés par titres
-	 * @return La requete a executer (objet)
-	 */
-	public Requete selectAllOrderByTitre() {
-		return new Select("SELECT * FROM Article ORDER BY Titre");
-	}
-	
-	/**
 	 * Permet de selectionner l'id max courante des articles
 	 * @return La requete a executer (objet)
 	 */
