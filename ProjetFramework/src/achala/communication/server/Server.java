@@ -113,7 +113,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 			_Shared s = new Correspondance(users, url, zoneName);
 			this.getShares().add(s);
 			
-			this.getRegistry().rebind(zoneName, s);
+			//this.getRegistry().rebind(zoneName, s);
+			LocateRegistry.getRegistry().rebind(zoneName, s);
 		}
 		
 		_Shared _s = (_Shared)Naming.lookup(url);

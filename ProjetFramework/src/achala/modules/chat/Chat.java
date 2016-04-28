@@ -3,6 +3,7 @@ package achala.modules.chat;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import achala.communication.Message;
 import achala.communication._RemotableObject;
 import achala.communication._Shared;
 import achala.communication.exception.CommunicationException;
@@ -135,6 +136,17 @@ public class Chat {
 	 */
 	public void send(_RemotableObject rObject) throws RemoteException, CommunicationException {
 		this.getCurrent().send(this.getShared(), rObject);
+	}
+	
+	/**
+	 * Envoi le message sur le chat
+	 * @param message String : message a envoyer
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws CommunicationException leve une exception en cas d'acces refuse
+	 */
+	public void send(String message) throws RemoteException, CommunicationException {
+		_RemotableObject msg = new Message(this.getCurrent(), message);
+		this.getCurrent().send(this.getShared(), msg);
 	}
 	
 }

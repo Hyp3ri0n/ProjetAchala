@@ -60,14 +60,41 @@ public interface _Shared extends Remote {
 	 */
 	public void setWait(boolean wait) throws RemoteException;
 
+	/**
+	 * Retourne l'adresse de la zone de partage
+	 * @return String : adresse de la zone de partage
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public String getRmiAdresse() throws RemoteException;
 	
+	/**
+	 * Retourne le nom de la zone de partage
+	 * @return String : nom de la zone de partage
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public String getZoneName() throws RemoteException;
 
+	/**
+	 * Retourne la liste des utilisateurs de la zone de partage
+	 * @return List<_Utilisateur> : liste des utilisateurs present sur la zone de partage
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public List<_Utilisateur> getUtilisateurs() throws RemoteException;
 	
+	/**
+	 * Ajoute un utilisateur dans la zone de partage
+	 * @param user _Utilisateur : utilisateur a ajouter
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws CommunicationException leve une exception en cas d'acces refuse
+	 */
 	public void addUser(_Utilisateur user) throws RemoteException, CommunicationException;
 	
+	/**
+	 * Ajoute une liste d'utilisateurs dans la zone de partage, en verifiant l'ineexistance
+	 * @param users List<_Utilisateur> : liste des utilisateurs a ajouter
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws CommunicationException leve une exception en cas d'echec de l'ajout
+	 */
 	public void addUsers(List<_Utilisateur> users) throws RemoteException, CommunicationException;
 	
 	/**

@@ -77,6 +77,12 @@ public interface _Server extends Remote {
 	 */
 	public void disconnect(_Utilisateur u) throws RemoteException;
 	
+	/**
+	 * Verifie l'existance d'une zone partage sur le serveur
+	 * @param zoneName String : nom de la zone de partage
+	 * @return boolean : true si la zone existe deja, false dans le cas contraire
+	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 */
 	public boolean alreadyExist(String zoneName) throws RemoteException;
 	
 }

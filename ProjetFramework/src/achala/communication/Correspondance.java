@@ -43,7 +43,7 @@ public class Correspondance extends Shared implements _Correspondance {
 		this.users = users;
 	}
 	
-	public void addUsers(List<_Utilisateur> users) {
+	public void addUsers(List<_Utilisateur> users) throws RemoteException{
 		for(_Utilisateur u : users) {
 			if(!this.getUtilisateurs().contains(u)){
 				this.getUtilisateurs().add(u);
