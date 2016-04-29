@@ -124,6 +124,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 		
 		zone.addUsers(this.getUtilisateurs());
 		this.getShares().add(zone);		
+		LocateRegistry.getRegistry().rebind(zone.getZoneName(), zone);
 	}
 	
 	@Override
