@@ -141,14 +141,10 @@ public interface _Server extends Remote {
 	public boolean alreadyExist(String zoneName) throws RemoteException;
 
 	/**
-	 * Recupere l'url du partage entre les utilisateur u1 et u2
-	 * 
-	 * @param user
-	 *            _Utilisateur :
-	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si
-	 *         elle existe, la chaine vide ("") sinon
-	 * @throws RemoteException
-	 *             leve une exception en cas d'echec de communication
+	 * Retourne l'adresse sur laquel est / sera binde la zone
+	 * @param zoneName String : nom de la zone
+	 * @return String : url de bind
+	 * @throws RemoteException leve une exception en cas d'echec de communication
 	 */
-	public String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException;
+	public String getRMIAdresse(String zoneName) throws RemoteException;
 }

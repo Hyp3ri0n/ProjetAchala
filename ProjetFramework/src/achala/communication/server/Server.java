@@ -100,10 +100,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 
 		String url = this.getRMIShared(user, zoneName);
 		if (url.equals("")) {
-			url += "rmi://";
-			url += this.ip;
-			url += "/";
-			url += zoneName;
+			url = this.getRMIAdresse(zoneName);
 
 			List<_Utilisateur> users = new ArrayList<>();
 			users.add(user);
@@ -174,7 +171,21 @@ public class Server extends UnicastRemoteObject implements _Server {
 	}
 	
 	@Override
-	public String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException {
+	public String getRMIAdresse(String zoneName) throws RemoteException {
+		return "rmi://" + this.ip + "/" + zoneName;
+	}
+	
+	/**
+	 * Recupere l'url du partage entre les utilisateur u1 et u2
+	 * 
+	 * @param user
+	 *            _Utilisateur :
+	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si
+	 *         elle existe, la chaine vide ("") sinon
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
+	private String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException {
 		String url = "";
 
 		for (_Shared s : this.getShares()) {
