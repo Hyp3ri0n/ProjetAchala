@@ -173,17 +173,8 @@ public class Server extends UnicastRemoteObject implements _Server {
 		return false;
 	}
 	
-	/**
-	 * Recupere l'url du partage entre les utilisateur u1 et u2
-	 * 
-	 * @param user
-	 *            _Utilisateur :
-	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si
-	 *         elle existe, la chaine vide ("") sinon
-	 * @throws RemoteException
-	 *             leve une exception en cas d'echec de communication
-	 */
-	private String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException {
+	@Override
+	public String getRMIShared(_Utilisateur user, String zoneName) throws RemoteException {
 		String url = "";
 
 		for (_Shared s : this.getShares()) {
