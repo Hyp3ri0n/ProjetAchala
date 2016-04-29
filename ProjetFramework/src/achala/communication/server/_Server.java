@@ -84,6 +84,27 @@ public interface _Server extends Remote {
 			throws RemoteException, ServerException, MalformedURLException, NotBoundException, CommunicationException;
 
 	/**
+	 * Ajoute la zone dans le serveur
+	 * 
+	 * @param zone
+	 *            _Shared : zone a ajouter
+	 * @param user
+	 *            _Utilisateur : utilisateur voulant ajouter la zone
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 * @throws MalformedURLException
+	 *             leve une exception en cas d'URL mal forme
+	 * @throws NotBoundException
+	 *             leve une exception en cas d'erreur de Bind
+	 * @throws CommunicationException
+	 *             leve une exception en cas d'acces refuse
+	 * @throws ServerException
+	 *             leve une exception en cas d'erreur serveur
+	 */
+	public void addSharedZone(_Utilisateur user, _Shared zone)
+			throws RemoteException, MalformedURLException, NotBoundException, CommunicationException, ServerException;
+
+	/**
 	 * Ajoute l'utilisateur u au serveur
 	 * 
 	 * @require ... : this.getUtilisateur().contains(u) == false

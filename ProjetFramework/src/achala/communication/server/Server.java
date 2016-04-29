@@ -57,6 +57,7 @@ public class Server extends UnicastRemoteObject implements _Server {
 		Server.idUser = idUser;
 	}
 
+	@Override
 	public List<_Shared> getShares() {
 		return this.shares;
 	}
@@ -119,6 +120,16 @@ public class Server extends UnicastRemoteObject implements _Server {
 	}
 
 	@Override
+	public void addSharedZone(_Utilisateur user, _Shared zone)
+			throws RemoteException, MalformedURLException, NotBoundException, CommunicationException, ServerException {
+		if (!this.getUtilisateurs().contains(user))
+			throw new ServerException("Server : " + user.toStringRemote() + " isn't recorded on this server");
+		
+		zone.addUsers(this.getUtilisateurs());
+		this.getShares().add(zone);		
+	}
+	
+	@Override
 	public void connect(_Utilisateur u) throws RemoteException, CommunicationException {
 		if (this.getUtilisateurs().contains(u))
 			return;
@@ -152,6 +163,16 @@ public class Server extends UnicastRemoteObject implements _Server {
 		}
 	}
 
+	@Override
+	public boolean alreadyExist(String zoneName) throws RemoteException {
+		for (_Shared s : this.getShares()) {
+			if (s.getZoneName().equals(zoneName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Recupere l'url du partage entre les utilisateur u1 et u2
 	 * 
@@ -171,16 +192,6 @@ public class Server extends UnicastRemoteObject implements _Server {
 		}
 
 		return url;
-	}
-
-	@Override
-	public boolean alreadyExist(String zoneName) throws RemoteException {
-		for (_Shared s : this.getShares()) {
-			if (s.getZoneName().equals(zoneName)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -225,5 +236,4 @@ public class Server extends UnicastRemoteObject implements _Server {
 			e.printStackTrace();
 		}
 	}
-
 }
