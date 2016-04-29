@@ -17,9 +17,18 @@ import achala.datamanager.bdd.Update;
 
 public class DAOCommentaire extends DAOTable {
 
+	/**
+	 * Constructeur
+	 * @param jointures
+	 */
 	protected DAOCommentaire(Map<DAOTable, String> jointures) {
 		super(jointures);
 	}
+	
+	// METHODES
+	/**
+	 * Defini le nom de la table ainsi que les attributs et leur type correspondant dans la table
+	 */
 	@Override
 	public void initialisation() {
 		this.setNomTable("Commentaire");
@@ -35,7 +44,10 @@ public class DAOCommentaire extends DAOTable {
 	}
 	
 	
-	/** Creation de la requete */
+	/**
+	 * Creaton de la requete
+	 * @return La requete a executer (objet)
+	 */
 	@Override
 	public Requete createTable() {
 		return new Create("CREATE TABLE Commentaire ("
@@ -47,22 +59,9 @@ public class DAOCommentaire extends DAOTable {
 							+ "CONSTRAINT fk FOREIGN KEY (article) REFERENCES Article(id)"
 						+ ")");
 	}
-
-	
 	
 	/**
-	 * Permet de modifier une ou plusieurs lignes dans la table "Commentaire"
-	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
-	 * @param where La clause WHERE de la requete
-	 * @return La requete a executer (objet)
-	 */
-	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
-		return new Update(lstAttrsValues, ManagerDAO.getDAOCommentaire(), where);
-	}
-	
-	
-	
-	/**
+	 * Creation de la requete
 	 * Permet d'inserer une ligne dans la table "Commentaire"
 	 * @param id Le premier attribut
 	 * @param contenu Le second attribut
@@ -82,6 +81,7 @@ public class DAOCommentaire extends DAOTable {
 
 	
 	/**
+	 * Creation de la requete
 	 * Permet de supprimer la table en base
 	 * @return La requete a executer (objet)
 	 */
@@ -91,6 +91,7 @@ public class DAOCommentaire extends DAOTable {
 
 	
 	/**
+	 * Creation de la requete
 	 * Permet de supprimer la ligne en base
 	 * @return La requete a executer (objet)
 	 */
@@ -100,6 +101,7 @@ public class DAOCommentaire extends DAOTable {
 	
 	
 	/**
+	 * Creation de la requete
 	 * Permet de recuperer tout les commentaires
 	 * @return La requete a executer (objet)
 	 */
@@ -114,6 +116,7 @@ public class DAOCommentaire extends DAOTable {
 	}
 	
 	/**
+	 * Creation de la requete
 	 * Permet de recuperer l'id max courante des commentaires
 	 * @return La requete a executer (objet)
 	 */
@@ -125,6 +128,28 @@ public class DAOCommentaire extends DAOTable {
 		lstAttrs.add("MAX(id)");
 		
 		return new Select(lstAttrs, lstTables);
+	}
+	
+	/**
+	 * Creation de la requete
+	 * Permet de modifier une ou plusieurs lignes dans la table "Commentaire"
+	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
+	 * @param where La clause WHERE de la requete
+	 * @return La requete a executer (objet)
+	 */
+	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
+		return new Update(lstAttrsValues, ManagerDAO.getDAOCommentaire(), where);
+	}
+	
+	/**
+	 * Creation de requete
+	 * Permet de modifier un enregistrement de la table "Commentaire"
+	 * @param lstAttrsValue
+	 * @param id du commentaire a modifier
+	 * @return La requete a executer (objet)
+	 */
+	public Requete update(HashMap<String, String> lstAttrsValue, int id) {
+		return new Update(lstAttrsValue,ManagerDAO.getDAOCommentaire(), "WHERE id = " + id);
 	}
 	
 }

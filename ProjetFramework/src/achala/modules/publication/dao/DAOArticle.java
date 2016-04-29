@@ -17,11 +17,19 @@ import achala.datamanager.bdd.Update;
 
 
 public class DAOArticle extends DAOTable {
-
+	
+	/**
+	 * Constructeur
+	 * @param jointures
+	 */
 	protected DAOArticle(Map<DAOTable, String> jointures) {
 		super(jointures);
 	}
 	
+	// METHODES
+	/**
+	 * Defini le nom de la table ainsi que les attributs et leur type correspondant dans la table
+	 */
 	@Override
 	public void initialisation() {
 		this.setNomTable("Article");
@@ -37,7 +45,10 @@ public class DAOArticle extends DAOTable {
 	}
 	
 	
-	/** Creation de la requete */
+	/**
+	 * Creation de la requete
+	 * @return La requete a executer (objet)
+	 */
 	@Override
 	public Requete createTable() {
 		return new Create("CREATE TABLE Article ("
@@ -48,21 +59,7 @@ public class DAOArticle extends DAOTable {
 							+ "auteur VARCHAR2 (250)"
 						+ ")");
 	}
-
-	
-	
-	/**
-	 * Permet de modifier une ou plusieurs lignes dans la table "Article"
-	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
-	 * @param where La clause WHERE de la requete
-	 * @return La requete a executer (objet)
-	 */
-	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
-		return new Update(lstAttrsValues, ManagerDAO.getDAOArticle(), where);
-	}
-	
-	
-	
+		
 	/**
 	 * Permet d'inserer une ligne dans la table "Article"
 	 * @param id Le premier attribut
@@ -128,9 +125,24 @@ public class DAOArticle extends DAOTable {
 		return new Select(lstAttrs, lstTables);
 	}
 	
+	/**
+	 * Creation de requete
+	 * Permet de modifier une ou plusieurs lignes dans la table "Article"
+	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
+	 * @param where La clause WHERE de la requete
+	 * @return La requete a executer (objet)
+	 */
+	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
+		return new Update(lstAttrsValues, ManagerDAO.getDAOArticle(), where);
+	}
 	
-	/** creation de requete */
-	
+	/**
+	 * Creation de requete
+	 * Permet de modifier un enregistrement de la table "Article"
+	 * @param lstAttrsValue
+	 * @param id de l'article a modifier
+	 * @return La requete a executer (objet)
+	 */
 	public Requete update(HashMap<String, String> lstAttrsValue, int id) {
 		return new Update(lstAttrsValue,ManagerDAO.getDAOArticle(), "WHERE id = " + id);
 	}

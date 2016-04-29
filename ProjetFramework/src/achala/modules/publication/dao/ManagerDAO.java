@@ -10,12 +10,18 @@ import achala.modules.publication.dao.ManagerDAO;
 
 
 public class ManagerDAO {
-
+		
+		// ATTRIBUTS PRIVES
 		private static ManagerDAO instance = new ManagerDAO();
 		private static Bd bd;
 		private static DAOArticle DAOArticle ;
 		private static DAOCommentaire DAOCommentaire ;
 		
+		
+		// METHODES
+		/**
+		 * Constructeur
+		 */
 		private ManagerDAO() {
 			/**______________Partie obligatoire______________**/
 			
@@ -43,12 +49,29 @@ public class ManagerDAO {
 			
 		}
 
+		//ACCESSEURS
+		/**
+		 * Accesseur ManagerDAO Instance
+		 * @return objet ManagerDAO
+		 */
 		public static ManagerDAO getInstance() { return instance; }
 
+		/**
+		 * Accesseur DAOArticle
+		 * @return objet DAOArticle
+		 */
 		public static DAOArticle getDAOArticle() { return DAOArticle; }
 
+		/**
+		 * Accesseur DAOCommentaire
+		 * @return objet DAOCommentaire
+		 */
 		public static DAOCommentaire getDAOCommentaire() { return DAOCommentaire; }
 		
+		/**
+		 * Accesseur BD
+		 * @return objet BD
+		 */
 		public static Bd getBd() { return bd; }
 		
 		

@@ -129,7 +129,7 @@ public class Commentaire {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("contenu", contenu);
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues,this.id));
 		this.contenu = contenu;
 	}
 
@@ -151,7 +151,7 @@ public class Commentaire {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("auteur", auteur);
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues,this.id));
 		this.auteur = auteur;
 	}
 	
@@ -173,7 +173,7 @@ public class Commentaire {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("date", TypeBD.syntaxe(date, TypeBD.DATE));
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().update(lstAttrsValues,this.id));
 		this.date = date;
 	}
 	

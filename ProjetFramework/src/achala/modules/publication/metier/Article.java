@@ -149,7 +149,7 @@ public class Article implements Comparable<Article> {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("titre", titre);
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues,this.id));
 		this.titre = titre;
 	}
 
@@ -171,7 +171,7 @@ public class Article implements Comparable<Article> {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("contenu", contenu);
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues,this.id));
 		this.contenu = contenu;
 	}
 	
@@ -193,7 +193,7 @@ public class Article implements Comparable<Article> {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("auteur", auteur);
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues,this.id));
 		this.auteur = auteur;
 	}
 	
@@ -215,7 +215,7 @@ public class Article implements Comparable<Article> {
 		HashMap<String, String> lstAttrsValues = new HashMap<>();
 		lstAttrsValues.put("date", TypeBD.syntaxe(date, TypeBD.DATE));
 		// Execution de la requete d'update
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues, "WHERE id = " + this.id));
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().update(lstAttrsValues,this.id));
 		this.date = date;
 	}
 
