@@ -15,41 +15,44 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 	private Date date;
 	private _Utilisateur sender;
 	boolean wait;
-	
+
 	protected RemotableObject(_Utilisateur u, Date date) throws RemoteException {
 		super();
 		this.setDate(date);
 		this.setWait(false);
 		this.setSender(u);
 	}
-	
+
 	@Override
 	public Date getDate() {
 		return this.date;
 	}
-	
+
 	private void setDate(Date date) {
 		this.date = date;
 	}
 
 	@Override
 	public void save(File fichier) {
-		//TODO
+		// TODO
 	}
 
 	@Override
 	public void send(_Shared shared) throws RemoteException, CommunicationException {
 		shared.send(this);
 	}
-	
+
+	@Override
 	public boolean isWait() {
 		return this.wait;
 	}
 
+	@Override
 	public void setWait(boolean wait) {
 		this.wait = wait;
 	}
 
+	@Override
 	public _Utilisateur getSender() {
 		return this.sender;
 	}
