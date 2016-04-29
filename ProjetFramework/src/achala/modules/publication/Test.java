@@ -11,10 +11,10 @@ public class Test extends TestCase {
 	 * Methode d'initialisation
 	 */
 	public void setUp() {
-		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().drop());
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().drop());
-		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().createTable());
-		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().createTable());
+//		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().drop());
+//		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().drop());
+//		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().createTable());
+//		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().createTable());
 		ManagerApp.Instance().initialisation();
 		sizeArticles = ManagerApp.Instance().getListArticles().size();
 		sizeCommentaires = ManagerApp.Instance().getListCommentaires().size();

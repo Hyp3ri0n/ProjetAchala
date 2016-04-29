@@ -267,4 +267,9 @@ public class Article implements Comparable<Article> {
 				return 0;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "L'article "+this.titre+" ecrit le "+this.date+" par "+this.auteur+"\nA pour contenu : "+this.contenu;
+	}
 }

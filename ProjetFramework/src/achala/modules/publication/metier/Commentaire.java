@@ -191,4 +191,9 @@ public class Commentaire {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return "Ecrit le "+this.date+" par "+this.auteur+"\nA pour contenu : "+this.contenu;
+	}
 }
