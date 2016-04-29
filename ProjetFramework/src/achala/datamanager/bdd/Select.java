@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Select extends Requete {
 	
-	/** La liste des attributs à afficher **/
+	/** La liste des attributs a afficher **/
 	private List<String> attributs = new ArrayList<>();
-	/** La liste des tables à referencer **/
+	/** La liste des tables a referencer **/
 	private List<DAOTable> tables = new ArrayList<>();
 	/** La clause where **/
 	private String where = "";
@@ -19,15 +19,15 @@ public class Select extends Requete {
 	private String groupBy = "";
 	/** La clause having **/
 	private String having = "";
-	/** Represente la requête complexe **/
+	/** Represente la requete complexe **/
 	private String req;
-	/** Represente l'utilisation ou non de la requête complexe **/
+	/** Represente l'utilisation ou non de la requete complexe **/
 	private boolean reqUser = false;
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
+	 * @param attributs La liste des attributs a afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables a referencer ([...] From table1 JOIN table2 ON [...])
 	 */
 	public Select(String req) {
 		super();
@@ -37,8 +37,8 @@ public class Select extends Requete {
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
+	 * @param attributs La liste des attributs a afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables a referencer ([...] From table1 JOIN table2 ON [...])
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables) {
 		super();
@@ -48,8 +48,8 @@ public class Select extends Requete {
 
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
+	 * @param attributs La liste des attributs a afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables a referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42")
 	 */
 	public Select(List<String> attributs, List<DAOTable> tables, String where) {
@@ -59,8 +59,8 @@ public class Select extends Requete {
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
+	 * @param attributs La liste des attributs a afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables a referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
 	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2")
 	 */
@@ -71,8 +71,8 @@ public class Select extends Requete {
 
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à afficher (Select attr1, attr2 [...])
-	 * @param tables La liste des tables à referencer ([...] From table1 JOIN table2 ON [...])
+	 * @param attributs La liste des attributs a afficher (Select attr1, attr2 [...])
+	 * @param tables La liste des tables a referencer ([...] From table1 JOIN table2 ON [...])
 	 * @param where La clause "where" au format string avec le where ([...] "Where attr1 > 42" [...])
 	 * @param groupBy La clause "group by" au format string avec le group by ([...] "group by attr1, attr2" [...])
 	 * @param having La clause "having" au format string avec le having ([...] "having count(attr1) > 42")
@@ -86,13 +86,13 @@ public class Select extends Requete {
 	@Override
 	public ResultSet execute(Statement stmt) throws SQLException {
 		
-		//Gestion requête complexe
+		//Gestion requete complexe
 		if (reqUser) {
 			System.out.println(this.req);
 			return stmt.executeQuery(this.req);
 		}
 		
-		//Gestion requête simple
+		//Gestion requete simple
 		String req = "SELECT ";
 		
 		int cptAttrs = 0;
@@ -111,10 +111,10 @@ public class Select extends Requete {
 
 		if (this.tables.size() == 1)
 		{
-			//Requête simple (une seul table)
+			//Requete simple (une seul table)
 			req += " " + this.tables.get(0).getNomTable() + " ";
 		} else {
-			//Requête complexe (plusieurs tables)
+			//Requete complexe (plusieurs tables)
 			int cptTbls = 0;
 			for(DAOTable table : this.tables) {
 				cptTbls++;

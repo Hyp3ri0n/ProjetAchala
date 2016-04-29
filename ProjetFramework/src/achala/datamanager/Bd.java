@@ -9,7 +9,7 @@ import achala.datamanager.bdd.Requete;
 
 public class Bd extends ZoneStockage {
 	
-	/** Represente le driver pour se connecter à la BD **/
+	/** Represente le driver pour se connecter a la BD **/
 	private static final String driver = "oracle.jdbc.driver.OracleDriver";
 	/** Represente l'url pour la connexion **/
 	private String url;

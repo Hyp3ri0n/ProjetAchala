@@ -7,15 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Insert extends Requete {
-	/** La liste des attributs à creer avec leur valeur **/
+	/** La liste des attributs a creer avec leur valeur **/
 	private Map<String, String> attributs = new HashMap<>();
-	/** La table à referencer **/
+	/** La table a referencer **/
 	private DAOTable table;
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à creer avec leurs valeurs
-	 * @param table La table à referencer
+	 * @param attributs La liste des attributs a creer avec leurs valeurs
+	 * @param table La table a referencer
 	 */
 	public Insert(HashMap<String, String> attributs, DAOTable table) {
 		super();
@@ -63,7 +63,8 @@ public class Insert extends Requete {
 		System.out.println(req);
 		
 		stmt.executeUpdate(req);
-		//Return null car modification
+		
+		//Return null car insertion
 		return null;
 	}
 

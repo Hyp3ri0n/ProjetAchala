@@ -51,7 +51,7 @@ public class DAOTable1 extends DAOTable {
 
 	/**
 	 * Permet de Selectionner tout les lignes de la table "Table1"
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete selectAll() {
 		List<DAOTable> lstTables = new ArrayList<>();
@@ -66,7 +66,7 @@ public class DAOTable1 extends DAOTable {
 	
 	/**
 	 * Une requête select basique
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete selectSomething() {
 		List<DAOTable> lstTables = new ArrayList<>();
@@ -81,13 +81,13 @@ public class DAOTable1 extends DAOTable {
 	
 
 	/**
-	 * Permet d'insérer une ligne dans la table "Table2"
+	 * Permet d'inserer une ligne dans la table "Table2"
 	 * @param attrA Le premier attribut
 	 * @param attrB Le second attribut
-	 * @param attrC Le troisième attribut
-	 * @param attrD Le quatrième attribut
-	 * @param attrE Le cinquième attribut
-	 * @return La requête à executer (objet)
+	 * @param attrC Le troisieme attribut
+	 * @param attrD Le quatrieme attribut
+	 * @param attrE Le cinquieme attribut
+	 * @return La requête a executer (objet)
 	 */
 	public Requete insert(String attrA, String attrB, String attrC, String attrD, String attrE) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
@@ -104,7 +104,7 @@ public class DAOTable1 extends DAOTable {
 	 * Permet de modifier une ou plusieurs lignes dans la table "Table2"
 	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
 	 * @param where La clause WHERE de la requête
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
 		return new Update(lstAttrsValues, ManagerDAO.getDAOTable1(), where);
@@ -113,7 +113,7 @@ public class DAOTable1 extends DAOTable {
 	/**
 	 * Permet de supprimer une ligne de la table
 	 * @param where La clause Where
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete delete(String where) {		
 		return new Delete(ManagerDAO.getDAOTable1(), where);
@@ -121,7 +121,7 @@ public class DAOTable1 extends DAOTable {
 
 	/**
 	 * Permet de supprimer la table en base
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete drop() {		
 		return new Drop(ManagerDAO.getDAOTable1());

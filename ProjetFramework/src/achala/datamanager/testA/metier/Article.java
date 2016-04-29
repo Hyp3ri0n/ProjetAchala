@@ -1,7 +1,5 @@
 package achala.datamanager.testA.metier;
 
-import achala.datamanager.bdd.DAOTable;
-
 public class Article {
 
 	public int id ;

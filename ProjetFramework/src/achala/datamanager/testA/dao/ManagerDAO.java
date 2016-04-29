@@ -5,11 +5,6 @@ import java.util.HashMap;
 
 import achala.datamanager.Bd;
 import achala.datamanager.bdd.DAOTable;
-import achala.datamanager.test.dao.DAOTable1;
-import achala.datamanager.test.dao.DAOTable2;
-import achala.datamanager.testA.dao.DAOArticle;
-import achala.datamanager.testA.dao.DAOUtilisateur;
-import achala.datamanager.testA.dao.ManagerDAO;
 
 public class ManagerDAO {
 	private static ManagerDAO instance = new ManagerDAO();
@@ -50,15 +45,15 @@ public class ManagerDAO {
 		/*****************************************************/
 		/**				Suppression des tables				**/
 		/*****************************************************/
-		bd.request(DAOUtilisateur.drop());			//Pas obligatoire si deje creer en BDD
-		bd.request(DAOArticle.drop());			//Pas obligatoire si deje creer en BDD
+		bd.request(DAOUtilisateur.drop());			//Pas obligatoire si deja creer en BDD
+		bd.request(DAOArticle.drop());			//Pas obligatoire si deja creer en BDD
 		
 		
 		/*****************************************************/
 		/**			Creation des tables en Base	 			**/
 		/*****************************************************/
-		bd.request(DAOArticle.createTable());	//Pas obligatoire si deje creer en BDD
-		bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si deje creer en BDD
+		bd.request(DAOArticle.createTable());	//Pas obligatoire si deja creer en BDD
+		bd.request(DAOUtilisateur.createTable());	//Pas obligatoire si deja creer en BDD
 		
 	}
 

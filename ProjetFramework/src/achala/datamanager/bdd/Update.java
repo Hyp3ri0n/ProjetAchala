@@ -8,17 +8,17 @@ import java.util.Map;
 
 
 public class Update extends Requete {
-	/** La liste des attributs à modifier avec leur valeur **/
+	/** La liste des attributs a modifier avec leur valeur **/
 	private Map<String, String> attributs = new HashMap<>();
-	/** La liste des tables à referencer **/
+	/** La liste des tables a referencer **/
 	private DAOTable table;
 	/** La clause where **/
 	private String where;
 	
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à modifier avec leur valeur
-	 * @param tables La liste des tables à referencer
+	 * @param attributs La liste des attributs a modifier avec leur valeur
+	 * @param tables La liste des tables a referencer
 	 */
 	public Update(Map<String, String> attributs, DAOTable table) {
 		super();
@@ -28,8 +28,8 @@ public class Update extends Requete {
 
 	/**
 	 * Constructeur public
-	 * @param attributs La liste des attributs à modifier avec leur valeur
-	 * @param tables La liste des tables à referencer
+	 * @param attributs La liste des attributs a modifier avec leur valeur
+	 * @param tables La liste des tables a referencer
 	 * @param where La clause "where" au format string sans le where ([...] "Where attr1 > 42")
 	 */
 	public Update(Map<String, String> attributs, DAOTable table, String where) {

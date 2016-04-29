@@ -18,7 +18,7 @@ public class ManagerDAO {
 		
 		
 		/*********************************/
-		/**		Création connexion bd	**/
+		/**		Creation connexion bd	**/
 		/*********************************/
 		try {
 			bd = new Bd("jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag", "fernaaur", "bd");
@@ -28,11 +28,11 @@ public class ManagerDAO {
 		
 		
 		/*************************************************************/
-		/**		Création des objets DAO avec jointures (ou pas)		**/
+		/**		Creation des objets DAO avec jointures (ou pas)		**/
 		/*************************************************************/
-		//Création des tables sans clés étrangères en premier
+		//Creation des tables sans cles etrangeres en premier
 		DAOTable2 = new DAOTable2(null);
-		//Puis les tables avec clés étrangères (même système BDD)
+		//Puis les tables avec cles etrangeres (même systeme BDD)
 		HashMap<DAOTable, String> lstJointuresTbl1 = new HashMap<>();
 		lstJointuresTbl1.put(DAOTable2, "Table1.AttrE = Table2.AttrA");
 		DAOTable1 = new DAOTable1(lstJointuresTbl1);
@@ -46,15 +46,15 @@ public class ManagerDAO {
 		/*****************************************************/
 		/**				Suppression des tables				**/
 		/*****************************************************/
-		bd.request(DAOTable1.drop());			//Pas obligatoire si déjà créer en BDD
-		bd.request(DAOTable2.drop());			//Pas obligatoire si déjà créer en BDD
+		bd.request(DAOTable1.drop());			//Pas obligatoire si dejà creer en BDD
+		bd.request(DAOTable2.drop());			//Pas obligatoire si dejà creer en BDD
 		
 		
 		/*****************************************************/
-		/**			Création des tables en Base	 			**/
+		/**			Creation des tables en Base	 			**/
 		/*****************************************************/
-		bd.request(DAOTable2.createTable());	//Pas obligatoire si déjà créer en BDD
-		bd.request(DAOTable1.createTable());	//Pas obligatoire si déjà créer en BDD
+		bd.request(DAOTable2.createTable());	//Pas obligatoire si dejà creer en BDD
+		bd.request(DAOTable1.createTable());	//Pas obligatoire si dejà creer en BDD
 		
 	}
 

@@ -19,7 +19,7 @@ public enum TypeBD {
 	
 	/**
 	 * Permet de recuperer la valeurs avec la bonne syntaxe pour oracle
-	 * @param value La valeur à traiter
+	 * @param value La valeur a traiter
 	 * @param type Le type de la valeur
 	 * @return La valeur avec la bonne syntaxe
 	 */

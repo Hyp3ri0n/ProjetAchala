@@ -4,13 +4,13 @@ public class TestBD {
 
 	public static void main(String[] args) {		
 		/** TEST BDD **/
-		//Création du jeu d'essai
-		//Pas obligatoire si déjà créer dans BDD
+		//Creation du jeu d'essai
+		//Pas obligatoire si deja creer dans BDD
 		//Table2.jeuEssai();
 		//Table1.jeuEssai();
 		
-		//Création des objets métier
-		//Obligatoire car après on ne travaillera qu'avec
+		//Creation des objets metier
+		//Obligatoire car apres on ne travaillera qu'avec
 		//les objets se trouvant dans cette classe
 		//ContextApp.Instance().initialisation();
 		

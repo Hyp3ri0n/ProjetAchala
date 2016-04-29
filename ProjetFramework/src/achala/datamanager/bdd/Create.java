@@ -6,11 +6,11 @@ import java.sql.Statement;
 
 
 public class Create extends Requete {
-	/** Represente la requête complexe **/
+	/** Represente la requete complexe **/
 	private String req;
 	
 	/**
-	 * Constructeur public de la requête create complexe
+	 * Constructeur public de la requete create complexe
 	 * @param req La requete complexe de creation
 	 */
 	public Create(String req) {

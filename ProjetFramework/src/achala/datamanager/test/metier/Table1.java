@@ -23,7 +23,7 @@ public class Table1 {
 	}
 	
 	/**
-	 * JUSTE POUR LES TESTS (Création de données dans la base)
+	 * JUSTE POUR LES TESTS (Creation de donnees dans la base)
 	 */
 	public static void jeuEssai() {
 		for (int i = 1; i < 42; i++) {

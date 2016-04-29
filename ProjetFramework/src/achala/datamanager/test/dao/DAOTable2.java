@@ -47,7 +47,7 @@ public class DAOTable2 extends DAOTable {
 	
 	/**
 	 * Permet de Selectionner tout les lignes de la table "Table2"
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete selectAll() {
 		List<DAOTable> lstTables = new ArrayList<>();
@@ -64,7 +64,7 @@ public class DAOTable2 extends DAOTable {
 	 * Permet de modifier une ou plusieurs lignes dans la table "Table2"
 	 * @param lstAttrsValues La liste des attributs et leurs valeurs pour modification
 	 * @param where La clause WHERE de la requête
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete update(HashMap<String, String> lstAttrsValues, String where) {		
 		return new Update(lstAttrsValues, ManagerDAO.getDAOTable1(), where);
@@ -75,8 +75,8 @@ public class DAOTable2 extends DAOTable {
 	 * Permet d'inserer une ligne dans la table "Table2"
 	 * @param attrA Le premier attribut
 	 * @param attrB Le second attribut
-	 * @param attrC Le troisième attribut
-	 * @return La requête à executer (objet)
+	 * @param attrC Le troisieme attribut
+	 * @return La requête a executer (objet)
 	 */
 	public Requete insert(String attrA, String attrB, String attrC) {		
 		HashMap<String, String> lstAttrsValue = new HashMap<>();
@@ -90,7 +90,7 @@ public class DAOTable2 extends DAOTable {
 	
 	/**
 	 * Permet de supprimer la table en base
-	 * @return La requête à executer (objet)
+	 * @return La requête a executer (objet)
 	 */
 	public Requete drop() {		
 		return new Drop(ManagerDAO.getDAOTable2());

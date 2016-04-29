@@ -3,7 +3,6 @@ package achala.datamanager.testA.metier;
 import java.util.HashMap;
 
 import achala.datamanager.testA.dao.ManagerDAO;
-import achala.datamanager.testA.metier.Article;
 
 public class Utilisateur {
 
