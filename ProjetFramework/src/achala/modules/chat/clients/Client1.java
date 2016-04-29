@@ -1,9 +1,6 @@
 package achala.modules.chat.clients;
 
-import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import achala.communication.server.Server;
@@ -26,20 +23,33 @@ public class Client1 {
 			if (System.getSecurityManager() == null) {
 				System.setSecurityManager(new RMISecurityManager());
 			}
-
-			_Utilisateur alexis = new Utilisateur("Martinier", "Alexis");
 			
-//			_Server srv = Server.getServer("192.168.43.84");
-			_Server srv = (_Server)Naming.lookup("rmi://192.168.43.84/srv");
-			alexis.connect(srv);
+			_Utilisateur user = new Utilisateur("Claude", "Audrey");
+//			_Utilisateur user = new Utilisateur("Robinson", "Carl");
+//			_Utilisateur user = new Utilisateur("Vaillant", "Hugo");
+//			_Utilisateur user = new Utilisateur("Fernandes", "Aurelien");
+//			_Utilisateur user = new Utilisateur("Ortiz", "Luc");
+//			_Utilisateur user = new Utilisateur("Martinier", "Alexis");
+
+			_Server srv = Server.getServer("192.168.43.84");
+			user.connect(srv);
+			
+			System.out.println("Sur le serveur :");
+			for(_Utilisateur u : srv.getUtilisateurs())
+			{
+				System.out.println(u.toStringRemote());
+			}
 			
 			System.out.println("Start ?");
 			read.next();
 			
-			_Utilisateur luc = srv.getUtilisateur("Ortiz", "Luc");
-			List<_Utilisateur> users = new ArrayList<_Utilisateur>();
-			users.add(luc);
-			Chat c = new Chat(srv, alexis, users, "Luc_Alexis");
+			Chat c = new Chat(srv, user, "zoneTest");
+			
+			System.out.println("Dans le chat :");
+			for(_Utilisateur u : c.getShared().getUtilisateurs())
+			{
+				System.out.println(u.toStringRemote());
+			}
 			
 			c.listener();
 			c.sender(Cmd.EXIT);

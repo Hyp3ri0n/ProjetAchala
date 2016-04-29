@@ -23,24 +23,49 @@ public class Chat {
 	private List<_Utilisateur> others;
 	private _Server server;
 	private _Shared shared;
-	private ListenerThread listener;
-	private NotificationThread notifs;
+//	private ListenerThread listener;
+//	private NotificationThread notifs;
 
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
 	 * 
 	 * @param srv
 	 *            _Server : serveur de communication
-	 * @param curent
+	 * @param current
+	 *            _Utilisateur : utilisateur souhaitant communiquer avec u2
+	 * @param chatName
+	 *            String : nom du chat
+	 */
+	public Chat(_Server srv, _Utilisateur current, String chatName) {
+		try {
+			this.setServer(srv);
+			this.setCurrent(current);
+			this.setOthers(this.getServer().getUtilisateurs());
+			_Shared correspondance = this.getServer().getSharedZone(this.getCurrent(), chatName);
+			correspondance.addUsers(others);
+			this.setShared(correspondance);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
+	 * 
+	 * @param srv
+	 *            _Server : serveur de communication
+	 * @param current
 	 *            _Utilisateur : utilisateur souhaitant communiquer avec u2
 	 * @param others
 	 *            List<_Utilisateur> : utilisateur a contacter
+	 * @param chatName
+	 *            String : nom du chat
 	 */
-	public Chat(_Server srv, _Utilisateur curent, List<_Utilisateur> others, String chatName) {
+	public Chat(_Server srv, _Utilisateur current, List<_Utilisateur> others, String chatName) {
 
 		try {
 			this.setServer(srv);
-			this.setCurrent(curent);
+			this.setCurrent(current);
 			this.setOthers(others);
 
 			_Shared correspondance = this.getServer().getSharedZone(this.getCurrent(), chatName);
