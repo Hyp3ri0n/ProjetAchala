@@ -11,72 +11,69 @@ import achala.datamanager.Fichier;
 public interface _Shared extends Remote {
 
 	/**
-	 * Récupère l'ensemble des objets présents dans l'objet partagé
+	 * Recupere l'ensemble des objets presents dans l'objet partage
 	 * 
-	 * @ensure ... : old(this.getObjects().size()) == this.getObjects().size()
-	 * @return List<_RemotableObject> liste des objets présent dans le partage
+	 * @return List<_RemotableObject> : liste des objets present dans le partage
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 */
-	List<_RemotableObject> getObjects() throws RemoteException;
+	public List<_RemotableObject> getObjects() throws RemoteException;
 
 	/**
-	 * Envoi un objet dans l'objet partagé
+	 * Envoi un objet dans l'objet partage
 	 * 
 	 * @require Participe : isAllowed(object.getSender()) == true
-	 * @ensure ... : odl(this.getObjects().size()) < this.getObjects().size()
 	 * @param object
-	 *            _RemotableObject objet à envoyer dans le partage
+	 *            _RemotableObject : objet a envoyer dans le partage
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 * @throws CommunicationException
-	 *             lève une exception en cas d'acces refusé
+	 *             leve une exception en cas d'acces refuse
 	 */
-	void send(_RemotableObject object) throws RemoteException, CommunicationException;
+	public void send(_RemotableObject object) throws RemoteException, CommunicationException;
 
 	/**
-	 * Récupère l'ensemble des objets en attentes dans l'objet partagé
+	 * Recupere l'ensemble des objets en attentes dans l'objet partage
 	 * 
 	 * @require Participe : isAllowed(u) == true
-	 * @ensure ... : old(this.getObjects().size()) == this.getObjects().size()
 	 * @param u
-	 *            _Utilisateur représente la personne souhaitant accéder à la
+	 *            _Utilisateur : utilisateur souhaitant acceder a la
 	 *            conversation
-	 * @return List<_RemotableObject> liste des objets en attente de lecture
+	 * @return List<_RemotableObject> : liste des objets en attente de lecture
 	 *         dans le partage
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 * @throws CommunicationException
-	 *             lève une exception en cas d'acces refusé
+	 *             leve une exception en cas d'acces refuse
 	 */
-	List<_RemotableObject> receive(_Utilisateur u) throws RemoteException, CommunicationException;
+	public List<_RemotableObject> receive(_Utilisateur u) throws RemoteException, CommunicationException;
 
 	/**
 	 * Sauvegarde le partage
 	 * 
 	 * @param fichier
-	 *            File fichier de sauvegarde
+	 *            File : fichier de sauvegarde
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 */
-	void save(Fichier fichier) throws RemoteException;
+	public void save(Fichier fichier) throws RemoteException;
 
 	/**
 	 * Indique si l'objet de partage est en attente de lecture
 	 * 
-	 * @return boolean true si l'objet est en attente, false sinon
+	 * @return boolean : true si l'objet est en attente, false sinon
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 */
 	public boolean isWait() throws RemoteException;
 
 	/**
-	 * Change l'état d'attente de l'objet
+	 * Change l'etat d'attente de l'objet
 	 * 
 	 * @param wait
-	 *            boolean valeur de l'attente (true|false)
+	 *            boolean : valeur de l'attente (true|false)
 	 * @throws RemoteException
-	 *             lève une exception en cas d'echec de communication
+	 *             leve une exception en cas d'echec de communication
 	 */
 	public void setWait(boolean wait) throws RemoteException;
 
@@ -121,15 +118,16 @@ public interface _Shared extends Remote {
 	public void addUser(_Utilisateur user) throws RemoteException, CommunicationException;
 
 	/**
-	 * Ajoute une liste d'utilisateurs dans la zone de partage, en verifiant
-	 * l'ineexistance
+	 * Ajoute une liste d'utilisateurs dans la zone de partage. Si l'utilisateur
+	 * existe, il n'est pas ajoute
 	 * 
 	 * @param users
 	 *            List<_Utilisateur> : liste des utilisateurs a ajouter
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 * @throws CommunicationException
-	 *             leve une exception en cas d'echec de l'ajout
+	 *             leve une exception dans le cas ou l'utilisateur est deja
+	 *             enregistre
 	 */
 	public void addUsers(List<_Utilisateur> users) throws RemoteException, CommunicationException;
 
@@ -141,7 +139,8 @@ public interface _Shared extends Remote {
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 * @throws CommunicationException
-	 *             leve une exception en cas d'acces refuse
+	 *             leve une exception dans le cas ou l'utilisateur n'existe pas
+	 *             dans la zone
 	 */
 	public void removeUser(_Utilisateur user) throws RemoteException, CommunicationException;
 

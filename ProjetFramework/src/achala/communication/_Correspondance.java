@@ -5,7 +5,7 @@ import java.util.List;
 
 import achala.communication.utilisateur._Utilisateur;
 
-public interface _Correspondance {
+public interface _Correspondance extends _Shared {
 
 	/**
 	 * Retourne la liste des utilisateurs de la correspondance

@@ -127,7 +127,7 @@ public interface _Utilisateur extends Remote {
 	public boolean equals(_Utilisateur u) throws RemoteException;
 
 	/**
-	 * Overide de la methode toString() impossible d'overide la mtehode
+	 * Overide de la methode toString() impossible d'overide la methode
 	 * toString() pour RMI
 	 * 
 	 * @return String : representation de l'utilisateur (nom prenom)

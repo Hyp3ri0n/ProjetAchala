@@ -12,7 +12,17 @@ public class Fichier extends RemotableObject {
 
 	private File fichier;
 
-	protected Fichier(_Utilisateur sender, File fichier) throws RemoteException {
+	/**
+	 * Construit un nouveau fichier pouvant etre envoye
+	 * 
+	 * @param sender
+	 *            _Utilisateur : createur du fichier
+	 * @param fichier
+	 *            File : fichier a envoyer
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
+	public Fichier(_Utilisateur sender, File fichier) throws RemoteException {
 		super(sender, new Date());
 		this.setFichier(fichier);
 	}

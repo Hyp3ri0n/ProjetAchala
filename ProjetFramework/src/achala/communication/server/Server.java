@@ -33,8 +33,6 @@ public class Server extends UnicastRemoteObject implements _Server {
 	/**
 	 * Constructeur d'un serveur
 	 * 
-	 * @param r
-	 *            Registry registre du serveur
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 * @throws UnknownHostException
@@ -48,11 +46,22 @@ public class Server extends UnicastRemoteObject implements _Server {
 		System.out.println("Server run at : " + ip);
 	}
 
+	/**
+	 * Renvoi un numero unique sur le serveur pour identifier les utilisateur
+	 * 
+	 * @return int : numero unique
+	 */
 	private static int getIdUser() {
 		setIdUser(idUser + 1);
 		return Server.idUser;
 	}
 
+	/**
+	 * Definie le numero d'identification d'un utilisateur
+	 * 
+	 * @param idUser
+	 *            int : numero d'identification
+	 */
 	private static void setIdUser(int idUser) {
 		Server.idUser = idUser;
 	}
@@ -121,12 +130,12 @@ public class Server extends UnicastRemoteObject implements _Server {
 			throws RemoteException, MalformedURLException, NotBoundException, CommunicationException, ServerException {
 		if (!this.getUtilisateurs().contains(user))
 			throw new ServerException("Server : " + user.toStringRemote() + " isn't recorded on this server");
-		
+
 		zone.addUsers(this.getUtilisateurs());
-		this.getShares().add(zone);		
+		this.getShares().add(zone);
 		LocateRegistry.getRegistry().rebind(zone.getZoneName(), zone);
 	}
-	
+
 	@Override
 	public void connect(_Utilisateur u) throws RemoteException, CommunicationException {
 		if (this.getUtilisateurs().contains(u))
@@ -170,17 +179,19 @@ public class Server extends UnicastRemoteObject implements _Server {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String getRMIAdresse(String zoneName) throws RemoteException {
 		return "rmi://" + this.ip + "/" + zoneName;
 	}
-	
+
 	/**
-	 * Recupere l'url du partage entre les utilisateur u1 et u2
+	 * Recupere l'url du partage correspondant a zoneName
 	 * 
 	 * @param user
 	 *            _Utilisateur :
+	 * @param zoneName
+	 *            String : nom de la zone souhaite
 	 * @return String : chaine de connexion entre les utilisateurs u1 et u2 si
 	 *         elle existe, la chaine vide ("") sinon
 	 * @throws RemoteException

@@ -23,8 +23,6 @@ public class Chat {
 	private List<_Utilisateur> others;
 	private _Server server;
 	private _Shared shared;
-//	private ListenerThread listener;
-//	private NotificationThread notifs;
 
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
@@ -55,9 +53,9 @@ public class Chat {
 	 * @param srv
 	 *            _Server : serveur de communication
 	 * @param current
-	 *            _Utilisateur : utilisateur souhaitant communiquer avec u2
+	 *            _Utilisateur : utilisateur souhaitant communiquer
 	 * @param others
-	 *            List<_Utilisateur> : utilisateur a contacter
+	 *            List<_Utilisateur> : utilisateurs a contacter
 	 * @param chatName
 	 *            String : nom du chat
 	 */
@@ -79,13 +77,12 @@ public class Chat {
 	/**
 	 * Constructeur d'un chat entre utilisateurs u1 et u2 sur le serveur
 	 * 
-	 * @require connected : u1 & u2 connecte
 	 * @param ipSrv
 	 *            String : ip du serveur
 	 * @param current
-	 *            _Utilisateur : utilisateur souhaitant communiquer avec u2
+	 *            _Utilisateur : utilisateur souhaitant communiquer
 	 * @param other
-	 *            List<_Utilisateur> : utilisateur a contacter
+	 *            List<_Utilisateur> : utilisateurs a contacter
 	 * @throws NotBoundException
 	 *             leve une exception en cas d'impossibilite de bind
 	 * @throws RemoteException
@@ -98,34 +95,78 @@ public class Chat {
 		this(Server.getServer(ipSrv), current, others, chatName);
 	}
 
+	/**
+	 * Recupere l'utilisateur courant du chat
+	 * 
+	 * @return _Utilisateur : utilisateur courant du chat
+	 */
 	public _Utilisateur getCurrent() {
 		return current;
 	}
 
+	/**
+	 * Definie l'utilisateur courant du chat
+	 * 
+	 * @param current
+	 *            _Utilisateur : utilisateur courant du chat
+	 */
 	private void setCurrent(_Utilisateur current) {
 		this.current = current;
 	}
 
+	/**
+	 * Renvoi la liste des utilisateur ayant acces au chat
+	 * 
+	 * @return List<_Utilisateur> : utilisateurs ayant acces au chat
+	 */
 	public List<_Utilisateur> getOthers() {
 		return others;
 	}
 
+	/**
+	 * Definie la liste des utilisateurs ayant acces au chat
+	 * 
+	 * @param others
+	 *            List<_Utilisateur> : utilisateurs ayant acces au chat
+	 */
 	private void setOthers(List<_Utilisateur> others) {
 		this.others = others;
 	}
 
+	/**
+	 * Renvoi le serveur sur lequel le chat communique
+	 * 
+	 * @return _Server : serveur de communication
+	 */
 	public _Server getServer() {
 		return server;
 	}
 
+	/**
+	 * Definie le serveur sur lequel le chat communique
+	 * 
+	 * @param server
+	 *            _Server : serveur de communication
+	 */
 	private void setServer(_Server server) {
 		this.server = server;
 	}
 
+	/**
+	 * Renvoi la zone de partage du seveur sur lequel le chat communique
+	 * 
+	 * @return _Shared : zone de partage de communication
+	 */
 	public _Shared getShared() {
 		return shared;
 	}
 
+	/**
+	 * Definie la zone de partage sur laquelle le chat communique
+	 * 
+	 * @param shared
+	 *            _Shared : zone de partage pour le communication
+	 */
 	private void setShared(_Shared shared) {
 		this.shared = shared;
 	}
@@ -137,21 +178,11 @@ public class Chat {
 	 *             leve une exception en cas d'echec de communication
 	 */
 	public void listener() throws RemoteException {
-
-		// if(listener == null)
-		// listener = new ListenerThread(this.getCurrent(), this.getShared());
-		// if(notifs == null)
-		// notifs = new NotificationThread(this.getShared(), this.getCurrent());
-
 		new ListenerThread(this.getCurrent(), this.getShared()).start();
 		new NotificationThread(this.getShared(), this.getCurrent()).start();
-		// listenerThread.start();
-		// notifs.start();
 	}
 
 	public void stopListener() {
-		// if(listener != null)
-		// listener.stopListener();
 	}
 
 	/**
@@ -163,7 +194,6 @@ public class Chat {
 	 *             leve une exception en cas d'echec de communication
 	 */
 	public void sender(Cmd escape) throws RemoteException {
-
 		SenderThread sender = new SenderThread(this.getCurrent(), this.getShared(), escape);
 		sender.start();
 	}

@@ -62,7 +62,7 @@ public interface _Server extends Remote {
 	 * Cree le bind d'une correspondance Renvoie zone de correspondance entre
 	 * les utilisateurs
 	 * 
-	 * @require logged : this.getUtilisateurs().contains(user)
+	 * @require connected : this.getUtilisateurs().contains(user)
 	 * @param user
 	 *            _Utilisateur : utilisateur souhaitant acceder a la zone de
 	 *            partage
@@ -86,6 +86,7 @@ public interface _Server extends Remote {
 	/**
 	 * Ajoute la zone dans le serveur
 	 * 
+	 * @require connected : this.getUtilisateur().contains(user)
 	 * @param zone
 	 *            _Shared : zone a ajouter
 	 * @param user
@@ -107,9 +108,9 @@ public interface _Server extends Remote {
 	/**
 	 * Ajoute l'utilisateur u au serveur
 	 * 
-	 * @require ... : this.getUtilisateur().contains(u) == false
+	 * @require Unregistered : !this.getUtilisateur().contains(u)
 	 * @param u
-	 *            _Utilisateur : utilisateur à ajouter
+	 *            _Utilisateur : utilisateur a ajouter
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 * @throws CommunicationException
@@ -120,7 +121,7 @@ public interface _Server extends Remote {
 	/**
 	 * Deconnecte l'utilisateur du serveur
 	 * 
-	 * @require ... : this.getUtilisateurs().contains(u) == true
+	 * @require connected : this.getUtilisateurs().contains(u)
 	 * @param u
 	 *            _Utilisateur : utilisateur a deconnecter
 	 * @throws RemoteException
@@ -142,9 +143,12 @@ public interface _Server extends Remote {
 
 	/**
 	 * Retourne l'adresse sur laquel est / sera binde la zone
-	 * @param zoneName String : nom de la zone
+	 * 
+	 * @param zoneName
+	 *            String : nom de la zone
 	 * @return String : url de bind
-	 * @throws RemoteException leve une exception en cas d'echec de communication
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
 	 */
 	public String getRMIAdresse(String zoneName) throws RemoteException;
 }

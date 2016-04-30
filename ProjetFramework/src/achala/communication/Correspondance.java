@@ -19,6 +19,8 @@ public class Correspondance extends Shared implements _Correspondance {
 	 * 
 	 * @param rmiAdresse
 	 *            String : url permattant l'acces a la correspondance
+	 * @param zoneName
+	 *            String : nom de la correspondance
 	 * @throws RemoteException
 	 *             leve une excpetion en cas d'echec de communication
 	 */
@@ -49,6 +51,13 @@ public class Correspondance extends Shared implements _Correspondance {
 		return users;
 	}
 
+	/**
+	 * Definie les utilisateur ayant acces a la correspondance
+	 * 
+	 * @param users
+	 *            List<_Utilisateur> : liste des utilisateurs ayant acces a la
+	 *            correspondance
+	 */
 	protected void setUtilisateurs(List<_Utilisateur> users) {
 		this.users = users;
 	}
@@ -83,7 +92,6 @@ public class Correspondance extends Shared implements _Correspondance {
 		this.getUtilisateurs().remove(user);
 	}
 
-	// need to be synchronized for ThreadSafe
 	@Override
 	public synchronized void send(_RemotableObject object) throws CommunicationException, RemoteException {
 		if (!this.isAllowed(object.getSender()))
@@ -93,7 +101,6 @@ public class Correspondance extends Shared implements _Correspondance {
 			ArrayList<_Utilisateur> _users = new ArrayList<>(this.getUtilisateurs());
 			_users.remove(object.getSender());
 			this.getRObjectList().put(object, _users);
-			// this.getObjects().add(object);
 			this.setWait(true);
 		}
 	}
@@ -111,22 +118,6 @@ public class Correspondance extends Shared implements _Correspondance {
 				this.getRObjectList().get(o).remove(u);
 			}
 		}
-
-		// if(this.isWait()){
-		// for(_RemotableObject o : this.getRObjectList().keySet()){
-		// if(o.isWait() && (!o.getSender().equals(u))){
-		// newObjs.add(o);
-		// o.setWait(false);
-		// }
-		// if(this.getRObjectList().get(o).contains(u)){
-		// newObjs.add(o);
-		// this.getRObjectList().get(o).remove(u);
-		// o.setWait(false);
-		// }
-		// }
-		// }
-
-		// this.setWait(false);
 		return newObjs;
 	}
 

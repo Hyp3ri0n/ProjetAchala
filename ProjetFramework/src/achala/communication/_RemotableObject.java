@@ -17,7 +17,7 @@ public interface _RemotableObject extends Remote {
 	 * @throws RemoteException
 	 *             leve une excpetion en cas d'echec de communication
 	 */
-	Date getDate() throws RemoteException;
+	public Date getDate() throws RemoteException;
 
 	/**
 	 * Sauvegarde l'objet courant dans le fichier
@@ -27,7 +27,7 @@ public interface _RemotableObject extends Remote {
 	 * @throws RemoteException
 	 *             leve une excpetion en cas d'echec de communication
 	 */
-	void save(File fichier) throws RemoteException;
+	public void save(File fichier) throws RemoteException;
 
 	/**
 	 * Envoie l'objet courant dans l'objet de partage
@@ -39,7 +39,7 @@ public interface _RemotableObject extends Remote {
 	 * @throws CommunicationException
 	 *             leve une exception en cas d'acces refuse
 	 */
-	void send(_Shared shared) throws RemoteException, CommunicationException;
+	public void send(_Shared shared) throws RemoteException, CommunicationException;
 
 	/**
 	 * Renvoi l'objet courant
@@ -48,33 +48,33 @@ public interface _RemotableObject extends Remote {
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	Object getObject() throws RemoteException;
+	public Object getObject() throws RemoteException;
 
 	/**
 	 * Indique si l'objet courant est en attente de lecture
 	 * 
-	 * @return boolean true si l'objet est en attente, false sinon
+	 * @return boolean : true si l'objet est en attente, false sinon
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	boolean isWait() throws RemoteException;
+	public boolean isWait() throws RemoteException;
 
 	/**
 	 * Modifie le boolean indiquant si l'objet courant est en attente de lecture
 	 * 
 	 * @param wait
-	 *            boolean valeur de l'attente (true|false)
+	 *            boolean : valeur de l'attente (true|false)
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	void setWait(boolean wait) throws RemoteException;
+	public void setWait(boolean wait) throws RemoteException;
 
 	/**
 	 * Recupere l'emetteur de l'objet courant
 	 * 
-	 * @return _Utilisateur emetteur de l'objet
+	 * @return _Utilisateur : emetteur de l'objet
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	_Utilisateur getSender() throws RemoteException;
+	public _Utilisateur getSender() throws RemoteException;
 }

@@ -11,6 +11,16 @@ public class Message extends RemotableObject {
 
 	private String message;
 
+	/**
+	 * Construit un nouveau message pouvant etre envoye
+	 * 
+	 * @param sender
+	 *            _Utilisateur : createur du message
+	 * @param message
+	 *            String : message a envoyer
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
 	public Message(_Utilisateur sender, String message) throws RemoteException {
 		super(sender, new Date());
 		this.setMessage(message);

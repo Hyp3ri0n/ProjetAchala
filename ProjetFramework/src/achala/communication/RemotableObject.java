@@ -16,6 +16,16 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 	private _Utilisateur sender;
 	boolean wait;
 
+	/**
+	 * Construit un nouvel objet a partager
+	 * 
+	 * @param u
+	 *            _Utilisateur : createur de l'objet
+	 * @param date
+	 *            Date : date de creation de l'objet
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
 	protected RemotableObject(_Utilisateur u, Date date) throws RemoteException {
 		super();
 		this.setDate(date);
@@ -28,6 +38,12 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 		return this.date;
 	}
 
+	/**
+	 * Definie la date de creation de l'objet
+	 * 
+	 * @param date
+	 *            Date : date de creation
+	 */
 	private void setDate(Date date) {
 		this.date = date;
 	}
@@ -57,6 +73,12 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 		return this.sender;
 	}
 
+	/**
+	 * Definie le createur de l'objet
+	 * 
+	 * @param sender
+	 *            _Utilisateur : createur de l'objet
+	 */
 	private void setSender(_Utilisateur sender) {
 		this.sender = sender;
 	}

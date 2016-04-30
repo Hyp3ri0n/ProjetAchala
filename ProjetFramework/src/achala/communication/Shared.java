@@ -21,7 +21,6 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 
 	protected String rmiAdresse;
 	protected String zoneName;
-	// protected List<_RemotableObject> RObjectList;
 	private Map<_RemotableObject, ArrayList<_Utilisateur>> RObjectList;
 	protected boolean wait;
 
@@ -30,6 +29,8 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 	 * 
 	 * @param rmiAdresse
 	 *            String : url donnant acces au partage
+	 * @param zoneName
+	 *            String : nom de la zone de partage
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
@@ -54,6 +55,12 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		return this.rmiAdresse;
 	}
 
+	/**
+	 * Definie l'adresse RMI de la zone de partage
+	 * 
+	 * @param rmiAdresse
+	 *            String : adresse de la zone
+	 */
 	public void setRmiAdresse(String rmiAdresse) {
 		this.rmiAdresse = rmiAdresse;
 	}
@@ -72,7 +79,6 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		this.wait = wait;
 	}
 
-	// need to be synchrnoized for ThreadSafe
 	@Override
 	public synchronized boolean isWait() throws RemoteException {
 		for (_RemotableObject o : this.getObjects()) {
@@ -101,10 +107,24 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		return (_Shared) Naming.lookup(url);
 	}
 
+	/**
+	 * Retourne la Map contenant les objets a envoyer ainsi que les utilisateurs
+	 * n'ayant pas lu l'objet
+	 * 
+	 * @return Map<_RemotableObject, ArrayList<_Utilisateur>> : liste des objets
+	 *         avec les utilisateurs
+	 */
 	protected Map<_RemotableObject, ArrayList<_Utilisateur>> getRObjectList() {
 		return RObjectList;
 	}
 
+	/**
+	 * Defini la liste des objets avec leurs utilisateur
+	 * 
+	 * @param rObjectList
+	 *            Map<_RemotableObject, ArrayList<_Utilisateur>> : liste des
+	 *            objets avec utilisateurs
+	 */
 	protected void setRObjectList(Map<_RemotableObject, ArrayList<_Utilisateur>> rObjectList) {
 		RObjectList = rObjectList;
 	}
@@ -114,6 +134,12 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		return zoneName;
 	}
 
+	/**
+	 * Definie le nom de la zone
+	 * 
+	 * @param zoneName
+	 *            String : nom de la zone
+	 */
 	protected void setZoneName(String zoneName) {
 		this.zoneName = zoneName;
 	}
