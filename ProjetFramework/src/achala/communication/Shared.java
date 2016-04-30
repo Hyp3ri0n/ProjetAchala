@@ -107,14 +107,8 @@ public abstract class Shared extends UnicastRemoteObject implements _Shared {
 		return (_Shared) Naming.lookup(url);
 	}
 
-	/**
-	 * Retourne la Map contenant les objets a envoyer ainsi que les utilisateurs
-	 * n'ayant pas lu l'objet
-	 * 
-	 * @return Map<_RemotableObject, ArrayList<_Utilisateur>> : liste des objets
-	 *         avec les utilisateurs
-	 */
-	protected Map<_RemotableObject, ArrayList<_Utilisateur>> getRObjectList() {
+	@Override
+	public Map<_RemotableObject, ArrayList<_Utilisateur>> getRObjectList() throws RemoteException {
 		return RObjectList;
 	}
 

@@ -1,12 +1,12 @@
 package achala.communication;
 
-import java.io.File;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
 
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
+import achala.datamanager.Fichier;
 
 public interface _RemotableObject extends Remote {
 
@@ -23,11 +23,11 @@ public interface _RemotableObject extends Remote {
 	 * Sauvegarde l'objet courant dans le fichier
 	 * 
 	 * @param fichier
-	 *            File : destination de la sauvegarde
+	 *            Fichier : destination de la sauvegarde
 	 * @throws RemoteException
 	 *             leve une excpetion en cas d'echec de communication
 	 */
-	public void save(File fichier) throws RemoteException;
+	public void save(Fichier fichier) throws RemoteException;
 
 	/**
 	 * Envoie l'objet courant dans l'objet de partage

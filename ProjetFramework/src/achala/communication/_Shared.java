@@ -2,7 +2,9 @@ package achala.communication;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
@@ -19,6 +21,15 @@ public interface _Shared extends Remote {
 	 */
 	public List<_RemotableObject> getObjects() throws RemoteException;
 
+	/**
+	 * Retourne la Map contenant les objets a envoyer ainsi que les utilisateurs
+	 * n'ayant pas lu l'objet
+	 * 
+	 * @return Map<_RemotableObject, ArrayList<_Utilisateur>> : liste des objets
+	 *         avec les utilisateurs
+	 */
+	public Map<_RemotableObject, ArrayList<_Utilisateur>> getRObjectList() throws RemoteException;
+	
 	/**
 	 * Envoi un objet dans l'objet partage
 	 * 

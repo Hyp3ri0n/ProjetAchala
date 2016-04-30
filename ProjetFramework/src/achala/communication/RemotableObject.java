@@ -1,12 +1,13 @@
 package achala.communication;
 
-import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
+import achala.datamanager.exception.DMException;
+import achala.datamanager.Fichier;
 
 public abstract class RemotableObject extends UnicastRemoteObject implements _RemotableObject {
 
@@ -49,8 +50,12 @@ public abstract class RemotableObject extends UnicastRemoteObject implements _Re
 	}
 
 	@Override
-	public void save(File fichier) {
-		// TODO
+	public void save(Fichier fichier) {
+		try {
+			fichier.save();
+		} catch (DMException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
