@@ -11,10 +11,13 @@ public class Test extends TestCase {
 	 * Methode d'initialisation
 	 */
 	public void setUp() {
-//		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().drop());
-//		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().drop());
-//		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().createTable());
-//		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().createTable());
+		// Suppression puis creation des tables
+		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().drop());
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().drop());
+		ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().createTable());
+		ManagerDAO.getBd().request(ManagerDAO.getDAOCommentaire().createTable());
+		
+		// Creation du jeu d'essai
 		ManagerApp.Instance().initialisation();
 		sizeArticles = ManagerApp.Instance().getListArticles().size();
 		sizeCommentaires = ManagerApp.Instance().getListCommentaires().size();
@@ -30,12 +33,12 @@ public class Test extends TestCase {
 		sizeCommentairesAfter = ManagerApp.Instance().getListCommentaires().size();
 		
 		// Test tri par id
-		/*for(Article art:ManagerApp.Instance().getListArticles()) {
+		for(Article art:ManagerApp.Instance().getListArticles()) {
 			System.out.println("Art id :"+art.getId());
 		}
 		for(Commentaire com:ManagerApp.Instance().getListCommentaires()) {
 			System.out.println("Com id :"+com.getId());
-		}*/
+		}
 	}
 	
 	/**
