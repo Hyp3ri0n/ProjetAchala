@@ -155,4 +155,13 @@ public interface _Shared extends Remote {
 	 *             leve une exception en cas d'echec de communucation
 	 */
 	public boolean isAllowed(_Utilisateur u) throws RemoteException;
+
+	/**
+	 * Renvoi la class de l'objet
+	 * 
+	 * @return Class : class de l'objet
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
+	public Class<?> getClassShared() throws RemoteException;
 }

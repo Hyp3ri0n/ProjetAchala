@@ -126,4 +126,9 @@ public class Correspondance extends Shared implements _Correspondance {
 		return this.getUtilisateurs().contains(u);
 	}
 
+	@Override
+	public Class<?> getClassShared() throws RemoteException {
+		return Correspondance.class;
+	}
+
 }
