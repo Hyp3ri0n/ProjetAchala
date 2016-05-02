@@ -1,0 +1,16 @@
+achala.communication
+achala.communication.apptest
+achala.communication.exception
+achala.communication.server
+achala.communication.server.exception
+achala.communication.utilisateur
+achala.datamanager
+achala.datamanager.bdd
+achala.datamanager.exception
+achala.datamanager.fichier
+achala.datamanager.test.dao
+achala.datamanager.test.metier
+achala.datamanager.test.vue
+achala.datamanager.testA.dao
+achala.datamanager.testA.metier
+achala.datamanager.testA.vue
