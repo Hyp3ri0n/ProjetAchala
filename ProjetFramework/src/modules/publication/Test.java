@@ -25,7 +25,7 @@ public class Test extends TestCase {
 		new Article("Coder en C","Comment coder en C, les avantages / incovénients","Robinson Clarck","26-04-2016");
 		Article a1 = new Article("JavaCC","Comment utiliser JavaCC??\n\nExplication de la création de grammaire.","Alexis Martinier","27-04-2016");
 		Commentaire c1 = new Commentaire("J'adore !!", "John Doe","25-04-2016",1);
-		new Commentaire("J'ai hâte de lire la suite de l'artciel !", "Audrey Claude","26-04-2016",2);
+		new Commentaire("J'ai hâte de lire la suite de l'article !", "Audrey Claude","26-04-2016",2);
 		new Commentaire("Bon article", "Hugo Vaillant","27-04-2016",2);
 		new Commentaire("Avez-vous des idées d'exercices pour le tri de listes ?", "Alexis Martinier.","28-04-2016",1);
 		a1.setAuteur("Aurélien Fernandes");
