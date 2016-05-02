@@ -26,7 +26,7 @@ public interface _Server extends Remote {
 	/**
 	 * Renvoi la liste de tous les utilisateurs present sur le serveur
 	 * 
-	 * @return Set<_Utilisateur> : liste des utilisateurs connecte au serveur
+	 * @return List<_Utilisateur> : liste des utilisateurs connecte au serveur
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
@@ -38,7 +38,7 @@ public interface _Server extends Remote {
 	 * 
 	 * @param name
 	 *            String : nom d'utilisateur
-	 * @return Set<_Utilisateur> : liste des utilisateurs portant le nom passe
+	 * @return List<_Utilisateur> : liste des utilisateurs portant le nom passe
 	 *         en parametre connecte au serveur
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication

@@ -15,7 +15,6 @@ import achala.communication.utilisateur._Utilisateur;
 import modules.chat.thread.ListenerThread;
 import modules.chat.thread.NotificationThread;
 import modules.chat.thread.SenderThread;
-import modules.chat.util.Commande;
 
 public class Chat {
 
