@@ -1,4 +1,4 @@
-package achala.modules.chat.util;
+package modules.chat.util;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;

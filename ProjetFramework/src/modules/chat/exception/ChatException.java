@@ -1,4 +1,4 @@
-package achala.modules.chat.exception;
+package modules.chat.exception;
 
 public class ChatException extends Exception {
 

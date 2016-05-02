@@ -1,4 +1,4 @@
-package achala.modules.publication.exception;
+package modules.publication.exception;
 
 public class PublicationException extends Exception {
 

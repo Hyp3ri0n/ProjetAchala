@@ -1,4 +1,4 @@
-package achala.modules.chat.thread;
+package modules.chat.thread;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import achala.communication._RemotableObject;
 import achala.communication._Shared;
 import achala.communication.exception.CommunicationException;
 import achala.communication.utilisateur._Utilisateur;
-import achala.modules.chat.util.Util.Cmd;
+import modules.chat.util.Util.Cmd;
 
 public class ListenerThread extends Thread {
 

@@ -1,4 +1,4 @@
-package achala.modules.publication.dao;
+package modules.publication.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package achala.modules.chat.clients;
+package modules.chat.clients;
 
 import java.rmi.RMISecurityManager;
 import java.util.Scanner;
@@ -7,8 +7,8 @@ import achala.communication.server.Server;
 import achala.communication.server._Server;
 import achala.communication.utilisateur.Utilisateur;
 import achala.communication.utilisateur._Utilisateur;
-import achala.modules.chat.Chat;
-import achala.modules.chat.util.Util.Cmd;
+import modules.chat.Chat;
+import modules.chat.util.Util.Cmd;
 
 @SuppressWarnings("deprecation")
 public class Client1 {

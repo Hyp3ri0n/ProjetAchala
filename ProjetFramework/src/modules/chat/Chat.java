@@ -1,4 +1,4 @@
-package achala.modules.chat;
+package modules.chat;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -12,10 +12,10 @@ import achala.communication.exception.CommunicationException;
 import achala.communication.server.Server;
 import achala.communication.server._Server;
 import achala.communication.utilisateur._Utilisateur;
-import achala.modules.chat.thread.ListenerThread;
-import achala.modules.chat.thread.NotificationThread;
-import achala.modules.chat.thread.SenderThread;
-import achala.modules.chat.util.Util.Cmd;
+import modules.chat.thread.ListenerThread;
+import modules.chat.thread.NotificationThread;
+import modules.chat.thread.SenderThread;
+import modules.chat.util.Util.Cmd;
 
 public class Chat {
 

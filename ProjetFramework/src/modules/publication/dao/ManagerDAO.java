@@ -1,12 +1,12 @@
-package achala.modules.publication.dao;
+package modules.publication.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 
 import achala.datamanager.Bd;
 import achala.datamanager.bdd.DAOTable;
-import achala.modules.publication.dao.DAOArticle;
-import achala.modules.publication.dao.DAOCommentaire;
-import achala.modules.publication.dao.ManagerDAO;
+import modules.publication.dao.DAOArticle;
+import modules.publication.dao.DAOCommentaire;
+import modules.publication.dao.ManagerDAO;
 
 
 public class ManagerDAO {

@@ -1,4 +1,4 @@
-package achala.modules.chat.clients;
+package modules.chat.clients;
 
 import achala.communication.server.Server;
 import achala.communication.server._Server;

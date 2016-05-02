@@ -1,8 +1,8 @@
-package achala.modules.publication;
+package modules.publication;
 
-import achala.modules.publication.dao.ManagerDAO;
-import achala.modules.publication.metier.*;
 import junit.framework.TestCase;
+import modules.publication.dao.ManagerDAO;
+import modules.publication.metier.*;
 
 public class Test extends TestCase {
 	int sizeArticles,sizeCommentaires,sizeCommentairesAfter,sizeArticlesAfter;

@@ -1,6 +1,6 @@
-package achala.modules.publication.presentation;
+package modules.publication.presentation;
 
-import achala.modules.publication.metier.*;
+import modules.publication.metier.*;
 
 public class Client {
 

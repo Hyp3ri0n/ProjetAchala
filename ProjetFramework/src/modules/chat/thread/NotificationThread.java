@@ -1,4 +1,4 @@
-package achala.modules.chat.thread;
+package modules.chat.thread;
 
 import achala.communication._RemotableObject;
 import achala.communication._Shared;
