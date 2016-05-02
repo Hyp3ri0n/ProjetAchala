@@ -193,7 +193,7 @@ public class Chat {
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	public void sender(Commande escape) throws RemoteException {
+	public void sender(String escape) throws RemoteException {
 		SenderThread sender = new SenderThread(this.getCurrent(), this.getShared(), escape);
 		sender.start();
 	}

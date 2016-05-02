@@ -12,7 +12,7 @@ public class SenderThread extends Thread {
 
 	private _Utilisateur u;
 	private _Shared s;
-	private Commande escape;
+	private String escape;
 	
 	/**
 	 * Construit un thread d'envoi de message
@@ -20,7 +20,7 @@ public class SenderThread extends Thread {
 	 * @param s _Shared : zone dans laquelle les messages sont envoye
 	 * @param escape String : chaine de caracteres mettant fin a la communication
 	 */
-	public SenderThread(_Utilisateur sender, _Shared s, Commande escape) {
+	public SenderThread(_Utilisateur sender, _Shared s, String escape) {
 		this.setU(sender);
 		this.setS(s);
 		this.setEscape(escape);
@@ -35,7 +35,7 @@ public class SenderThread extends Thread {
 		String message = "";
 		try
 		{
-			while(Commande.getCommandeByString(message) != this.getEscape())
+			while(!message.equals(this.getEscape()))
 			{
 				sleep(2000);
 				message = read.nextLine();
@@ -72,11 +72,11 @@ public class SenderThread extends Thread {
 		this.s = s;
 	}
 
-	private Commande getEscape() {
+	private String getEscape() {
 		return this.escape;
 	}
 
-	private void setEscape(Commande escape) {
+	private void setEscape(String escape) {
 		this.escape = escape;
 	}
 }
