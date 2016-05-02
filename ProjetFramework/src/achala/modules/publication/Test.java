@@ -21,12 +21,14 @@ public class Test extends TestCase {
 		ManagerApp.Instance().initialisation();
 		sizeArticles = ManagerApp.Instance().getListArticles().size();
 		sizeCommentaires = ManagerApp.Instance().getListCommentaires().size();
-		Article a1 = new Article("Prolog","Les atouts de la récursivité","Denis Bouhineau","25-04-2016");
-		Article a2 = new Article("Coder en C","Comment coder en C, les avantages / incovénients","Carlito","26-04-2016");
-		Commentaire c1 = new Commentaire("J'adore !!", "Jean","25-04-2016",1);
-		Commentaire c2 = new Commentaire("Sympa", "Audrey C.","25-04-2016",2);
-		Article a3 = new Article("JavaCC","Comment utiliser JavaCC??....","Roi Hennock","27-04-2016");
-		a3.setAuteur("Aurélien Fernando");
+		new Article("Prolog","Les atouts de la récursivité","Denis Bouhineau","25-04-2016");
+		new Article("Coder en C","Comment coder en C, les avantages / incovénients","Robinson Clarck","26-04-2016");
+		Article a1 = new Article("JavaCC","Comment utiliser JavaCC??\n\nExplication de la création de grammaire.","Alexis Martinier","27-04-2016");
+		Commentaire c1 = new Commentaire("J'adore !!", "John Doe","25-04-2016",1);
+		new Commentaire("J'ai hâte de lire la suite de l'artciel !", "Audrey Claude","26-04-2016",2);
+		new Commentaire("Bon article", "Hugo Vaillant","27-04-2016",2);
+		new Commentaire("Avez-vous des idées d'exercices pour le tri de listes ?", "Alexis Martinier.","28-04-2016",1);
+		a1.setAuteur("Aurélien Fernandes");
 		c1.supprimer();
 		ManagerApp.Instance().triParId();
 		sizeArticlesAfter = ManagerApp.Instance().getListArticles().size();
@@ -46,9 +48,9 @@ public class Test extends TestCase {
 	 * @throws Exception
 	 */
 	public void test1() throws Exception {
-		assertEquals(sizeCommentaires + 1,sizeCommentairesAfter);
+		assertEquals(sizeCommentaires + 3,sizeCommentairesAfter);
 		assertEquals(sizeArticles + 3,sizeArticlesAfter);
-		assertEquals("Aurélien Fernando",Article.getArticleById(3).getAuteur());
+		assertEquals("Aurélien Fernandes",Article.getArticleById(3).getAuteur());
 	}
 	
 

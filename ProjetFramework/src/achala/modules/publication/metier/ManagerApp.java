@@ -14,8 +14,8 @@ public class ManagerApp {
 	// ATTRIBUTS PRIVES
 	private static final ManagerApp instance = new ManagerApp();
 	private String typeTri = "id";
-	private List<Article> listArticles = new ArrayList<>();
-	private List<Commentaire> listCommentaires = new ArrayList<>();
+	private List<Article> listArticles;
+	private List<Commentaire> listCommentaires;
 	
 	/**
 	 * Constructeur par défaut
@@ -29,13 +29,12 @@ public class ManagerApp {
 	 * Alimente les listes lesArticles et lesCommentaires des enregistrements issus de la BDD
 	 */
 	public void initialisation() {
-		
-		/**______________Partie obligatoire______________**/
-		
-		
 		/*************************************************************/
 		/**				Création des objets Metier					**/
 		/*************************************************************/
+		this.listArticles = new ArrayList<>();
+		this.listCommentaires = new ArrayList<>();
+		
 		// Execution requete de selection de tous les articles
 		ResultSet rs = ManagerDAO.getBd().request(ManagerDAO.getDAOArticle().selectAll());
 		
