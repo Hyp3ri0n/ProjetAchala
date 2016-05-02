@@ -17,23 +17,18 @@ public class NotificationThread extends Thread {
 	
 	public void run()
 	{
-		try
-		{
-			while(true)
-			{
-				if(this.getShare().isAllowed(this.getUser()) && this.getShare().isWait())
-				{
-					for(_RemotableObject rObj : this.getShare().getObjects())
-					{
-						if(!rObj.getSender().equals(this.getUser()))
-							System.out.println("NOTIFICATION : " + rObj.getSender().toStringRemote());
+		try {
+			while (true) {
+				if (this.getShare().isAllowed(this.getUser())) {
+					for (_RemotableObject o : this.getShare().getRObjectList().keySet()) {
+						if (this.getShare().getRObjectList().get(o).contains(this.getUser())) {
+							System.out.println("Notification de " + o.getSender().toStringRemote() + " sur la zone "
+									+ this.getShare().getZoneName());
+						}
 					}
 				}
-				sleep(5000);
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

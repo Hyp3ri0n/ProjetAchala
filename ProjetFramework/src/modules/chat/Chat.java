@@ -15,7 +15,7 @@ import achala.communication.utilisateur._Utilisateur;
 import modules.chat.thread.ListenerThread;
 import modules.chat.thread.NotificationThread;
 import modules.chat.thread.SenderThread;
-import modules.chat.util.Util.Cmd;
+import modules.chat.util.Commande;
 
 public class Chat {
 
@@ -193,7 +193,7 @@ public class Chat {
 	 * @throws RemoteException
 	 *             leve une exception en cas d'echec de communication
 	 */
-	public void sender(Cmd escape) throws RemoteException {
+	public void sender(Commande escape) throws RemoteException {
 		SenderThread sender = new SenderThread(this.getCurrent(), this.getShared(), escape);
 		sender.start();
 	}
