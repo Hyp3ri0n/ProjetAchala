@@ -8,7 +8,7 @@ import achala.communication.server._Server;
 import achala.communication.utilisateur.Utilisateur;
 import achala.communication.utilisateur._Utilisateur;
 import modules.chat.Chat;
-import modules.chat.util.Util.Cmd;
+import modules.chat.util.Commande;
 
 @SuppressWarnings("deprecation")
 public class Client2 {
@@ -36,7 +36,7 @@ public class Client2 {
 			Chat c = new Chat(srv, luc, srv.getUtilisateurs(), "zoneTest");
 			
 			c.listener();
-			c.sender(Cmd.EXIT);
+			c.sender(Commande.EXIT.getCmdLine());
 		}
 		catch(Exception e)
 		{
