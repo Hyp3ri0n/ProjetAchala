@@ -77,4 +77,13 @@ public interface _RemotableObject extends Remote {
 	 *             leve une exception en cas d'echec de communication
 	 */
 	public _Utilisateur getSender() throws RemoteException;
+
+	/**
+	 * Renvoi la class de l'objet
+	 * 
+	 * @return Class : class de l'objet
+	 * @throws RemoteException
+	 *             leve une exception en cas d'echec de communication
+	 */
+	public Class<?> getClassRemotable() throws RemoteException;
 }

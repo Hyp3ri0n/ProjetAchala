@@ -51,4 +51,9 @@ public class Message extends RemotableObject {
 		return this.getMessage();
 	}
 
+	@Override
+	public Class<?> getClassRemotable() throws RemoteException {
+		return Message.class;
+	}
+
 }

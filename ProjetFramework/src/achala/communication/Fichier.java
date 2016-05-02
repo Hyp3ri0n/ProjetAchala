@@ -51,4 +51,9 @@ public class Fichier extends RemotableObject {
 		return this.getFichier();
 	}
 
+	@Override
+	public Class<?> getClassRemotable() throws RemoteException {
+		return Fichier.class;
+	}
+
 }
