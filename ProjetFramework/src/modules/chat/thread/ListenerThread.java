@@ -54,7 +54,6 @@ public class ListenerThread extends Thread {
 			}
 		}
 		System.out.println("Exit Listener");
-		this.stop();
 	}
 
 	private _Utilisateur getU() {
